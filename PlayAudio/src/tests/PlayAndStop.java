@@ -15,9 +15,16 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-/* Classe di prova con main */
+import utils.os.OSDiscerner;
+
+/**
+ * Temporary class. It is the container for the main() and other functions the main calls.
+ * The next commits will hopefully be attempts to create a better structure.
+ * 
+ * @author claudio
+ *
+ */
 public class PlayAndStop {
-	// Commenti test 2 (Manuel)
 
 	public static void main(String[] args) {
 		
@@ -27,6 +34,8 @@ public class PlayAndStop {
 		frame.add(button);
 		frame.setVisible(true);
 		button.addActionListener(new AL());
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public static class AL implements ActionListener {
@@ -38,9 +47,27 @@ public class PlayAndStop {
 	}
 	
 	public static void music() {
-			
-		String urlString = "file://"+(new File("audioFiles/test_mp3_0001.mp3").getAbsolutePath());
-		URL url=null;
+		
+		String urlString = null;
+		String urlSuffix = null;
+		
+		/*
+		 * This if-construct evaluates the correct OS and builds the URL
+		 * suffix consequentially.
+		 */
+		if (OSDiscerner.isUnix() || OSDiscerner.isMac()) {
+			urlSuffix = "file://";
+		}
+		else {
+			if (OSDiscerner.isWindows()) {
+				urlSuffix = "file:\\";
+			}
+		}
+		
+		urlString = urlSuffix+(new File("audioFiles/test_mp3_0001.mp3").getAbsolutePath());
+		
+		URL url = null;
+		
 		
 		try {
 			url = new URL(urlString);
