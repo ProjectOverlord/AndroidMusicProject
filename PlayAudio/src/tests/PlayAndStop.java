@@ -57,10 +57,12 @@ public class PlayAndStop {
 		 */
 		if (OSDiscerner.isUnix() || OSDiscerner.isMac()) {
 			urlSuffix = "file://";
-		}
-		else {
+		} else {
 			if (OSDiscerner.isWindows()) {
 				urlSuffix = "file:\\";
+			} else {
+				System.err.println("OS non supportato");
+				return;
 			}
 		}
 		
