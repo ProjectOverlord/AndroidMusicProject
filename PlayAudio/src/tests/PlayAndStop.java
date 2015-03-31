@@ -2,6 +2,7 @@ package tests;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,7 +39,7 @@ public class PlayAndStop {
 	
 	public static void music() {
 			
-		String urlString="audioFiles/test_mp3_0001.mp3";
+		String urlString = "file://"+(new File("audioFiles/test_mp3_0001.mp3").getAbsolutePath());
 		URL url=null;
 		
 		try {
