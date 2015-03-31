@@ -14,6 +14,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/* Classe di prova con main */
 public class PlayAndStop {
 	// Commenti test 2 (Manuel)
 
