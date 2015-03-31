@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class PlayAndStop {
+	// Commenti test 2 (Manuel)
 
 	public static void main(String[] args) {
 		
