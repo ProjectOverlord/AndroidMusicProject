@@ -73,10 +73,10 @@ public class PlayAndStop {
 		
 		try {
 			url = new URL(urlString);
-		} catch (MalformedURLException e) {
+		} catch (MalformedURLException mue) {
 			System.out.println("The URL is not valid.");
-		    System.out.println(e.getMessage());
-			e.printStackTrace();
+		    System.out.println(mue.getMessage());
+			mue.printStackTrace();
 		}
 			
 		try {
@@ -86,12 +86,12 @@ public class PlayAndStop {
 			clip.open(audio);
 				
 			clip.loop(1);
-		} catch (UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
+		} catch (UnsupportedAudioFileException uafe) {
+			uafe.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		} catch (LineUnavailableException lue) {
+			lue.printStackTrace();
 		}
 		
 	}
