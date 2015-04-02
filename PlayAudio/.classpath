@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="lib/jmf.jar"/>
 	<classpathentry kind="lib" path="lib/mediaplayer.jar"/>
 	<classpathentry kind="lib" path="lib/multiplayer.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/mp3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
