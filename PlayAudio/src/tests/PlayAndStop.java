@@ -1,5 +1,6 @@
 package tests;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -28,27 +29,46 @@ import utils.os.OSDiscerner;
  */
 public class PlayAndStop {
 
+	private static AudioInputStream audio;
+	private static AudioFormat format;
+	private static DataLine.Info info;
+	private static Clip clip;
+	
 	public static void main(String[] args) {
 		
 		JFrame frame= new JFrame();
 		frame.setSize(200,200);
-		JButton button=new JButton("play");
-		frame.add(button);
+		frame.getContentPane().setLayout(new GridLayout(2,1));
+		
+		JButton button1=new JButton("Play");
+		frame.add(button1);
 		frame.setVisible(true);
-		button.addActionListener(new AL());
+		button1.addActionListener(new AL1());
+		
+		JButton button2=new JButton("Stop");
+		frame.add(button2);
+		button2.addActionListener(new AL2());
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static class AL implements ActionListener {
+	public static class AL1 implements ActionListener {
 	
 		public void actionPerformed(ActionEvent e) {
 	
-			music();
+			musicPlay();
 		}
 	}
 	
-	public static void music() {
+	public static class AL2 implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+	
+			musicStop();
+		}
+	}
+	
+	public static void musicPlay() {
 		
 		String urlString = null;
 		String urlSuffix = null;
@@ -82,15 +102,15 @@ public class PlayAndStop {
 		}
 			
 		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(url);
+			audio = AudioSystem.getAudioInputStream(url);
 			
-			AudioFormat format = audio.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			format = audio.getFormat();
+			info = new DataLine.Info(Clip.class, format);
 			
-			Clip clip = (Clip)AudioSystem.getLine(info);
+			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(audio);
-				
-			clip.loop(1);
+							
+			clip.start();
 		} catch (UnsupportedAudioFileException uafe) {
 			uafe.printStackTrace();
 		} catch (IOException ioe) {
@@ -99,5 +119,10 @@ public class PlayAndStop {
 			lue.printStackTrace();
 		}
 		
+	}
+	
+	public static void musicStop() {
+		
+		clip.stop();
 	}
 }
