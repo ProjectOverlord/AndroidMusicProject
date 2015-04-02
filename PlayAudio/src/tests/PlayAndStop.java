@@ -66,7 +66,7 @@ public class PlayAndStop {
 			}
 		}
 		
-		urlString = urlSuffix+(new File("audioFiles/test_mp3_0001.mp3").getAbsolutePath());
+		urlString = urlSuffix+(new File("audioFiles/cyborg.wav").getAbsolutePath());
 		
 		URL url = null;
 		
