@@ -61,7 +61,7 @@ public class PlayAndStop {
 			if (OSDiscerner.isWindows()) {
 				urlSuffix = "file:\\";
 			} else {
-				System.err.println("OS non supportato");
+				System.err.println("OS not supported");
 				return;
 			}
 		}
