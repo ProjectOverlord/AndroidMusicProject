@@ -23,10 +23,20 @@ public class MainActivity extends Activity {
 
     private static final int DEFAULT_START_TIME = 0;
 
-    private MediaPlayer mp=null;
-    private Handler handler = new Handler();
-    private int startTime = DEFAULT_START_TIME;
-    private SeekBar sk=null;
+    private MediaPlayer mp;
+    private Handler handler;
+    private double startTime;
+    private SeekBar sk;
+
+    /**
+     * Default constructor. Initialize the execution variables
+     */
+    public MainActivity() {
+        startTime = DEFAULT_START_TIME;
+        handler = new Handler();
+        mp = null;
+        sk=null;
+    }
 
 
     @Override
