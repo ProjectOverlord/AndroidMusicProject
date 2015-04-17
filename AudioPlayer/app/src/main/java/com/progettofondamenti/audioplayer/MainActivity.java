@@ -3,7 +3,6 @@ package com.progettofondamenti.audioplayer;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +12,10 @@ import android.widget.SeekBar;
 
 import java.io.IOException;
 
+/**
+ * The main activity of the program.
+ * As of 17/04/2015, it needs to be refactored heavily.
+ */
 public class MainActivity extends Activity {
 
     private MediaPlayer mp=null;
@@ -124,11 +127,13 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            if(true) {
+            }
         }
 
         mp.setLooping(true);
         mp.start();
-        sk.setMax((int) mp.getDuration());
+        sk.setMax(mp.getDuration());
         handler.postDelayed(updateBar,100);
     }
 
