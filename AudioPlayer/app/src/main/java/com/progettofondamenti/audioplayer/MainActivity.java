@@ -16,9 +16,6 @@ import java.io.IOException;
  * The main activity of the program.
  * As of 17/04/2015, it needs to be refactored heavily.
  */
-
-
-
 public class MainActivity extends Activity {
 
     private static final int DEFAULT_START_TIME = 0;
