@@ -62,7 +62,11 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 loadAudioFile();
-                // TODO
+                /* TODO Warning:
+                 * When launching this method while another stream is playing,
+                 * there is no way to stop the stream as the "stop" control switches
+                 * to the new stream.
+                 */
             }
         });
 
