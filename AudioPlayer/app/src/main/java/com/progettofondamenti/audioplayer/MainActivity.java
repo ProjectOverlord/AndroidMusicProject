@@ -16,11 +16,16 @@ import java.io.IOException;
  * The main activity of the program.
  * As of 17/04/2015, it needs to be refactored heavily.
  */
+
+
+
 public class MainActivity extends Activity {
+
+    private static final int DEFAULT_START_TIME = 0;
 
     private MediaPlayer mp=null;
     private Handler handler = new Handler();
-    private double startTime = 0;
+    private int startTime = DEFAULT_START_TIME;
     private SeekBar sk=null;
 
 
@@ -37,7 +42,6 @@ public class MainActivity extends Activity {
         Button button1 = (Button) findViewById(R.id.buttonPlay);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 play(v);
             }
         });
@@ -73,7 +77,7 @@ public class MainActivity extends Activity {
     }
 
     public void loadAudioFile() {
-        mp= MediaPlayer.create(this, R.raw.test_mp3_0001);
+        mp = MediaPlayer.create(this, R.raw.test_mp3_0001);
     }
 
 
@@ -131,8 +135,6 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            if(true) {
-            }
         }
 
         mp.setLooping(true);
@@ -141,7 +143,6 @@ public class MainActivity extends Activity {
         handler.postDelayed(updateBar,100);
     }
 
-    //per anima
 
     public void pause(View v)
     {
