@@ -163,4 +163,10 @@ public class MainActivity extends Activity {
         sk.setProgress(0);  // imposta la barra all'inizio
         mp.stop();
     }
+    
+    @Override
+	 public void onDestroy(){
+	 super.onDestroy();
+	    mp.release();
+	 }
 }
