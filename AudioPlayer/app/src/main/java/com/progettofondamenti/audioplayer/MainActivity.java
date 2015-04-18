@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
     private Handler handler;
     private double startTime;
     private SeekBar sk;
-
+    private Button playButton;
+    private Button pauseButton;
     /**
      * Default constructor. Initialize the execution variables
      */
@@ -46,15 +47,15 @@ public class MainActivity extends Activity {
 
         //mp=MediaPlayer.create(MainActivity.this,R.raw.test_mp3_0001);
 
-        Button button1 = (Button) findViewById(R.id.buttonPlay);
-        button1.setOnClickListener(new View.OnClickListener() {
+        playButton = (Button) findViewById(R.id.buttonPlay);
+        playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 play(v);
             }
         });
 
-        Button button2 = (Button) findViewById(R.id.buttonPause);
-        button2.setOnClickListener(new View.OnClickListener() {
+        pauseButton = (Button) findViewById(R.id.buttonPause);
+        pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pause(v);
             }
