@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,9 @@ public class MainActivity extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 play(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "playing", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -57,6 +61,9 @@ public class MainActivity extends Activity {
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pause(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "paused", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -64,6 +71,9 @@ public class MainActivity extends Activity {
         rewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 rewind(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "rewinding", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,6 +83,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 forward(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "forwarding", Toast.LENGTH_SHORT).show();
             }
         });
 
