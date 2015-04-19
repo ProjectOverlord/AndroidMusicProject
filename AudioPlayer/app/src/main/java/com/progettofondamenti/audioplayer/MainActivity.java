@@ -1,7 +1,9 @@
 package com.progettofondamenti.audioplayer;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,8 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The main activity of the program.
@@ -23,11 +27,14 @@ public class MainActivity extends Activity {
     private MediaPlayer mp;
     private Handler handler;
     private double startTime;
+    private double finalTime;
     private SeekBar sk;
     private Button playButton;
     private Button pauseButton;
     private Button stopButton;
     private Button loadButton;
+    public TextView songTitle;
+    public TextView songDuration;
 
     /**
      * Default constructor. Initialize the execution variables
@@ -45,10 +52,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         sk=(SeekBar) findViewById(R.id.bar);
-
-        //mp=MediaPlayer.create(MainActivity.this,R.raw.test_mp3_0001);
 
         playButton = (Button) findViewById(R.id.buttonPlay);
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +93,12 @@ public class MainActivity extends Activity {
             }
         });
 
+        songTitle = (TextView) findViewById(R.id.songTitle);
+        songTitle.setText("test_mp3_0001.mp3");
+
+        songDuration = (TextView) findViewById(R.id.songDuration);
+        songDuration.setText("song duration");
+
     }
 
     public void loadAudioFile() {
@@ -117,6 +127,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
     /**
      * meccanismo di aggiornamento della barra di progresso. Il suo avanzamento rappresenta
      * l’andamento della riproduzione. Si è usato un handler temporizzato che legge ogni 100 millisecondi
@@ -126,10 +137,22 @@ public class MainActivity extends Activity {
      * del metodo getDuration del Mediaplayer.
      */
     private Runnable updateBar = new Runnable() {
+        @TargetApi(Build.VERSION_CODES.GINGERBREAD)
         public void run()
         {
             startTime = mp.getCurrentPosition();
             sk.setProgress((int)startTime);
+
+            finalTime = mp.getDuration();
+            double timeRemaining = finalTime - startTime;
+
+            // il metodo toMinutes richiede una API 9 minima, bisognerebbe cambiare perché attualmente
+            // la minima è la 8 per noi, funziona ugualmente essendo stato annotato (seguendo il suggerimento
+            // di AS
+            songDuration.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining),
+                    TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining)
+                            - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining))));
+
             handler.postDelayed(this, 100);
         }
     };
@@ -137,9 +160,7 @@ public class MainActivity extends Activity {
     public void play(View v)
     {
         loadAudioFile();
-        // mp=MediaPlayer.create(MainActivity.this,R.raw.test_mp3_0001);
 
-        // mp = new MediaPlayer();
         try {
             mp.prepare();
         } catch (IllegalStateException e) {
@@ -148,7 +169,7 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 
-        mp.setLooping(true);
+        mp.setLooping(true); // e' fondamentale?
         mp.start();
         sk.setMax(mp.getDuration());
         handler.postDelayed(updateBar,100);
