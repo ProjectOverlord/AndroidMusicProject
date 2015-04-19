@@ -47,18 +47,20 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="play"
             android:text="Play"
-            android:id="@+id/buttonPlay"/>
-        <Button
+            android:id="@+id/buttonPlay"
+            android:src="@android:drawable/ic_media_play"/>
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="pause"
             android:text="Pause"
-            android:id="@+id/buttonPause"/>
+            android:id="@+id/buttonPause"
+            android:src="@android:drawable/ic_media_pause"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

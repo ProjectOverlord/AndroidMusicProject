@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -29,8 +30,8 @@ public class MainActivity extends Activity {
     private double startTime;
     private double finalTime;
     private SeekBar sk;
-    private Button playButton;
-    private Button pauseButton;
+    private ImageButton playButton;
+    private ImageButton pauseButton;
     private Button stopButton;
     private Button loadButton;
     public TextView songTitle;
@@ -38,6 +39,7 @@ public class MainActivity extends Activity {
 
     /**
      * Default constructor. Initialize the execution variables
+     * NOT NEEDED IN AN ACTIVITY!! -> WILL BE REMOVED SOON
      */
     public MainActivity() {
         startTime = DEFAULT_START_TIME;
@@ -54,14 +56,14 @@ public class MainActivity extends Activity {
 
         sk=(SeekBar) findViewById(R.id.bar);
 
-        playButton = (Button) findViewById(R.id.buttonPlay);
+        playButton = (ImageButton) findViewById(R.id.buttonPlay);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 play(v);
             }
         });
 
-        pauseButton = (Button) findViewById(R.id.buttonPause);
+        pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pause(v);
