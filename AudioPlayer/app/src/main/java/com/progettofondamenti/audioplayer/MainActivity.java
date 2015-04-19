@@ -26,6 +26,9 @@ public class MainActivity extends Activity {
     private SeekBar sk;
     private Button playButton;
     private Button pauseButton;
+    private Button stopButton;
+    private Button loadButton;
+
     /**
      * Default constructor. Initialize the execution variables
      */
@@ -61,16 +64,20 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button button3 = (Button) findViewById(R.id.buttonStop);
-        button3.setOnClickListener(new View.OnClickListener() {
+        /*
+        this button will be deleted because it's not useful, we just need button play and pause to
+        handel our application
+         */
+        stopButton = (Button) findViewById(R.id.buttonStop);
+        stopButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 stop(v);
 
             }
         });
 
-        Button button4 = (Button) findViewById(R.id.loadAudioButton);
-        button4.setOnClickListener(new View.OnClickListener() {
+        loadButton = (Button) findViewById(R.id.loadAudioButton);
+        loadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadAudioFile();
@@ -87,10 +94,6 @@ public class MainActivity extends Activity {
     public void loadAudioFile() {
         mp = MediaPlayer.create(this, R.raw.test_mp3_0001);
     }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
