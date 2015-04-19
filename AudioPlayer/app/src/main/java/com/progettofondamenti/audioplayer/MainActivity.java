@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -23,37 +22,28 @@ import java.util.concurrent.TimeUnit;
  */
 public class MainActivity extends Activity {
 
-    private static final int DEFAULT_START_TIME = 0;
-
     private MediaPlayer mp;
     private Handler handler;
-    private double startTime;
+    private double timeElapsed = 0;
     private double finalTime;
+    private int forwardTime = 2000;
+    private int backwardTime = 2000;
     private SeekBar sk;
     private ImageButton playButton;
     private ImageButton pauseButton;
-    private Button stopButton;
-    private Button loadButton;
+    private ImageButton rewButton;
+    private ImageButton ffButton;
     public TextView songTitle;
     public TextView songDuration;
-
-    /**
-     * Default constructor. Initialize the execution variables
-     * NOT NEEDED IN AN ACTIVITY!! -> WILL BE REMOVED SOON
-     */
-    public MainActivity() {
-        startTime = DEFAULT_START_TIME;
-        handler = new Handler();
-        mp = null;
-        sk=null;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadAudioFile();
+
+        handler = new Handler();
         sk=(SeekBar) findViewById(R.id.bar);
 
         playButton = (ImageButton) findViewById(R.id.buttonPlay);
@@ -70,28 +60,19 @@ public class MainActivity extends Activity {
             }
         });
 
-        /*
-        this button will be deleted because it's not useful, we just need button play and pause to
-        handel our application
-         */
-        stopButton = (Button) findViewById(R.id.buttonStop);
-        stopButton.setOnClickListener(new View.OnClickListener() {
+        rewButton = (ImageButton) findViewById(R.id.buttonRew);
+        rewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                stop(v);
+                rewind(v);
 
             }
         });
 
-        loadButton = (Button) findViewById(R.id.loadAudioButton);
-        loadButton.setOnClickListener(new View.OnClickListener() {
+        ffButton = (ImageButton) findViewById(R.id.buttonFf);
+        ffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadAudioFile();
-                /* TODO Warning:
-                 * When launching this method while another stream is playing,
-                 * there is no way to stop the stream as the "stop" control switches
-                 * to the new stream.
-                 */
+                forward(v);
             }
         });
 
@@ -142,11 +123,11 @@ public class MainActivity extends Activity {
         @TargetApi(Build.VERSION_CODES.GINGERBREAD)
         public void run()
         {
-            startTime = mp.getCurrentPosition();
-            sk.setProgress((int)startTime);
+            timeElapsed = mp.getCurrentPosition();
+            sk.setProgress((int) timeElapsed);
 
             finalTime = mp.getDuration();
-            double timeRemaining = finalTime - startTime;
+            double timeRemaining = finalTime - timeElapsed;
 
             // il metodo toMinutes richiede una API 9 minima, bisognerebbe cambiare perché attualmente
             // la minima è la 8 per noi, funziona ugualmente essendo stato annotato (seguendo il suggerimento
@@ -161,19 +142,11 @@ public class MainActivity extends Activity {
 
     public void play(View v)
     {
-        loadAudioFile();
-
-        try {
-            mp.prepare();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         mp.setLooping(true); // e' fondamentale?
         mp.start();
         sk.setMax(mp.getDuration());
+        timeElapsed = mp.getCurrentPosition();
+        sk.setProgress((int) timeElapsed);
         handler.postDelayed(updateBar,100);
     }
 
@@ -183,14 +156,29 @@ public class MainActivity extends Activity {
         mp.pause();
     }
 
-    public void stop(View v)
-    {
-        mp.pause();         // fermo la riproduzione del media player
-        mp.seekTo(0);       // sposto la riproduzione a zero
-        sk.setProgress(0);  // imposta la barra all'inizio
-        mp.stop();
+    // go backwards at backwardTime seconds
+    public void rewind(View view) {
+        //check if we can go back at backwardTime seconds after song starts
+        if ((timeElapsed - backwardTime) > 0) {
+            timeElapsed = timeElapsed - backwardTime;
+
+            //seek to the exact second of the track
+            mp.seekTo((int) timeElapsed);
+        }
     }
-    
+
+    // go forward at forwardTime seconds
+    public void forward(View view) {
+        //check if we can go forward at forwardTime seconds before song endes
+        if ((timeElapsed + forwardTime) <= finalTime) {
+            timeElapsed = timeElapsed + forwardTime;
+
+            //seek to the exact second of the track
+            mp.seekTo((int) timeElapsed);
+        }
+    }
+
+
     @Override
 	 public void onDestroy(){
 	 super.onDestroy();

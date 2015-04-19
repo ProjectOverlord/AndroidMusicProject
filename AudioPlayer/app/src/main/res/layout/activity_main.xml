@@ -50,6 +50,13 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="stop"
+            android:text="Stop"
+            android:id="@+id/buttonRew"
+            android:src="@android:drawable/ic_media_rew"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="play"
             android:text="Play"
             android:id="@+id/buttonPlay"
@@ -61,19 +68,16 @@
             android:text="Pause"
             android:id="@+id/buttonPause"
             android:src="@android:drawable/ic_media_pause"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="stop"
-            android:text="Stop"
-            android:id="@+id/buttonStop"/>
 
-        <Button
+
+
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Load"
-            android:id="@+id/loadAudioButton"
+            android:id="@+id/buttonFf"
             android:layout_column="1"
-            android:layout_span="2"/>
+            android:layout_span="2"
+            android:src="@android:drawable/ic_media_ff"/>
     </LinearLayout>
 </LinearLayout>
