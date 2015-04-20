@@ -83,8 +83,8 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="ff"
-            android:text="Ff"
+            android:onClick="forward"
+            android:text="Forward"
             android:id="@+id/buttonFf"
             android:src="@android:drawable/ic_media_ff"/>
 

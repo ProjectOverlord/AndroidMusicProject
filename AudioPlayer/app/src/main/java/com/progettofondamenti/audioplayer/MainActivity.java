@@ -91,6 +91,17 @@ public class MainActivity extends Activity {
             }
         });
 
+        previousButton = (ImageButton) findViewById(R.id.buttonPrevious);
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previous(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "Previous", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("test_mp3_0001.mp3");
 
@@ -124,7 +135,6 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
 
     /**
      * meccanismo di aggiornamento della barra di progresso. Il suo avanzamento rappresenta
@@ -184,7 +194,7 @@ public class MainActivity extends Activity {
 
     // go forward at forwardTime seconds
     public void forward(View view) {
-        //check if we can go forward at forwardTime seconds before song endes
+        //check if we can go forward at forwardTime seconds before song end
         if ((timeElapsed + forwardTime) <= finalTime) {
             timeElapsed = timeElapsed + forwardTime;
 
@@ -193,6 +203,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    //go previous song
+    public void previous(View view) {
+        //torna all'inizio della canzone e riparte settando anche la seek bar
+        mp.seekTo(0);
+        sk.setProgress(0);
+    }
 
     @Override
 	 public void onDestroy(){
