@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="test_mp3_0001.mp3"/>
+        android:text="W.A.Mozart - Concerto No.21 - Andante"/>
 
     <ImageView
         android:id="@+id/mp3Image"

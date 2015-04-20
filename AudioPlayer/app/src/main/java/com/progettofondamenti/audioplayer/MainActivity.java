@@ -135,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
         });
 
         songTitle = (TextView) findViewById(R.id.songTitle);
-        songTitle.setText("test_mp3_0001.mp3");
+        songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
 
         songDuration = (TextView) findViewById(R.id.songDuration);
         songDuration.setText("Song duration");
