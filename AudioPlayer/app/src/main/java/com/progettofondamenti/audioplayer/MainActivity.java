@@ -102,6 +102,17 @@ public class MainActivity extends Activity {
             }
         });
 
+        nextButton = (ImageButton) findViewById(R.id.buttonNext);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next(v);
+
+                Toast.makeText(getApplicationContext(),
+                        "Next", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("test_mp3_0001.mp3");
 
@@ -167,7 +178,7 @@ public class MainActivity extends Activity {
 
     public void play(View v)
     {
-        mp.setLooping(true); // e' fondamentale?
+        //mp.setLooping(true); // e' fondamentale?
         mp.start();
         sk.setMax(mp.getDuration());
         timeElapsed = mp.getCurrentPosition();
@@ -203,7 +214,6 @@ public class MainActivity extends Activity {
         }
     }
 
-
     //go previous song
     public void previous(View view) {
         //torna all'inizio della canzone e riparte settando anche la seek bar
@@ -211,14 +221,22 @@ public class MainActivity extends Activity {
         sk.setProgress(0);
     }
 
+    //go next song
+    public void next(View view) {
+        //va alla fine della canzone e riparte premendo play
+        finalTime=mp.getDuration();
+        mp.seekTo((int) finalTime);
+        sk.setProgress((int) finalTime);
+    }
+
     @Override
     public void onPause() {
+
         super.onPause();
 
         mp.pause();
         timeElapsed = mp.getCurrentPosition();
     }
-
 
     @Override
 	 public void onDestroy(){
