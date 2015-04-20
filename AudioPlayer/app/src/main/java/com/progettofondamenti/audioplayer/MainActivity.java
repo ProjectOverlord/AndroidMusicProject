@@ -219,6 +219,8 @@ public class MainActivity extends Activity {
         //torna all'inizio della canzone e riparte settando anche la seek bar
         mp.seekTo(0);
         sk.setProgress(0);
+
+        playButton.setClickable(true);
     }
 
     //go next song
@@ -227,6 +229,8 @@ public class MainActivity extends Activity {
         finalTime=mp.getDuration();
         mp.seekTo((int) finalTime);
         sk.setProgress((int) finalTime);
+
+        playButton.setClickable(false);
     }
 
     @Override
