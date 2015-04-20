@@ -59,8 +59,8 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="stop"
-            android:text="Stop"
+            android:onClick="rewind"
+            android:text="Rewind"
             android:id="@+id/buttonRew"
             android:src="@android:drawable/ic_media_rew"/>
 
@@ -83,19 +83,17 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Load"
+            android:onClick="ff"
+            android:text="Ff"
             android:id="@+id/buttonFf"
-            android:layout_column="1"
-            android:layout_span="2"
             android:src="@android:drawable/ic_media_ff"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="next"
             android:text="Next"
             android:id="@+id/buttonNext"
-            android:layout_column="1"
-            android:layout_span="2"
             android:src="@android:drawable/ic_media_next"/>
     </LinearLayout>
 </LinearLayout>

@@ -34,6 +34,8 @@ public class MainActivity extends Activity {
     private ImageButton pauseButton;
     private ImageButton rewButton;
     private ImageButton ffButton;
+    private ImageButton previousButton;
+    private ImageButton nextButton;
     public TextView songTitle;
     public TextView songDuration;
 
