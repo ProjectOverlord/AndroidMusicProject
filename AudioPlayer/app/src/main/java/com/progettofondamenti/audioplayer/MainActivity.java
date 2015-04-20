@@ -203,12 +203,22 @@ public class MainActivity extends Activity {
         }
     }
 
+
     //go previous song
     public void previous(View view) {
         //torna all'inizio della canzone e riparte settando anche la seek bar
         mp.seekTo(0);
         sk.setProgress(0);
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        mp.pause();
+        timeElapsed = mp.getCurrentPosition();
+    }
+
 
     @Override
 	 public void onDestroy(){
