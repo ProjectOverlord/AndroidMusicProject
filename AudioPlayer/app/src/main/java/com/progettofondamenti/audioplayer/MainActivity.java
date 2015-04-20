@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * The main activity of the program.
  * As of 17/04/2015, it needs to be refactored heavily.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private MediaPlayer mp;
     private Handler handler;
@@ -47,7 +48,27 @@ public class MainActivity extends Activity {
         loadAudioFile();
 
         handler = new Handler();
+
         sk=(SeekBar) findViewById(R.id.bar);
+        sk.setClickable(true);
+        sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+//                TODO
+
+            }
+        });
 
         playButton = (ImageButton) findViewById(R.id.buttonPlay);
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +207,6 @@ public class MainActivity extends Activity {
         handler.postDelayed(updateBar,100);
     }
 
-
     public void pause(View v)
     {
         mp.pause();
@@ -243,9 +263,9 @@ public class MainActivity extends Activity {
     }
 
     @Override
-	 public void onDestroy(){
-	 super.onDestroy();
-	    mp.release();
-	 }
-	 
+    public void onDestroy(){
+        super.onDestroy();
+        mp.release();
+    }
+
 }
