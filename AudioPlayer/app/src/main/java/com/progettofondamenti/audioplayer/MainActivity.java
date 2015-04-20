@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
                 play(v);
 
                 Toast.makeText(getApplicationContext(),
-                        "playing", Toast.LENGTH_SHORT).show();
+                        "Playing", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
                 pause(v);
 
                 Toast.makeText(getApplicationContext(),
-                        "paused", Toast.LENGTH_SHORT).show();
+                        "Paused", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
                 rewind(v);
 
                 Toast.makeText(getApplicationContext(),
-                        "rewinding", Toast.LENGTH_SHORT).show();
+                        "Rewinding", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
                 forward(v);
 
                 Toast.makeText(getApplicationContext(),
-                        "forwarding", Toast.LENGTH_SHORT).show();
+                        "Forwarding", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
         songTitle.setText("test_mp3_0001.mp3");
 
         songDuration = (TextView) findViewById(R.id.songDuration);
-        songDuration.setText("song duration");
+        songDuration.setText("Song duration");
 
     }
 
