@@ -40,6 +40,8 @@ public class MainActivity extends ActionBarActivity {
     public TextView songTitle;
     public TextView songDuration;
 
+    private boolean isPaused;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,25 +57,32 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+                if (isPaused) {
+                    play();
+                }
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+                if (mp.isPlaying()) {
+                    pause();
+                }
             }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-//                TODO
-
+                if (fromUser) {
+                    int progressMs = (progress * mp.getDuration())
+                            / seekBar.getMax();
+                    mp.seekTo(progressMs);
+                }
             }
         });
 
         playButton = (ImageButton) findViewById(R.id.buttonPlay);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                play(v);
+                play();
 
                 Toast.makeText(getApplicationContext(),
                         "Playing", Toast.LENGTH_SHORT).show();
@@ -83,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                pause(v);
+                pause();
 
                 Toast.makeText(getApplicationContext(),
                         "Paused", Toast.LENGTH_SHORT).show();
@@ -197,7 +206,7 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
-    public void play(View v)
+    public void play()
     {
         //mp.setLooping(true); // e' fondamentale?
         mp.start();
@@ -205,11 +214,14 @@ public class MainActivity extends ActionBarActivity {
         timeElapsed = mp.getCurrentPosition();
         sk.setProgress((int) timeElapsed);
         handler.postDelayed(updateBar,100);
+
+        isPaused = false;
     }
 
-    public void pause(View v)
+    public void pause()
     {
         mp.pause();
+        isPaused = true;
     }
 
     // go backwards at backwardTime seconds
