@@ -107,8 +107,6 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 rewind(v);
 
-                Toast.makeText(getApplicationContext(),
-                        "Rewinding", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -119,8 +117,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 forward(v);
 
-                Toast.makeText(getApplicationContext(),
-                        "Forwarding", Toast.LENGTH_SHORT).show();
+
             }
         });
 
