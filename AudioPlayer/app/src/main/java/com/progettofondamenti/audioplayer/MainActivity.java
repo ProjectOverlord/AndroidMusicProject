@@ -152,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void loadAudioFile() {
-        mp = MediaPlayer.create(this, R.raw.test_mp3_0001);
+        mp = MediaPlayer.create(this, R.raw.amazingthema);
     }
 
     @Override
