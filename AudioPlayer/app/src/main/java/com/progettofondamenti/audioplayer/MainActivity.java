@@ -1,7 +1,6 @@
 package com.progettofondamenti.audioplayer;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
@@ -15,7 +14,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
