@@ -262,7 +262,6 @@ public class MainActivity extends ActionBarActivity {
         mp.seekTo((int) finalTime);
         sk.setProgress((int) finalTime);
 
-        playButton.setClickable(false);
     }
 
     @Override
