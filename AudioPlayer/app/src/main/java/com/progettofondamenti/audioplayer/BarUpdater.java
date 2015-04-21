@@ -1,7 +1,6 @@
 package com.progettofondamenti.audioplayer;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Claudio on 4/21/2015.
+ * Specific class which can update a seekbar
  */
 public class BarUpdater implements Runnable {
 
@@ -19,15 +18,23 @@ public class BarUpdater implements Runnable {
     private Handler handler;
     private double timeElapsed = 0;
     private double finalTime;
-    private Context context;
     private SeekBar seekBar;
     private TextView songDuration;
 
-    public BarUpdater(Context context, SeekBar seekBar) {
-        this.context = context;
+
+    public BarUpdater(MediaPlayer mp,Handler handler, SeekBar seekBar, TextView songDuration) {
         this.seekBar = seekBar;
+        this.mp = mp;
+        this.songDuration = songDuration;
+        this.handler = handler;
     }
 
+    /**
+     * Meccanismo di aggiornamento della barra di progresso. Il suo avanzamento rappresenta
+     * l’andamento della riproduzione. Si è usato un handler temporizzato che legge ogni 100 millisecondi
+     * la posizione attuale di riproduzione, ed attui il conseguente aggiornamento della barra.
+     *
+     */
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     public void run()
     {
@@ -37,7 +44,6 @@ public class BarUpdater implements Runnable {
         finalTime = mp.getDuration();
         double timeRemaining = finalTime - timeElapsed;
 
-        songDuration.setText("Song duration");
 
         // il metodo toMinutes richiede una API 9 minima, bisognerebbe cambiare perché attualmente
         // la minima è la 8 per noi, funziona ugualmente essendo stato annotato (seguendo il suggerimento
@@ -46,6 +52,6 @@ public class BarUpdater implements Runnable {
                 TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining)
                         - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining))));
 
-        handler.postDelayed((Runnable) context, 100);
+        handler.postDelayed(this, 100);
     }
 }

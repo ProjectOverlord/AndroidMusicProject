@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
 
     /* Declarations */
     private MediaPlayer mp;
-    private Handler handler;
+    private Handler handler = new Handler();
     private double timeElapsed = 0;
     private double finalTime;
 
@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
 
     private boolean isPaused;
 
+    private BarUpdater barUpdater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,15 @@ public class MainActivity extends ActionBarActivity {
         /* Initializes mp given this context */
         initializeMediaPlayer(this);
 
-        handler = new Handler();
+        songDuration = (TextView) findViewById(R.id.songDuration);
+        songDuration.setText("Song duration");
 
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
+
+        /* Initializes barUpdater, which is a Runnable */
+        barUpdater = new BarUpdater(mp, handler, sk, songDuration);
+
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -152,13 +158,12 @@ public class MainActivity extends ActionBarActivity {
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
 
-        songDuration = (TextView) findViewById(R.id.songDuration);
-        songDuration.setText("Song duration");
+
 
     }
 
     public void initializeMediaPlayer(Context context) {
-        mp = MediaPlayer.create(context, R.raw.amazingthema);
+        mp = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
     }
 
     @Override
@@ -183,34 +188,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * meccanismo di aggiornamento della barra di progresso. Il suo avanzamento rappresenta
-     * l’andamento della riproduzione. Si è usato un handler temporizzato che legge ogni 100 millisecondi
-     * la posizione attuale di riproduzione, ed attui il conseguente aggiornamento della barra.
-     * Il valore massimo cui il progresso può arrivare è la durata totale del brano, e viene
-     * impostato all’interno del metodo play utilizzando come fonte di informazione il risultato
-     * del metodo getDuration del Mediaplayer.
-     */
-    private Runnable updateBar = new Runnable() {
-        @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-        public void run()
-        {
-            timeElapsed = mp.getCurrentPosition();
-            sk.setProgress((int) timeElapsed);
 
-            finalTime = mp.getDuration();
-            double timeRemaining = finalTime - timeElapsed;
-
-            // il metodo toMinutes richiede una API 9 minima, bisognerebbe cambiare perché attualmente
-            // la minima è la 8 per noi, funziona ugualmente essendo stato annotato (seguendo il suggerimento
-            // di AS
-            songDuration.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining),
-                    TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining)
-                            - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining))));
-
-            handler.postDelayed(this, 100);
-        }
-    };
 
     public void play()
     {
@@ -219,7 +197,7 @@ public class MainActivity extends ActionBarActivity {
         sk.setMax(mp.getDuration());
         timeElapsed = mp.getCurrentPosition();
         sk.setProgress((int) timeElapsed);
-        handler.postDelayed(updateBar,100);
+        handler.postDelayed(barUpdater,100);
 
         isPaused = false;
     }
