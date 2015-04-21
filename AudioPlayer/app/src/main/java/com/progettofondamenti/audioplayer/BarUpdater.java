@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Specific class which can update a seekbar
+ * Specific class that keeps a seekbar up to date
  */
 public class BarUpdater implements Runnable {
 
@@ -22,7 +22,7 @@ public class BarUpdater implements Runnable {
     private TextView songDuration;
 
 
-    public BarUpdater(MediaPlayer mp,Handler handler, SeekBar seekBar, TextView songDuration) {
+    public BarUpdater(MediaPlayer mp, Handler handler, SeekBar seekBar, TextView songDuration) {
         this.seekBar = seekBar;
         this.mp = mp;
         this.songDuration = songDuration;

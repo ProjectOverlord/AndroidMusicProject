@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 /**
  * The main activity of the program.
- * As of 17/04/2015, it needs to be refactored heavily.
+ * As of 21/04/2015, it needs to be refactored heavily.
  */
 public class MainActivity extends ActionBarActivity {
 
@@ -167,7 +167,7 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * Initializes a MediaPlayer with a specific mp3 file
-     * @param context
+     * @param context Represents the context of the activity
      */
     public void initializeMediaPlayer(Context context) {
         mp = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
