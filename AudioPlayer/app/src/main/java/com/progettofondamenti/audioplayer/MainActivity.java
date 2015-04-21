@@ -1,9 +1,7 @@
 package com.progettofondamenti.audioplayer;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,8 +12,6 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * The main activity of the program.
@@ -56,11 +52,7 @@ public class MainActivity extends ActionBarActivity {
         /* Initializes mp given this context */
         initializeMediaPlayer(this);
 
-        songDuration = (TextView) findViewById(R.id.songDuration);
-        songDuration.setText("Song duration");
-
-        sk=(SeekBar) findViewById(R.id.bar);
-        sk.setClickable(true);
+        initializeXmlComponents();
 
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(mp, handler, sk, songDuration);
@@ -91,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        playButton = (ImageButton) findViewById(R.id.buttonPlay);
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 play();
@@ -101,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        pauseButton = (ImageButton) findViewById(R.id.buttonPause);
+
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pause();
@@ -111,7 +102,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        rewButton = (ImageButton) findViewById(R.id.buttonRew);
+
         rewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 rewind(v);
@@ -122,7 +113,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        ffButton = (ImageButton) findViewById(R.id.buttonFf);
+
         ffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        previousButton = (ImageButton) findViewById(R.id.buttonPrevious);
+
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        nextButton = (ImageButton) findViewById(R.id.buttonNext);
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,14 +145,33 @@ public class MainActivity extends ActionBarActivity {
                         "Next", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    /*
+    Initializes all the XML components of the application
+     */
+    private void initializeXmlComponents() {
+        songDuration = (TextView) findViewById(R.id.songDuration);
+        songDuration.setText("Song duration");
 
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
 
+        sk=(SeekBar) findViewById(R.id.bar);
+        sk.setClickable(true);
 
-
+        playButton = (ImageButton) findViewById(R.id.buttonPlay);
+        pauseButton = (ImageButton) findViewById(R.id.buttonPause);
+        rewButton = (ImageButton) findViewById(R.id.buttonRew);
+        ffButton = (ImageButton) findViewById(R.id.buttonFf);
+        previousButton = (ImageButton) findViewById(R.id.buttonPrevious);
+        nextButton = (ImageButton) findViewById(R.id.buttonNext);
     }
 
+    /**
+     * Initializes a MediaPlayer with a specific mp3 file
+     * @param context
+     */
     public void initializeMediaPlayer(Context context) {
         mp = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
     }
@@ -188,8 +198,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     public void play()
     {
         //mp.setLooping(true); // e' fondamentale?
@@ -205,6 +213,7 @@ public class MainActivity extends ActionBarActivity {
     public void pause()
     {
         mp.pause();
+
         isPaused = true;
     }
 

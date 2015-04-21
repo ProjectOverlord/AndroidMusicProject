@@ -29,7 +29,7 @@ public class BarUpdater implements Runnable {
         this.handler = handler;
     }
 
-    /**
+    /*
      * Meccanismo di aggiornamento della barra di progresso. Il suo avanzamento rappresenta
      * l’andamento della riproduzione. Si è usato un handler temporizzato che legge ogni 100 millisecondi
      * la posizione attuale di riproduzione, ed attui il conseguente aggiornamento della barra.
