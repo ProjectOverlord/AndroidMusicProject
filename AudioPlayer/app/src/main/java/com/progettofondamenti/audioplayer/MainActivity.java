@@ -1,6 +1,7 @@
 package com.progettofondamenti.audioplayer;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
@@ -22,12 +23,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class MainActivity extends ActionBarActivity {
 
+    /* Defining constants */
+    private static final int forwardTime = 2000;
+    private static final int backwardTime = 2000;
+
+    /* Declarations */
     private MediaPlayer mp;
     private Handler handler;
     private double timeElapsed = 0;
     private double finalTime;
-    private int forwardTime = 2000;
-    private int backwardTime = 2000;
+
     private SeekBar sk;
     private ImageButton playButton;
     private ImageButton pauseButton;
@@ -35,17 +40,20 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton ffButton;
     private ImageButton previousButton;
     private ImageButton nextButton;
-    public TextView songTitle;
-    public TextView songDuration;
+    private TextView songTitle;
+    private TextView songDuration;
 
     private boolean isPaused;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /* Default setup and initialization of activity_main.xml */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadAudioFile();
+        /* Initializes mp given this context */
+        initializeMediaPlayer(this);
 
         handler = new Handler();
 
@@ -149,8 +157,8 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void loadAudioFile() {
-        mp = MediaPlayer.create(this, R.raw.amazingthema);
+    public void initializeMediaPlayer(Context context) {
+        mp = MediaPlayer.create(context, R.raw.amazingthema);
     }
 
     @Override
