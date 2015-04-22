@@ -5,8 +5,6 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -39,8 +37,6 @@ public class MainActivity extends ActionBarActivity {
     private TextView songTitle;
     private TextView songDuration;
 
-    private boolean isPaused;
-
     private BarUpdater barUpdater;
 
     @Override
@@ -60,26 +56,34 @@ public class MainActivity extends ActionBarActivity {
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                if (isPaused) {
-                    play();
-                }
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                // stops handler in order to act on the seekbar
+                handler.removeCallbacks(barUpdater);
+
+                    if (fromUser)
+                        mp.seekTo(progress);
+
+                // restarts handler
+                handler.postDelayed(barUpdater,100);
+
             }
 
+            /**
+             *
+             * @param seekBar
+             */
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (mp.isPlaying()) {
-                    pause();
-                }
+                // no implementation  needed!!
             }
 
+            /**
+             *
+             * @param seekBar
+             */
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                if (fromUser) {
-                    int progressMs = (progress * mp.getDuration())
-                            / seekBar.getMax();
-                    mp.seekTo(progressMs);
-                }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // no implementation  needed!!
             }
         });
 
@@ -106,8 +110,6 @@ public class MainActivity extends ActionBarActivity {
         rewButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 rewind(v);
-
-
             }
         });
 
@@ -116,8 +118,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 forward(v);
-
-
             }
         });
 
@@ -143,6 +143,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
+
 
     /*
     Initializes all the XML components of the application
@@ -173,45 +174,21 @@ public class MainActivity extends ActionBarActivity {
         mp = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public void play()
     {
-        //mp.setLooping(true); // e' fondamentale?
-        mp.start();
-        sk.setMax(mp.getDuration());
-        timeElapsed = mp.getCurrentPosition();
-        sk.setProgress((int) timeElapsed);
-        handler.postDelayed(barUpdater,100);
+            mp.start();
 
-        isPaused = false;
+            timeElapsed = mp.getCurrentPosition();
+            sk.setProgress((int) timeElapsed);
+            sk.setMax(100);
+            handler.postDelayed(barUpdater,100);
+
     }
 
     public void pause()
     {
         mp.pause();
 
-        isPaused = true;
     }
 
     // go backwards at backwardTime seconds

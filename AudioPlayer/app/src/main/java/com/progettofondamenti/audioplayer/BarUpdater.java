@@ -40,6 +40,7 @@ public class BarUpdater implements Runnable {
     {
         timeElapsed = mp.getCurrentPosition();
         seekBar.setProgress((int) timeElapsed);
+        seekBar.setMax(mp.getDuration());
 
         finalTime = mp.getDuration();
         double timeRemaining = finalTime - timeElapsed;
