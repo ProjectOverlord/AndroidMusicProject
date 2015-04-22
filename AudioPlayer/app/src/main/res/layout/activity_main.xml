@@ -41,7 +41,10 @@
         android:layout_height="wrap_content"
         android:indeterminate="false"
         android:visibility="visible"
-        android:thumb="@drawable/slider_other_thumb1"/>
+        android:thumb="@drawable/btn_circle_normal"
+        android:progressBackgroundTint="@color/abc_background_cache_hint_selector_material_dark"
+        android:progressBackgroundTintMode="src_over"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
