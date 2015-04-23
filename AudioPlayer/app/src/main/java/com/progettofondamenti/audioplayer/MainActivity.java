@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 /**
  * The main activity of the program.
- * As of 21/04/2015, it needs to be refactored heavily.
+ * As of 24/04/2015, it needs to be refactored heavily.
  */
 public class MainActivity extends ActionBarActivity {
 
@@ -158,6 +158,8 @@ public class MainActivity extends ActionBarActivity {
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
 
+
+// TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
         playButton = (ImageButton) findViewById(R.id.buttonPlay);
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         rewButton = (ImageButton) findViewById(R.id.buttonRew);
