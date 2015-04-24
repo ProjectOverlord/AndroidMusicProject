@@ -81,10 +81,6 @@ public class MainActivity extends ActionBarActivity {
 				sk.setProgress((int) timeElapsed);
 				sk.setMax(100);
 				handler.postDelayed(barUpdater,100);
-
-
-				Toast.makeText(getApplicationContext(),
-                        "Playing", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -92,9 +88,6 @@ public class MainActivity extends ActionBarActivity {
         pauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 player.pause();
-
-                Toast.makeText(getApplicationContext(),
-                        "Paused", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -118,9 +111,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 player.previous();
-
-                Toast.makeText(getApplicationContext(),
-                        "Previous", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,9 +119,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 player.next();
-
-                Toast.makeText(getApplicationContext(),
-                        "Next", Toast.LENGTH_SHORT).show();
             }
         });
     }
