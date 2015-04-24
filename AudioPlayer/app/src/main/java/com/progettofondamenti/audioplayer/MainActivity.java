@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * The main activity of the program.
@@ -48,30 +47,31 @@ public class MainActivity extends ActionBarActivity {
 
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                // stops handler in order to act on the seekbar
-                handler.removeCallbacks(barUpdater);
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				// stops handler in order to act on the seekbar
+				handler.removeCallbacks(barUpdater);
 
-                    if (fromUser)
-                        player.seek(progress);
+				if (fromUser)
+					player.seek(progress);
 
-                // restarts handler
-                handler.postDelayed(barUpdater,100);
+				// restarts handler
+				handler.postDelayed(barUpdater, 100);
 
-            }
+			}
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // no implementation  needed!!
-            }
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// no implementation  needed!!
+			}
 
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // no implementation  needed!!
-            }
-        });
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// no implementation  needed!!
+			}
+		});
+
 
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -139,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 // TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
-        playButton = (ImageButton) findViewById(R.id.buttonPlay);
+		playButton = (ImageButton) findViewById(R.id.buttonPlay);
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         rewButton = (ImageButton) findViewById(R.id.buttonRew);
         ffButton = (ImageButton) findViewById(R.id.buttonFf);
