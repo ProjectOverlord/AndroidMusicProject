@@ -9,8 +9,7 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              android:background="#ff3fb9e6"
-    >
+              android:background="#ff3fb9e6">
 
     <TextView
         android:id="@+id/songTitle"
@@ -26,14 +25,14 @@
         android:padding="30dp"
         android:src="@drawable/androidmusicapps06"
         android:background="#ffffff"
-        android:layout_margin="30dp" />
+        android:layout_margin="30dp"/>
 
     <TextView
         android:id="@+id/songDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Song duration" />
+        android:text="Song duration"/>
 
     <SeekBar
         android:id="@+id/bar"
@@ -43,8 +42,7 @@
         android:visibility="visible"
         android:thumb="@drawable/btn_circle_normal"
         android:progressBackgroundTint="@color/abc_background_cache_hint_selector_material_dark"
-        android:progressBackgroundTintMode="src_over"
-        />
+        android:progressBackgroundTintMode="src_over"/>
 
     <LinearLayout
         android:layout_width="match_parent"
