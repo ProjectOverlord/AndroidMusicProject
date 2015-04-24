@@ -11,7 +11,6 @@ import android.widget.SeekBar;
 import com.progettofondamenti.audioplayer.BarUpdater;
 import com.progettofondamenti.audioplayer.R;
 import com.progettofondamenti.audioplayer.iPlayer;
-import com.progettofondamenti.audioplayer.listeners.PlayListener;
 
 /**
  * This class should be the one representing the button that calls the play()
