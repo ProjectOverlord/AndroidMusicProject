@@ -159,5 +159,4 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
         // TODO: Release resource from the player
     }
-
 }
