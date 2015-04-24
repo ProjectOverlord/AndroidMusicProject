@@ -9,7 +9,7 @@ import com.progettofondamenti.audioplayer.iPlayer;
 import android.os.Handler;
 
 /**
- * Terrible listener
+ * Terrible listener. Way too many parameters
  */
 public class PlayListener implements View.OnClickListener {
 
