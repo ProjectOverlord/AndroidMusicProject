@@ -10,19 +10,31 @@ import java.io.IOException;
  * the code more flexibility.
  */
 public interface iPlayer {
-	void play();
 
-	void pause();
+	public void play();
 
-	void stop();
+	public void pause();
 
-	int getPlayerPosition();
+	public void stop();
 
-	int getTotalDuration();
+	public void rewind();
 
-	void setContentToStream(String path) throws IOException;
+	public void forward();
 
-	void setLocalFileToPlay(String path) throws IOException;
+	public void previous();
 
-	void initializeMediaPlayerProvvisorio(Context context);
+	public void next();
+
+	public void seek(int to);
+
+	public int getPlayerPosition();
+
+	public int getTotalDuration();
+
+	public void setContentToStream(String path) throws IOException;
+
+	public void setLocalFileToPlay(String path) throws IOException;
+
+	public void initializeMediaPlayerProvvisorio(Context context);
+
 }

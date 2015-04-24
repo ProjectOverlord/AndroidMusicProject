@@ -1,7 +1,6 @@
 package com.progettofondamenti.audioplayer;
 
 import android.annotation.TargetApi;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.widget.SeekBar;
@@ -14,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class BarUpdater implements Runnable {
 
-    private MediaPlayer mp;
+    private iPlayer player;
     private Handler handler;
     private double timeElapsed = 0;
     private double finalTime;
@@ -22,9 +21,9 @@ public class BarUpdater implements Runnable {
     private TextView songDuration;
 
 
-    public BarUpdater(MediaPlayer mp, Handler handler, SeekBar seekBar, TextView songDuration) {
+    public BarUpdater(iPlayer player, Handler handler, SeekBar seekBar, TextView songDuration) {
         this.seekBar = seekBar;
-        this.mp = mp;
+        this.player = player;
         this.songDuration = songDuration;
         this.handler = handler;
     }
@@ -38,11 +37,11 @@ public class BarUpdater implements Runnable {
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     public void run()
     {
-        timeElapsed = mp.getCurrentPosition();
+        timeElapsed = player.getPlayerPosition();
         seekBar.setProgress((int) timeElapsed);
-        seekBar.setMax(mp.getDuration());
+        seekBar.setMax(player.getTotalDuration());
 
-        finalTime = mp.getDuration();
+        finalTime = player.getTotalDuration();
         double timeRemaining = finalTime - timeElapsed;
 
 
