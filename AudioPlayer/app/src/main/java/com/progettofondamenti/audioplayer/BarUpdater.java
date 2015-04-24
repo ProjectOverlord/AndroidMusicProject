@@ -21,7 +21,6 @@ public class BarUpdater implements Runnable {
     private SeekBar seekBar;
     private TextView songDuration;
 
-
     public BarUpdater(MediaPlayer mp, Handler handler, SeekBar seekBar, TextView songDuration) {
         this.seekBar = seekBar;
         this.mp = mp;

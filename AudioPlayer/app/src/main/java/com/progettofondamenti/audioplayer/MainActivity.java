@@ -126,9 +126,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 previous(v);
-
-                Toast.makeText(getApplicationContext(),
-                        "Previous", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -137,9 +134,6 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 next(v);
-
-                Toast.makeText(getApplicationContext(),
-                        "Next", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -158,8 +152,7 @@ public class MainActivity extends ActionBarActivity {
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
 
-
-// TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
+        // TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
         playButton = (ImageButton) findViewById(R.id.buttonPlay);
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         rewButton = (ImageButton) findViewById(R.id.buttonRew);
@@ -176,8 +169,7 @@ public class MainActivity extends ActionBarActivity {
         mp = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
     }
 
-    public void play()
-    {
+    public void play() {
             mp.start();
 
             timeElapsed = mp.getCurrentPosition();
@@ -187,8 +179,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void pause()
-    {
+    public void pause() {
         mp.pause();
 
     }
