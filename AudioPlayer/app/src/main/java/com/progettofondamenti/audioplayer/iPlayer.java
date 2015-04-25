@@ -37,4 +37,6 @@ public interface iPlayer {
 
 	public void initializeMediaPlayerProvvisorio(Context context);
 
+	public void die();
+
 }

@@ -138,4 +138,9 @@ public class PlayerModel implements iPlayer {
 	public void initializeMediaPlayerProvvisorio(Context context) {
 		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
 	}
+
+	@Override
+	public void die(){
+		mediaPlayer.release();
+	}
 }
