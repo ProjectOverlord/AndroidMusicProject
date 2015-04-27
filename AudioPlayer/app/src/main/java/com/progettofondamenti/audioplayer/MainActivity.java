@@ -141,8 +141,7 @@ public class MainActivity extends ActionBarActivity {
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
 
-
-// TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
+        // TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
 		playButton = (ImageButton) findViewById(R.id.buttonPlay);
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         rewButton = (ImageButton) findViewById(R.id.buttonRew);
@@ -161,6 +160,14 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onDestroy(){
         super.onDestroy();
+
         player.die();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        player.pause();
     }
 }
