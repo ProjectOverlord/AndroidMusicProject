@@ -32,17 +32,17 @@
         android:layout_height="39dp">
 
         <TextView
-            android:id="@+id/songDuration"
+            android:id="@+id/songDuration1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
-            android:text="Song duration"/>
+            android:text="00:00"/>
 
         <TextView
             android:id="@+id/songDuration2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Song duration"
+            android:text="00:00"
             android:layout_gravity="center|right" />
     </GridLayout>
 
