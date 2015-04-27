@@ -129,11 +129,11 @@ public class MainActivity extends ActionBarActivity {
      * Initializes the application's XML components
      */
     private void initializeXmlComponents() {
-        songDuration1 = (TextView) findViewById(R.id.songDuration1);
-        songDuration1.setText("Song duration");
+        songDuration1 = (TextView) findViewById(R.id.elapsedTime);
+        songDuration1.setText("Elapsed Time");
 
-        songDuration2 = (TextView) findViewById(R.id.songDuration2);
-        songDuration2.setText("Song duration");
+        songDuration2 = (TextView) findViewById(R.id.remainingTime);
+        songDuration2.setText("Remaining Time");
 
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");

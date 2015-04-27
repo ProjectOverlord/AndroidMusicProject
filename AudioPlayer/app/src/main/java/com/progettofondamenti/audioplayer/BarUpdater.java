@@ -18,15 +18,15 @@ public class BarUpdater implements Runnable {
     private double timeElapsed = 0;
     private double finalTime;
     private SeekBar seekBar;
-    private TextView songDuration1;
-    private TextView songDuration2;
+    private TextView elapsedTime;
+    private TextView remainingTime;
 
 
-    public BarUpdater(iPlayer player, Handler handler, SeekBar seekBar, TextView songDuration1, TextView songDuration2) {
+    public BarUpdater(iPlayer player, Handler handler, SeekBar seekBar, TextView elapsedTime, TextView remainingTime) {
         this.seekBar = seekBar;
         this.player = player;
-        this.songDuration1 = songDuration1;
-        this.songDuration2 = songDuration2;
+        this.elapsedTime = elapsedTime;
+        this.remainingTime = remainingTime;
         this.handler = handler;
     }
 
@@ -50,13 +50,13 @@ public class BarUpdater implements Runnable {
         // il metodo toMinutes richiede una API 9 minima, bisognerebbe cambiare perché attualmente
         // la minima è la 8 per noi, funziona ugualmente essendo stato annotato (seguendo il suggerimento
         // di AS
-        songDuration1.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed),
-                TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed)
-                        - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
+        elapsedTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed),
+				TimeUnit.MILLISECONDS.toSeconds((long) timeElapsed)
+						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeElapsed))));
 
-        songDuration2.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining),
-                TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining)
-                        - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining))));
+        remainingTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining),
+				TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining)
+						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining))));
 
         handler.postDelayed(this, 100);
     }
