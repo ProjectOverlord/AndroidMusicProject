@@ -27,8 +27,8 @@ public class MainActivity extends ActionBarActivity {
     private ImageButton previousButton;
     private ImageButton nextButton;
     private TextView songTitle;
-    private TextView songDuration1;
-    private TextView songDuration2;
+    private TextView elapsedTime;
+    private TextView remainingTime;
 
     private BarUpdater barUpdater;
 
@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
         initializeXmlComponents();
 
         /* Initializes barUpdater, which is a Runnable */
-        barUpdater = new BarUpdater(player, handler, sk, songDuration1, songDuration2);
+        barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
 
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -129,11 +129,11 @@ public class MainActivity extends ActionBarActivity {
      * Initializes the application's XML components
      */
     private void initializeXmlComponents() {
-        songDuration1 = (TextView) findViewById(R.id.elapsedTime);
-        songDuration1.setText("Elapsed Time");
+        elapsedTime = (TextView) findViewById(R.id.elapsedTime);
+        elapsedTime.setText("Elapsed Time");
 
-        songDuration2 = (TextView) findViewById(R.id.remainingTime);
-        songDuration2.setText("Remaining Time");
+        remainingTime = (TextView) findViewById(R.id.remainingTime);
+        remainingTime.setText("Remaining Time");
 
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
