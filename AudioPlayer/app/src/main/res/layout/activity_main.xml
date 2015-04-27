@@ -64,7 +64,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="rewind"
             android:text="Rewind"
             android:id="@+id/buttonRew"
             android:src="@android:drawable/ic_media_rew"
@@ -73,7 +72,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="play"
             android:text="Play"
             android:id="@+id/buttonPlay"
             android:src="@android:drawable/ic_media_play"
@@ -82,7 +80,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="pause"
             android:text="Pause"
             android:id="@+id/buttonPause"
             android:src="@android:drawable/ic_media_pause"
@@ -91,7 +88,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="forward"
             android:text="Forward"
             android:id="@+id/buttonFf"
             android:src="@android:drawable/ic_media_ff"
@@ -100,7 +96,6 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="next"
             android:text="Next"
             android:id="@+id/buttonNext"
             android:src="@android:drawable/ic_media_next"
