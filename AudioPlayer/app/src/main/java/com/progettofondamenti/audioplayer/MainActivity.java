@@ -8,6 +8,9 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.sql.Time;
+import java.util.concurrent.TimeUnit;
+
 /**
  * The main activity of the program.
  * As of 24/04/2015, it needs to be refactored heavily.
@@ -130,10 +133,12 @@ public class MainActivity extends ActionBarActivity {
      */
     private void initializeXmlComponents() {
         elapsedTime = (TextView) findViewById(R.id.elapsedTime);
-        elapsedTime.setText("Elapsed Time");
+        elapsedTime.setText("0 min, 0 sec");
 
         remainingTime = (TextView) findViewById(R.id.remainingTime);
-        remainingTime.setText("Remaining Time");
+        remainingTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) player.getTotalDuration()),
+                TimeUnit.MILLISECONDS.toSeconds((long) player.getTotalDuration())
+                    - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) player.getTotalDuration()))));
 
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
