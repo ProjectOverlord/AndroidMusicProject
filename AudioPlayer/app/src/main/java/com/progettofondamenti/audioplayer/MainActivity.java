@@ -178,4 +178,5 @@ public class MainActivity extends ActionBarActivity {
 
         player.pause();
     }
+
 }
