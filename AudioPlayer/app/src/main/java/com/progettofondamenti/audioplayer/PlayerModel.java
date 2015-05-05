@@ -1,8 +1,10 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -32,6 +34,9 @@ public class PlayerModel implements iPlayer {
 	/* Declaring objects */
     private MediaPlayer mediaPlayer;
 
+	public PlayerModel() {
+
+	}
 
     public PlayerModel(Context context) {
         mediaPlayer = new MediaPlayer();
@@ -138,8 +143,50 @@ public class PlayerModel implements iPlayer {
 	@Override
 	public void setLocalFileToPlay(String path) throws IOException {
 		// mediaPlayer.reset();
-		FileInputStream fileInputStream = new FileInputStream(path);
+
+		/* aggiunta di prova: ricompongo il file dal path e lo passo allo stream */
+		File file = new File(path);
+		FileInputStream fileInputStream = new FileInputStream(file);
+
 		mediaPlayer.setDataSource(fileInputStream.getFD());
+
+		/* NOTA IMPORTANTE per chiunque voglia provare a sistemare il codice
+		 *
+		 * premetto che non posso testare nulla in assenza del codice del server..
+		 * se vogliamo poter scaricare il file audio ed eseguirlo dovrebbe essere sufficiente chiamare prepare(),
+		 * dopo aver settato il dataSource, mentre se vogliamo fare una sorta di streaming,
+		 * è necessario impostare il tipo con il metodo setAudioStreamType commentato sotto e
+		 * scegliere prepareAsync(). Quanto detto è dovuto al fatto che prepare() non può andar bene per lo streaming,
+		 * dato che bisogna attendere lo scaricamento perché esegua correttamente.
+		 * Inoltre bisognerebbe anche utilizzare
+		 * mPlayer.setOnPreparedListener(new OnPreparedListener() {
+		 *
+		 * @Override
+		 * public void onPrepared(MediaPlayer mp) {
+		 * mPlayer.start();
+		 * }
+		 * });
+		 *
+		 * Nel caso di non streaming non riesco a capire se basta passare l'uri a setDataSource senza
+		 * il FileInputStream o meno, visto che trovo molti esempi che fanno ricorso a soluzioni contrastanti...
+		 * (anche perché è impossibile fare prove)
+		 *
+		 * spero di essere stato d'aiuto a qualcuno,
+		 * ho scritto qui per evidenziare nel codice la questione...
+		 * by Fra
+		 *
+		 * */
+
+
+		// dovrebbe essere meglio per  lo streaming
+		//mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+		mediaPlayer.prepare();
+
+		// serve per lo streaming
+		//mediaPlayer.prepareAsync();
+
+		fileInputStream.close();
 	}
 
 	@Override
