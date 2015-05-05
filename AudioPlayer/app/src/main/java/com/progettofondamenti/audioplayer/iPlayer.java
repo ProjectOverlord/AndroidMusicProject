@@ -1,7 +1,6 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
-import android.net.Uri;
 
 import java.io.IOException;
 
@@ -36,7 +35,7 @@ public interface iPlayer {
 
 	public void setLocalFileToPlay(String path) throws IOException;
 
-	public void createMediaPlayer(Context context, Uri uri);
+	public void initializeMediaPlayerProvvisorio(Context context);
 
 	public void die();
 

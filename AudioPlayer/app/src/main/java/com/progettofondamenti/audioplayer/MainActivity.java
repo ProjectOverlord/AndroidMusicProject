@@ -1,6 +1,5 @@
 package com.progettofondamenti.audioplayer;
 
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,7 +23,6 @@ public class MainActivity extends ActionBarActivity {
     private iPlayer player;
     private Handler handler = new Handler();
     private double timeElapsed = 0;
-    private Uri uri;
 
     private SeekBar sk;
     private ImageButton playButton;
@@ -44,10 +43,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        uri = Uri.parse("android.resource://com.progettofondamenti.audioplayer/" + R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
-
         /* Initializes the player given the context of this activity */
-		player = new PlayerModel(this.getApplicationContext(), uri);
+		player = new PlayerModel(this.getApplicationContext());
 
         initializeXmlComponents();
 
