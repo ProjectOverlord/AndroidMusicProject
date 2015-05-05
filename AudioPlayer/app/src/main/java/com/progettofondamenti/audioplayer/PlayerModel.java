@@ -18,9 +18,17 @@ import java.io.IOException;
  */
 public class PlayerModel implements iPlayer {
 
-	/* Defining constants */
-	private static final int forwardTime = 2000;
-	private static final int backwardTime = 2000;
+	/* Defining upper and lower limits of forward and backward times.
+	 * Ideally there should be an option in the settings
+	 * that already define those, but better safe than sorry.
+	 */
+
+	private static final int MAX_FORWARD_TIME = 60000;
+	private static final int MAX_BACKWORD_TIME = 60000;
+
+	/* Defining parameters */
+	private int forwardTime = 2000;
+	private int backwardTime = 2000;
 
 	/* Declaring objects */
     private MediaPlayer mediaPlayer;
@@ -143,5 +151,23 @@ public class PlayerModel implements iPlayer {
 	@Override
 	public void die(){
 		mediaPlayer.release();
+	}
+
+	// TODO: Remember to put options for these in the settings activity.
+
+	public void setBackwardTime(int backwardTime) {
+		if (backwardTime < MAX_BACKWORD_TIME) {
+			this.backwardTime = backwardTime;
+		} else {
+			this.backwardTime = MAX_BACKWORD_TIME;
+		}
+	}
+
+	public void setForwardTime(int forwardTime) {
+		if (forwardTime < MAX_FORWARD_TIME) {
+			this.forwardTime = forwardTime;
+		} else {
+			this.forwardTime = MAX_FORWARD_TIME;
+		}
 	}
 }
