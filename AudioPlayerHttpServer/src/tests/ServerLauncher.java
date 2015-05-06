@@ -1,7 +1,6 @@
 package tests;
 
 import server.Server;
-import server.services.BooksService;
 
 /**
  * This class is a test for the server model. The tested services are
@@ -18,10 +17,6 @@ public class ServerLauncher {
 	public static void main(String[] args) {
 
 		Server server = new Server(PORT);
-
-		// TODO: in realtà vorremo poter utilizzare una stringa generica
-		server.addService("/books", new BooksService());
-
 		server.launch();
 
 	}
