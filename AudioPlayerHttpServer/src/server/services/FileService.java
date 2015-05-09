@@ -2,11 +2,16 @@ package server.services;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+
+import javax.swing.JOptionPane;
 
 import server.ContentType;
 import server.HttpMessage;
@@ -14,7 +19,7 @@ import server.HttpRequest;
 import server.IService;
 
 /**
- * Among all the possible IServices, FileService is the one that handle the copy
+ * Among all the possible IServices, FileService is the one that handles the copy
  * of a file to the OutputStream.
  * 
  * @author claudio
@@ -23,38 +28,40 @@ import server.IService;
 public class FileService implements IService {
 
 	public void sendHTTP(Socket clientSocket, HttpRequest request)
-			throws IOException, FileNotFoundException {
+			throws IOException {
 
 		String filename = checkURI(request.getUri());
 		HttpMessage message = new HttpMessage();
 
 		// TODO: This clearly isn't a versatile way to handle the various
 		// formats. Must generalize for many (interface..?)
-		if (filename.endsWith("xml")) {
-			message.setContentType(ContentType.XML);
+		if (filename.endsWith("mp3")) {
+			message.setContentType(ContentType.MP3);
 		}
 
 		// Answers the HTTP request sending the requested file
 		message.openHttpAnswer(clientSocket);
-		copyFile(filename, message.getOutputStreamWriter());
+		copyBinaryFile(filename, clientSocket.getOutputStream());
 		message.closeHttpAnswer();
 	}
 
 	/**
 	 * Copies the requested file on the output stream.
+	 * To be used for text files.
 	 * 
 	 * @param filename
 	 *            The name of the requested file
 	 * @param out
 	 *            The OutputStreamWriter
 	 * @throws FileNotFoundException
-	 *             When the FileReader cannot find a file corresponding to
-	 *             filename
+	 *             When the FileReader cannot find a file 
+	 *             corresponding to filename
 	 * @throws IOException
-	 *             When something goes wrong while reading from file or writing
-	 *             to the OutputStream
+	 *             When something goes wrong while reading 
+	 *             from file or writing to the OutputStream
 	 */
-	private void copyFile(String filename, OutputStreamWriter out)
+	
+	private void copyTextFile(String filename, OutputStreamWriter out)
 			throws FileNotFoundException, IOException {
 
 		BufferedReader fileReader = new BufferedReader(new FileReader(filename));
@@ -65,10 +72,44 @@ public class FileService implements IService {
 		}
 		fileReader.close();
 	}
+	
+	/**
+	 * Copies the requested file on the output stream.
+	 * To be used for binary files.
+	 * 
+	 * @param filename
+	 * 			The name of the requested file
+	 * @param stream
+	 * 			The output stream
+	 * @throws FileNotFoundException
+	 *             When the FileReader cannot find 
+	 *             a file corresponding to filename.
+	 *             TODO: If it is thrown, we redirect to 'error.html'.
+	 * @throws IOException
+	 *             When something goes wrong while reading 
+	 *             from file or writing to the OutputStream.
+	 *             
+	 */
+	
+	private void copyBinaryFile(String filename, OutputStream stream)
+								throws IOException, FileNotFoundException{
+		
+		InputStream inputStream = new FileInputStream(filename);
+		
+		byte[] bytesAlreadyRead = new byte[102400];
+		int bread = inputStream.read(bytesAlreadyRead);
+		while(bread != -1){
+			stream.write(bytesAlreadyRead);
+			bread = inputStream.read(bytesAlreadyRead);
+		}
+		stream.close();
+		inputStream.close();
+		
+	}
 
 	/**
-	 * Controlla se il file è presente nella cartella del file, altrimenti
-	 * restituisce error.html
+	 * Checks if the file is in its folder,
+	 * otherwise returns error.html
 	 * 
 	 * @param uri
 	 *            The URI of the requested file, relative to the "web" folder of

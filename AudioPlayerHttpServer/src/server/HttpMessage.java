@@ -1,6 +1,7 @@
 package server;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.charset.Charset;
@@ -16,8 +17,9 @@ import java.util.Date;
  */
 public class HttpMessage {
 
-	private ContentType contentType = ContentType.HTML; // Default content
+	private ContentType contentType = ContentType.GENERIC_BINARY; // Default content
 	private OutputStreamWriter out;
+	private OutputStream stream;
 
 	/**
 	 * Prints the header of the HTTP answer on the OutputStream defined by the
@@ -52,6 +54,10 @@ public class HttpMessage {
 
 	public OutputStreamWriter getOutputStreamWriter() {
 		return out;
+	}
+	
+	public OutputStream getOutputStream() {
+		return stream;
 	}
 
 }

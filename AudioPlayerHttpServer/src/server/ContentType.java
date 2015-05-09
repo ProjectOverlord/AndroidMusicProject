@@ -8,7 +8,12 @@ package server;
  */
 public enum ContentType {
 	HTML("text/html"),
-	XML("text/xml");
+	XML("text/xml"),
+	FLAC("audio/flac"),
+	WAV("audio/vnd.wave"),
+	MP4("audio/mp4"),
+	MP3("audio/mp3"),
+	GENERIC_BINARY("application/octet-stream");
 
 	private String text;
 
