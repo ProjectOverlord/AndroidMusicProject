@@ -19,7 +19,7 @@ public interface IService {
 	 * closing included) with the appropriate content. If the URI is not
 	 * recogniesed, it readdress to the default page.
 	 */
-	public void sendHTTP(final Socket clientSocket, HttpRequest request)
+	public void sendHTTP(Socket clientSocket, HttpRequest request)
 			throws IOException;
 
 }
