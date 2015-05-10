@@ -17,8 +17,9 @@ import server.HttpRequest;
 import server.IService;
 
 /**
- * Among all the possible IServices, FileService is the one that handles the copy
- * of a file to the OutputStream.
+ * Among all the possible IServices, FileService is the one that handles the
+ * copy of a file to the OutputStream. This is the DEFAULT service and sends
+ * files to the client as specified with the URI
  * 
  * @author claudio
  *
@@ -44,21 +45,24 @@ public class FileService implements IService {
 	}
 
 	/**
-	 * Copies the requested file on the output stream.
-	 * To be used for text files.
+	 * Copies the requested file on the output stream. To be used for text
+	 * files.
+	 * 
+	 * TODO: WARNING: QUESTO METODO NON VIENE USATO, PERCHE' L'ALTRO
+	 * (copyBinaryFile) SEMBRA FUNZIONARE UGUALMENTE ANCHE PER FILE HTML E XML.
+	 * INDAGARE
 	 * 
 	 * @param filename
 	 *            The name of the requested file
 	 * @param out
 	 *            The OutputStreamWriter
 	 * @throws FileNotFoundException
-	 *             When the FileReader cannot find a file 
-	 *             corresponding to filename
+	 *             When the FileReader cannot find a file corresponding to
+	 *             filename
 	 * @throws IOException
-	 *             When something goes wrong while reading 
-	 *             from file or writing to the OutputStream
+	 *             When something goes wrong while reading from file or writing
+	 *             to the OutputStream
 	 */
-	
 	private void copyTextFile(String filename, OutputStreamWriter out)
 			throws FileNotFoundException, IOException {
 
@@ -70,44 +74,41 @@ public class FileService implements IService {
 		}
 		fileReader.close();
 	}
-	
+
 	/**
-	 * Copies the requested file on the output stream.
-	 * To be used for binary files.
+	 * Copies the requested file on the output stream. To be used for binary
+	 * files.
 	 * 
 	 * @param filename
-	 * 			The name of the requested file
+	 *            The name of the requested file
 	 * @param stream
-	 * 			The output stream
+	 *            The output stream
 	 * @throws FileNotFoundException
-	 *             When the FileReader cannot find 
-	 *             a file corresponding to filename.
-	 *             TODO: If it is thrown, we redirect to 'error.html'.
+	 *             When the FileReader cannot find a file corresponding to
+	 *             filename. TODO: If it is thrown, we redirect to 'error.html'.
 	 * @throws IOException
-	 *             When something goes wrong while reading 
-	 *             from file or writing to the OutputStream.
-	 *             
+	 *             When something goes wrong while reading from file or writing
+	 *             to the OutputStream.
+	 * 
 	 */
-	
 	private void copyBinaryFile(String filename, OutputStream stream)
-								throws IOException, FileNotFoundException{
-		
+			throws IOException, FileNotFoundException {
+
 		InputStream inputStream = new FileInputStream(filename);
-		
+
 		byte[] bytesAlreadyRead = new byte[102400];
 		int bread = inputStream.read(bytesAlreadyRead);
-		while(bread != -1){
+		while (bread != -1) {
 			stream.write(bytesAlreadyRead);
 			bread = inputStream.read(bytesAlreadyRead);
 		}
 		stream.close();
 		inputStream.close();
-		
+
 	}
 
 	/**
-	 * Checks if the file is in its folder,
-	 * otherwise returns error.html
+	 * Checks if the file is in its folder, otherwise returns error.html
 	 * 
 	 * @param uri
 	 *            The URI of the requested file, relative to the "web" folder of

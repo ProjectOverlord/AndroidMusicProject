@@ -7,6 +7,8 @@ import java.net.Socket;
  * Generic Service.
  * The services may include: sending of html pages, file
  * transfers, music streaming, login services and so on..
+ * The default service is FileService, that sends files
+ * (specified with the URI) to the client
  * 
  * @author Claudio
  * 
