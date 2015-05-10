@@ -11,8 +11,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import javax.swing.JOptionPane;
-
 import server.ContentType;
 import server.HttpMessage;
 import server.HttpRequest;

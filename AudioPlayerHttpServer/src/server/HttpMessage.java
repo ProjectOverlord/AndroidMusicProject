@@ -49,7 +49,8 @@ public class HttpMessage {
 
 	public void closeHttpAnswer() throws IOException {
 		out.write("\n");
-		out.close();
+		// out.close();
+		// If closed, there is an exception.
 	}
 
 	public OutputStreamWriter getOutputStreamWriter() {
