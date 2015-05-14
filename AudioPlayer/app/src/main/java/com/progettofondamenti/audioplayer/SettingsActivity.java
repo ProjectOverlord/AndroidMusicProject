@@ -2,6 +2,7 @@ package com.progettofondamenti.audioplayer;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -36,4 +37,11 @@ public class SettingsActivity extends PreferenceActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Set background color of the activity
+        SharedPreferences sp=PreferenceManager.getDefaultSharedPreferences(this);
+        MainActivity.setBGColor(sp.getString("pref_color", ""));
+    }
 }
