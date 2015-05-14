@@ -7,6 +7,7 @@
     <string name="title_activity_settings">SettingsActivity</string>
 
     <string-array name="colors">
+        <item>Default</item>
         <item>White</item>
         <item>Black</item>
         <item>Green</item>
@@ -16,6 +17,7 @@
     </string-array>
 
     <string-array name="colors_values">
+        <item>#FF3FB9E6</item>
         <item>#FFFFFF</item>
         <item>#000000</item>
         <item>#00FF00</item>
