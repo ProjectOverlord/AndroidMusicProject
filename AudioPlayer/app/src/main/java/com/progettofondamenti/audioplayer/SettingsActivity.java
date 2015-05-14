@@ -17,7 +17,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         // this method is deprecated, but it's necessary to provide support on older devices
         addPreferencesFromResource(R.xml.apppreferences);
-
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        pref.registerOnSharedPreferenceChangeListener(this);
 
     }
 

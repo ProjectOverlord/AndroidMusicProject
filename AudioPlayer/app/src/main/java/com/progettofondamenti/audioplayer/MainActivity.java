@@ -145,7 +145,12 @@ public class MainActivity extends ActionBarActivity {
      */
     private void initializeXmlComponents() {
 
+        // retrives information from preference activity
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String color = sharedPreferences.getString("pref_color", "");
+
         layout = (LinearLayout) findViewById(R.id.container);
+        setBGColor(color);
 
         elapsedTime = (TextView) findViewById(R.id.elapsedTime);
         elapsedTime.setText("0 min, 0 sec");
