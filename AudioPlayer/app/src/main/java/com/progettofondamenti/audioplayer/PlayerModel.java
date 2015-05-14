@@ -1,7 +1,6 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import java.io.File;

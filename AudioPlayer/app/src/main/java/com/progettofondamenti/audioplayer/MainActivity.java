@@ -1,12 +1,10 @@
 package com.progettofondamenti.audioplayer;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -17,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,16 +28,16 @@ public class MainActivity extends ActionBarActivity {
     private Handler handler = new Handler();
     private double timeElapsed = 0;
 
-    private SeekBar sk;
-    private ImageButton playButton;
-    private ImageButton pauseButton;
-    private ImageButton rewButton;
-    private ImageButton ffButton;
-    private ImageButton previousButton;
-    private ImageButton nextButton;
-    private TextView songTitle;
-    private TextView elapsedTime;
-    private TextView remainingTime;
+    private static SeekBar sk;
+    private static ImageButton playButton;
+    private static ImageButton pauseButton;
+    private static ImageButton rewButton;
+    private static ImageButton ffButton;
+    private static ImageButton previousButton;
+    private static ImageButton nextButton;
+    private static TextView songTitle;
+    private static TextView elapsedTime;
+    private static TextView remainingTime;
 
     private static LinearLayout layout;
 
@@ -52,7 +49,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+/*
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+*/
 
         /* Initializes the player given the context of this activity */
 		player = new PlayerModel(this.getApplicationContext());
@@ -173,7 +172,7 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * sets the color of the LinearLayout given a color string
-     * @param color
+     * @param color stringa che descrive il colore
      */
     public static void setBGColor(String color){
         layout.setBackgroundColor(Color.parseColor(color));

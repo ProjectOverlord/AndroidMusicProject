@@ -17,16 +17,16 @@ public class BarUpdater implements Runnable {
     private Handler handler;
     private double timeElapsed = 0;
     private double finalTime;
-    private SeekBar seekBar;
-    private TextView elapsedTime;
-    private TextView remainingTime;
+    private static SeekBar seekBar;
+    private static TextView elapsedTime;
+    private static TextView remainingTime;
 
 
     public BarUpdater(iPlayer player, Handler handler, SeekBar seekBar, TextView elapsedTime, TextView remainingTime) {
-        this.seekBar = seekBar;
+        BarUpdater.seekBar = seekBar;
         this.player = player;
-        this.elapsedTime = elapsedTime;
-        this.remainingTime = remainingTime;
+        BarUpdater.elapsedTime = elapsedTime;
+        BarUpdater.remainingTime = remainingTime;
         this.handler = handler;
     }
 
