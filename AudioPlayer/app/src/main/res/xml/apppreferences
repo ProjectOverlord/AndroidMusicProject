@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XML which describes the preferences in settings activity -->
+<PreferenceScreen xmlns:android= "http://schemas.android.com/apk/res/android">
+
+    <!-- list preferences for colors-->
+    <ListPreference
+        android:key="pref_color"
+        android:entries="@array/colors"
+        android:summary="Set the background color of UI"
+        android:defaultValue="#FFFFFF"
+        android:entryValues="@array/colors_values"
+        android:title="Background" />
+
+    <CheckBoxPreference
+        android:key="pref_notification"
+        android:title="Notification"
+        android:summary="Tick or untick to turn on or off notification"
+        android:defaultValue="true" />
+    <EditTextPreference
+        android:key="pref_savepath"
+        android:title="Storage"
+        android:summary="Set default download path"
+        android:defaultValue="edoc_download" />
+
+</PreferenceScreen>
