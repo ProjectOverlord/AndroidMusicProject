@@ -1,12 +1,19 @@
 package com.progettofondamenti.audioplayer;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -35,6 +42,8 @@ public class MainActivity extends ActionBarActivity {
     private TextView elapsedTime;
     private TextView remainingTime;
 
+    private static LinearLayout layout;
+
     private BarUpdater barUpdater;
 
     @Override
@@ -42,6 +51,8 @@ public class MainActivity extends ActionBarActivity {
         /* Default setup and initialization of activity_main.xml */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         /* Initializes the player given the context of this activity */
 		player = new PlayerModel(this.getApplicationContext());
@@ -53,30 +64,30 @@ public class MainActivity extends ActionBarActivity {
 
         sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				// stops handler in order to act on the seekbar
-				handler.removeCallbacks(barUpdater);
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // stops handler in order to act on the seekbar
+                handler.removeCallbacks(barUpdater);
 
-				if (fromUser)
-					player.seek(progress);
+                if (fromUser)
+                    player.seek(progress);
 
-				// restarts handler
-				handler.postDelayed(barUpdater, 100);
+                // restarts handler
+                handler.postDelayed(barUpdater, 100);
 
-			}
+            }
 
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				// no implementation  needed!!
-			}
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // no implementation  needed!!
+            }
 
 
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				// no implementation  needed!!
-			}
-		});
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // no implementation  needed!!
+            }
+        });
 
 
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +145,9 @@ public class MainActivity extends ActionBarActivity {
      * Initializes the application's XML components
      */
     private void initializeXmlComponents() {
+
+        layout = (LinearLayout) findViewById(R.id.container);
+
         elapsedTime = (TextView) findViewById(R.id.elapsedTime);
         elapsedTime.setText("0 min, 0 sec");
 
@@ -157,6 +171,15 @@ public class MainActivity extends ActionBarActivity {
         nextButton = (ImageButton) findViewById(R.id.buttonNext);
     }
 
+    /**
+     * sets the color of the LinearLayout given a color string
+     * @param color
+     */
+    public static void setBGColor(String color){
+        layout.setBackgroundColor(Color.parseColor(color));
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -173,6 +196,10 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            // creates and Intent in order to call the SettingActivity
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
