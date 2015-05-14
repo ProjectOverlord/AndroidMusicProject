@@ -7,7 +7,7 @@
         android:key="pref_color"
         android:entries="@array/colors"
         android:summary="Set the background color of UI"
-        android:defaultValue="#FFFFFF"
+        android:defaultValue="#FF3FB9E6"
         android:entryValues="@array/colors_values"
         android:title="Background" />
 
@@ -15,11 +15,11 @@
         android:key="pref_notification"
         android:title="Notification"
         android:summary="Tick or untick to turn on or off notification"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
     <EditTextPreference
         android:key="pref_savepath"
-        android:title="Storage"
-        android:summary="Set default download path"
-        android:defaultValue="edoc_download" />
+        android:title="Server location"
+        android:summary="Set default server path"
+        android:defaultValue="uri" />
 
 </PreferenceScreen>
