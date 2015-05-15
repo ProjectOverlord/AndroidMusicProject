@@ -1,6 +1,8 @@
 package com.progettofondamenti.audioplayer;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -18,18 +20,21 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         // this method is deprecated, but it's necessary to provide support on older devices
         addPreferencesFromResource(R.xml.apppreferences);
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        pref.registerOnSharedPreferenceChangeListener(this);
-
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Set background color of the activity
+
+        // not sure this co two lines of code are usuful or not
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        MainActivity.setBGColor(sp.getString("pref_color", ""));
+        String color = sp.getString("pref_color", "");
 
         // Register OnSharedPreferenceChangeListener
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
@@ -47,7 +52,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("pref_color")) {
             // Set background color of the activity
-            MainActivity.setBGColor(sharedPreferences.getString(key, ""));
+//            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         }
     }
 }

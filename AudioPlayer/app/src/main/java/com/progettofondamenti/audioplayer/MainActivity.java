@@ -49,14 +49,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-*/
-
         /* Initializes the player given the context of this activity */
 		player = new PlayerModel(this.getApplicationContext());
 
         initializeXmlComponents();
+
+//        showUserSettings();
 
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
@@ -145,12 +143,7 @@ public class MainActivity extends ActionBarActivity {
      */
     private void initializeXmlComponents() {
 
-        // retrives information from preference activity
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String color = sharedPreferences.getString("pref_color", "");
-
         layout = (LinearLayout) findViewById(R.id.container);
-        setBGColor(color);
 
         elapsedTime = (TextView) findViewById(R.id.elapsedTime);
         elapsedTime.setText("0 min, 0 sec");
@@ -231,4 +224,20 @@ public class MainActivity extends ActionBarActivity {
         player.pause();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+//        showUserSettings();
+    }
+
+    /**
+     * method which retrives informations from choices of the user
+     */
+    private void showUserSettings() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String color = sharedPreferences.getString("pref_color", "");
+
+        layout.setBackgroundColor(Color.parseColor(color));
+    }
 }
