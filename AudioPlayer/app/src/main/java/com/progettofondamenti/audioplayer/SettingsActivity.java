@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
  * Specific settings activity created to be able to select preferences
  *
  */
+@SuppressWarnings("ALL")
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
