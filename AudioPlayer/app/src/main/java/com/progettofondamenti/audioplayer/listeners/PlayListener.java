@@ -18,7 +18,6 @@ public class PlayListener implements View.OnClickListener {
 	Handler handler;
 	BarUpdater barUpdater;
 
-
 	public PlayListener(iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 		super();
 		this.player = player;
@@ -26,6 +25,8 @@ public class PlayListener implements View.OnClickListener {
 		this.barUpdater = barUpdater;
 		this.seekBar = seekBar;
 	}
+
+
 
 	@Override
 	public void onClick(View v) {

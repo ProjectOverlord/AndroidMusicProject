@@ -15,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.progettofondamenti.audioplayer.buttons.PlayButton;
+import com.progettofondamenti.audioplayer.listeners.PlayListener;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
     private double timeElapsed = 0;
 
     private static SeekBar sk;
-    private static ImageButton playButton;
+	private static PlayButton playButton;
     private static ImageButton pauseButton;
     private static ImageButton rewButton;
     private static ImageButton ffButton;
@@ -87,16 +90,7 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-        playButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                player.play();
-
-				timeElapsed = player.getPlayerPosition();
-				sk.setProgress((int) timeElapsed);
-				sk.setMax(100);
-				handler.postDelayed(barUpdater,100);
-            }
-        });
+		playButton.setOnClickListener(new PlayListener(player, sk, handler, barUpdater));
 
 
         pauseButton.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +153,8 @@ public class MainActivity extends ActionBarActivity {
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
 
-        // TODO: How can we get a PlayButton to represent an ImageButton in the XML even though it would need a constructor? (CL)
-		playButton = (ImageButton) findViewById(R.id.buttonPlay);
+        // TODO: Make a dedicated class to every button as we did for PlayButton ?
+		playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (ImageButton) findViewById(R.id.buttonPause);
         rewButton = (ImageButton) findViewById(R.id.buttonRew);
         ffButton = (ImageButton) findViewById(R.id.buttonFf);
