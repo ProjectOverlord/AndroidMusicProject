@@ -1,9 +1,12 @@
 package com.progettofondamenti.audioplayer;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -67,7 +70,15 @@ public class MainActivity extends ActionBarActivity {
 
         initializeXmlComponents();
 
-//        showUserSettings();
+        FragmentManager fragmentManager = getFragmentManager();
+        MyPreferences myFragment=(MyPreferences)fragmentManager.findFragmentByTag("MyPreferences");
+        if(myFragment==null){
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            //add a fragment
+            myFragment = new MyPreferences();
+            fragmentTransaction.add(R.id.container, myFragment,"MyPreferences");
+            fragmentTransaction.commit();
 
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
@@ -116,7 +127,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         nextButton.setOnClickListener(new NextListener(player));
-    }
+    }}
 
 
     /*
@@ -153,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
      * sets the color of the LinearLayout given a color string
      * @param color stringa che descrive il colore
      */
-    public static void setBGColor(String color){
+    public static void setBackgroundColor(String color){
         layout.setBackgroundColor(Color.parseColor(color));
 
     }
@@ -186,7 +197,7 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public void onPause() {
-		super.onPause();
+        super.onPause();
 
         player.pause();
     }
@@ -209,16 +220,5 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-//        showUserSettings();
-    }
-
-    /**
-     * method which retrives informations from choices of the user
-     */
-    private void showUserSettings() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String color = sharedPreferences.getString("pref_color", "");
-
-        layout.setBackgroundColor(Color.parseColor(color));
     }
 }
