@@ -18,10 +18,12 @@ import android.widget.TextView;
 import com.progettofondamenti.audioplayer.buttons.ForwardButton;
 import com.progettofondamenti.audioplayer.buttons.PauseButton;
 import com.progettofondamenti.audioplayer.buttons.PlayButton;
+import com.progettofondamenti.audioplayer.buttons.PreviousButton;
 import com.progettofondamenti.audioplayer.buttons.RewindButton;
 import com.progettofondamenti.audioplayer.listeners.ForwardListener;
 import com.progettofondamenti.audioplayer.listeners.PauseListener;
 import com.progettofondamenti.audioplayer.listeners.PlayListener;
+import com.progettofondamenti.audioplayer.listeners.PreviousListener;
 import com.progettofondamenti.audioplayer.listeners.RewindListener;
 
 import java.util.concurrent.TimeUnit;
@@ -42,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
     private static PauseButton pauseButton;
     private static RewindButton rewButton;
     private static ForwardButton ffButton;
-    private static ImageButton previousButton;
+    private static PreviousButton previousButton;
     private static ImageButton nextButton;
     private static TextView songTitle;
     private static TextView elapsedTime;
@@ -108,12 +110,7 @@ public class MainActivity extends ActionBarActivity {
         ffButton.setOnClickListener(new ForwardListener(player));
 
 
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.previous();
-            }
-        });
+        previousButton.setOnClickListener(new PreviousListener(player));
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +148,7 @@ public class MainActivity extends ActionBarActivity {
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
         rewButton = (RewindButton) findViewById(R.id.buttonRew);
         ffButton = (ForwardButton) findViewById(R.id.buttonFf);
-        previousButton = (ImageButton) findViewById(R.id.buttonPrevious);
+        previousButton = (PreviousButton) findViewById(R.id.buttonPrevious);
         nextButton = (ImageButton) findViewById(R.id.buttonNext);
     }
 

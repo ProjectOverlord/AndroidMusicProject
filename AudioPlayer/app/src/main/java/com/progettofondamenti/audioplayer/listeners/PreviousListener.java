@@ -20,6 +20,6 @@ public class PreviousListener implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        player.forward();
+        player.previous();
     }
 }
