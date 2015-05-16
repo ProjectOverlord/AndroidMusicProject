@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import com.progettofondamenti.audioplayer.buttons.PauseButton;
 import com.progettofondamenti.audioplayer.buttons.PlayButton;
+import com.progettofondamenti.audioplayer.buttons.RewindButton;
 import com.progettofondamenti.audioplayer.listeners.PauseListener;
 import com.progettofondamenti.audioplayer.listeners.PlayListener;
+import com.progettofondamenti.audioplayer.listeners.RewindListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     private static SeekBar sk;
 	private static PlayButton playButton;
     private static PauseButton pauseButton;
-    private static ImageButton rewButton;
+    private static RewindButton rewButton;
     private static ImageButton ffButton;
     private static ImageButton previousButton;
     private static ImageButton nextButton;
@@ -98,11 +100,7 @@ public class MainActivity extends ActionBarActivity {
         pauseButton.setOnClickListener(new PauseListener(player));
 
 
-        rewButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                player.rewind();
-            }
-        });
+        rewButton.setOnClickListener(new RewindListener(player));
 
 
         ffButton.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
         // TODO: Make a dedicated class to every button as we did for PlayButton ?
 		playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
-        rewButton = (ImageButton) findViewById(R.id.buttonRew);
+        rewButton = (RewindButton) findViewById(R.id.buttonRew);
         ffButton = (ImageButton) findViewById(R.id.buttonFf);
         previousButton = (ImageButton) findViewById(R.id.buttonPrevious);
         nextButton = (ImageButton) findViewById(R.id.buttonNext);

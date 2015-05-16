@@ -13,10 +13,10 @@ import android.os.Handler;
  */
 public class PlayListener implements View.OnClickListener {
 
-	iPlayer player;
-	SeekBar seekBar;
-	Handler handler;
-	BarUpdater barUpdater;
+	private iPlayer player;
+	private SeekBar seekBar;
+	private Handler handler;
+	private BarUpdater barUpdater;
 
 	public PlayListener(iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 		super();
