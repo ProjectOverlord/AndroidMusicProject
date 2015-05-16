@@ -30,6 +30,7 @@ import com.progettofondamenti.audioplayer.listeners.PauseListener;
 import com.progettofondamenti.audioplayer.listeners.PlayListener;
 import com.progettofondamenti.audioplayer.listeners.PreviousListener;
 import com.progettofondamenti.audioplayer.listeners.RewindListener;
+import com.progettofondamenti.audioplayer.listeners.SeekBarListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -75,33 +76,7 @@ public class MainActivity extends ActionBarActivity {
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
 
-        sk.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // stops handler in order to act on the seekbar
-                handler.removeCallbacks(barUpdater);
-
-                if (fromUser)
-                    player.seek(progress);
-
-                // restarts handler
-                handler.postDelayed(barUpdater, 100);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // no implementation  needed!!
-            }
-
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // no implementation  needed!!
-            }
-        });
-
+        sk.setOnSeekBarChangeListener(new SeekBarListener(barUpdater,handler,player));
 
 		playButton.setOnClickListener(new PlayListener(player, sk, handler, barUpdater));
 
