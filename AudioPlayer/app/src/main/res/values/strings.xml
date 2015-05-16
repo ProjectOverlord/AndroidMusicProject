@@ -25,5 +25,6 @@
         <item>#FF0000</item>
         <item>#FFFF00</item>
     </string-array>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>
