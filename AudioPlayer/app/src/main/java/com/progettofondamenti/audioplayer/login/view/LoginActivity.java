@@ -1,5 +1,6 @@
 package com.progettofondamenti.audioplayer.login.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.progettofondamenti.audioplayer.MainActivity;
 import com.progettofondamenti.audioplayer.R;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class LoginActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_login);
 
 		Button loginButton = (Button) findViewById(R.id.loginButton);
+
 		/* The login button simply launches the Player */
 		loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -30,7 +32,7 @@ public class LoginActivity extends ActionBarActivity {
 			}
 		});
 	}
-
+/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -51,5 +53,5 @@ public class LoginActivity extends ActionBarActivity {
 		}
 
 		return super.onOptionsItemSelected(item);
-	}
+	}*/
 }
