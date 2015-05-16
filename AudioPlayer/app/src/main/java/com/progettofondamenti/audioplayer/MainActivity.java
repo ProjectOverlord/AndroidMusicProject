@@ -16,11 +16,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.progettofondamenti.audioplayer.buttons.ForwardButton;
+import com.progettofondamenti.audioplayer.buttons.NextButton;
 import com.progettofondamenti.audioplayer.buttons.PauseButton;
 import com.progettofondamenti.audioplayer.buttons.PlayButton;
 import com.progettofondamenti.audioplayer.buttons.PreviousButton;
 import com.progettofondamenti.audioplayer.buttons.RewindButton;
 import com.progettofondamenti.audioplayer.listeners.ForwardListener;
+import com.progettofondamenti.audioplayer.listeners.NextListener;
 import com.progettofondamenti.audioplayer.listeners.PauseListener;
 import com.progettofondamenti.audioplayer.listeners.PlayListener;
 import com.progettofondamenti.audioplayer.listeners.PreviousListener;
@@ -45,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     private static RewindButton rewButton;
     private static ForwardButton ffButton;
     private static PreviousButton previousButton;
-    private static ImageButton nextButton;
+    private static NextButton nextButton;
     private static TextView songTitle;
     private static TextView elapsedTime;
     private static TextView remainingTime;
@@ -113,12 +115,7 @@ public class MainActivity extends ActionBarActivity {
         previousButton.setOnClickListener(new PreviousListener(player));
 
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.next();
-            }
-        });
+        nextButton.setOnClickListener(new NextListener(player));
     }
 
 
@@ -149,7 +146,7 @@ public class MainActivity extends ActionBarActivity {
         rewButton = (RewindButton) findViewById(R.id.buttonRew);
         ffButton = (ForwardButton) findViewById(R.id.buttonFf);
         previousButton = (PreviousButton) findViewById(R.id.buttonPrevious);
-        nextButton = (ImageButton) findViewById(R.id.buttonNext);
+        nextButton = (NextButton) findViewById(R.id.buttonNext);
     }
 
     /**
