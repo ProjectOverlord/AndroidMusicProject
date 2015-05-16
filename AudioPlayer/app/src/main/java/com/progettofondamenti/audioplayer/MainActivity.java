@@ -95,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
 		playButton.setOnClickListener(new PlayListener(player, sk, handler, barUpdater));
 
 
-        pauseButton.setOnClickListener(new PauseListener(player, sk, handler, barUpdater));
+        pauseButton.setOnClickListener(new PauseListener(player));
 
 
         rewButton.setOnClickListener(new View.OnClickListener() {
