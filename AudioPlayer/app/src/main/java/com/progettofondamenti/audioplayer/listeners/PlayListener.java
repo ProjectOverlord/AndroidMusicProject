@@ -26,8 +26,6 @@ public class PlayListener implements View.OnClickListener {
 		this.seekBar = seekBar;
 	}
 
-
-
 	@Override
 	public void onClick(View v) {
 		player.play();

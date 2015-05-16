@@ -94,7 +94,7 @@
             android:src="@android:drawable/ic_media_play"
             android:backgroundTint="#ff35b6e5"/>
 
-        <ImageButton
+        <com.progettofondamenti.audioplayer.buttons.PauseButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pause"
