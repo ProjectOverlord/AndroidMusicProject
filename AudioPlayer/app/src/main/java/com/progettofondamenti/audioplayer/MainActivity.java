@@ -72,13 +72,14 @@ public class MainActivity extends ActionBarActivity {
 
         FragmentManager fragmentManager = getFragmentManager();
         MyPreferences myFragment=(MyPreferences)fragmentManager.findFragmentByTag("MyPreferences");
-        if(myFragment==null){
+        if(myFragment==null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             //add a fragment
             myFragment = new MyPreferences();
-            fragmentTransaction.add(R.id.container, myFragment,"MyPreferences");
+            fragmentTransaction.add(R.id.container, myFragment, "MyPreferences");
             fragmentTransaction.commit();
+        }
 
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
@@ -127,7 +128,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         nextButton.setOnClickListener(new NextListener(player));
-    }}
+    }
 
 
     /*
