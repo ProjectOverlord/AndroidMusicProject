@@ -70,16 +70,7 @@ public class MainActivity extends ActionBarActivity {
 
         initializeXmlComponents();
 
-        FragmentManager fragmentManager = getFragmentManager();
-        MyPreferences myFragment=(MyPreferences)fragmentManager.findFragmentByTag("MyPreferences");
-        if(myFragment==null) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            //add a fragment
-            myFragment = new MyPreferences();
-            fragmentTransaction.add(R.id.container, myFragment, "MyPreferences");
-            fragmentTransaction.commit();
-        }
+        setFragmentSettings();
 
         /* Initializes barUpdater, which is a Runnable */
         barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
@@ -130,7 +121,6 @@ public class MainActivity extends ActionBarActivity {
         nextButton.setOnClickListener(new NextListener(player));
     }
 
-
     /*
      * Initializes the application's XML components
      */
@@ -152,7 +142,6 @@ public class MainActivity extends ActionBarActivity {
         sk=(SeekBar) findViewById(R.id.bar);
         sk.setClickable(true);
 
-        // TODO: Make a dedicated class to every button as we did for PlayButton ?
 		playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
         rewButton = (RewindButton) findViewById(R.id.buttonRew);
@@ -161,6 +150,21 @@ public class MainActivity extends ActionBarActivity {
         nextButton = (NextButton) findViewById(R.id.buttonNext);
     }
 
+    /*
+     *  Sets the specific fragment in order to handle preferences
+     */
+    private void setFragmentSettings() {
+        FragmentManager fragmentManager = getFragmentManager();
+        MyPreferences myFragment=(MyPreferences)fragmentManager.findFragmentByTag("MyPreferences");
+        if(myFragment==null) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            //add a fragment
+            myFragment = new MyPreferences();
+            fragmentTransaction.add(R.id.container, myFragment, "MyPreferences");
+            fragmentTransaction.commit();
+        }
+    }
     /**
      * sets the color of the LinearLayout given a color string
      * @param color stringa che descrive il colore
