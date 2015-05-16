@@ -70,7 +70,7 @@
         android:id="@+id/buttonsContainer"
         >
 
-        <ImageButton
+        <com.progettofondamenti.audioplayer.buttons.PreviousButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Previous"
