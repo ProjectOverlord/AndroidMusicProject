@@ -12,40 +12,16 @@
                 tools:context=".LoginActivity"
                 android:background="#6900bbb2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username:"
-        android:id="@+id/textUsername"
-        android:layout_marginTop="39dp"
-        android:textSize="@dimen/abc_text_size_headline_material"
-        android:textColor="#ff0000ff"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/username"
-        android:layout_alignTop="@+id/textUsername"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/loginButton"
-        android:inputType="text"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password:"
-        android:id="@+id/textPassword"
-        android:layout_marginTop="41dp"
-        android:textSize="@dimen/abc_text_size_headline_material"
-        android:textColor="#ff0000ff"
-        android:layout_below="@+id/username"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:inputType="text"
+        android:hint="Username"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,11 +29,9 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"
-        android:layout_alignTop="@+id/textPassword"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/loginButton"
-        android:layout_toEndOf="@+id/loginButton"/>
+        android:hint="Password"
+        android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true"/>
 
 
     <Button
@@ -66,16 +40,15 @@
         android:text="Login"
         android:id="@+id/loginButton"
         android:onClick="goToNextActivity"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="88dp"/>
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ExperimentalLogin"
         android:id="@+id/experimentalLogin"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
