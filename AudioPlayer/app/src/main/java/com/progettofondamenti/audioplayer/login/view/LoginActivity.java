@@ -23,8 +23,16 @@ public class LoginActivity extends Activity {
 		Button experimentalLoginButton = (Button) findViewById(R.id.experimentalLogin);
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
 	/* This method is called by pressing the login button and open the MainActivity */
 	public void goToNextActivity(View v) {
+		goToNextActivity();
+	}
+	public void goToNextActivity() {
 		startActivity(new Intent(LoginActivity.this, MainActivity.class));
 	}
 
