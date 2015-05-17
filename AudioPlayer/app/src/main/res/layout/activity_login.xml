@@ -50,7 +50,7 @@
         android:id="@+id/experimentalLogin"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:onClick="InternetTester"
+        android:onClick="sendLoginToServer"
         android:nestedScrollingEnabled="false"/>
 
 </RelativeLayout>

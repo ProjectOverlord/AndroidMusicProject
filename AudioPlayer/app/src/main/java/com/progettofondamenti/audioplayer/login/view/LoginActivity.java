@@ -52,11 +52,9 @@ public class LoginActivity extends Activity {
 
 	public void sendLoginToServer(View v) { sendLoginToServer(); }
 	public void sendLoginToServer() {
-		try {
-			login.fireHttpGetRequest();
-		} catch (IOException e) {
-			Log.e("----", e.getMessage());
-		}
+
+			login.fireHttpPostRequest();
+
 	}
 
 	public void InternetTester(View v) {
