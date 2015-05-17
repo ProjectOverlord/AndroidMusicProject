@@ -38,7 +38,9 @@
         android:id="@+id/username"
         android:layout_alignTop="@+id/textUsername"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/loginButton"
+        android:layout_toEndOf="@+id/loginButton"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,7 +62,9 @@
         android:id="@+id/password"
         android:layout_alignTop="@+id/textPassword"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/loginButton"
+        android:layout_toEndOf="@+id/loginButton"/>
 
 
     <Button
