@@ -2,12 +2,16 @@ package com.progettofondamenti.audioplayer.login.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.progettofondamenti.audioplayer.MainActivity;
 import com.progettofondamenti.audioplayer.R;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 
 public class LoginActivity extends Activity {
@@ -34,6 +38,11 @@ public class LoginActivity extends Activity {
 	}
 	public void goToNextActivity() {
 		startActivity(new Intent(LoginActivity.this, MainActivity.class));
+	}
+
+	public void sendLoginToServer() {
+
+
 	}
 
 }
