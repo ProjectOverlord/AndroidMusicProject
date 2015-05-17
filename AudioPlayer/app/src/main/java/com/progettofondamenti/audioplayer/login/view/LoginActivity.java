@@ -1,14 +1,20 @@
 package com.progettofondamenti.audioplayer.login.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.progettofondamenti.audioplayer.MainActivity;
 import com.progettofondamenti.audioplayer.R;
 import com.progettofondamenti.audioplayer.login.model.LoginClient;
+
+import java.io.IOException;
 
 /**
  * This login activity has a simple design and clear interface.
@@ -39,15 +45,28 @@ public class LoginActivity extends Activity {
 	}
 
 	/* This method is called by pressing the login button and open the MainActivity */
-	public void goToNextActivity(View v) {
-		goToNextActivity();
-	}
+	public void goToNextActivity(View v) { goToNextActivity(); }
 	public void goToNextActivity() {
 		startActivity(new Intent(LoginActivity.this, MainActivity.class));
 	}
 
+	public void sendLoginToServer(View v) { sendLoginToServer(); }
 	public void sendLoginToServer() {
-		// TODO: login.send()
+		try {
+			login.fireHttpGetRequest();
+		} catch (IOException e) {
+			Log.e("----", e.getMessage());
+		}
 	}
 
+	public void InternetTester(View v) {
+		ConnectivityManager connMgr = (ConnectivityManager)
+				getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		if (networkInfo != null && networkInfo.isConnected()) {
+			Log.e("---hola---", "ok");
+		} else {
+			Log.e("--nope", "no good");
+		}
+	}
 }
