@@ -19,6 +19,8 @@ public class LoginActivity extends Activity {
 
 		/* The method declares its onClick behaviour in the XML file. As of now it simply calls the goToNextActivity method) */
 		Button loginButton = (Button) findViewById(R.id.loginButton);
+
+		Button experimentalLoginButton = (Button) findViewById(R.id.experimentalLogin);
 	}
 
 	/* This method is called by pressing the login button and open the MainActivity */
