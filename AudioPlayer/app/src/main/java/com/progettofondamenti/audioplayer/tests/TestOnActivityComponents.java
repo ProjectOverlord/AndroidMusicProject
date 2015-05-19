@@ -17,6 +17,7 @@ public class TestOnActivityComponents
     private MainActivity mainActivity;
     private TextView songText;
     private TextView elapsedTime;
+    private TextView remainingTime;
 
 
     public TestOnActivityComponents() {
@@ -32,6 +33,8 @@ public class TestOnActivityComponents
         mainActivity = getActivity();
         songText = (TextView) mainActivity.findViewById(R.id.songTitle);
         elapsedTime= (TextView)mainActivity.findViewById(R.id.elapsedTime);
+        remainingTime = (TextView)mainActivity.findViewById(R.id.remainingTime);
+
     }
 
     /**
@@ -55,6 +58,18 @@ public class TestOnActivityComponents
         final String expected = "0 min, 0 sec";
 
         final String actual = elapsedTime.getText().toString();
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * metodo che controlla che la stringa del tempo totale sia giusta
+     */
+    public void testTextViewRemainingTime() {
+
+        final String expected = "1 min, 32 sec";
+
+        final String actual = remainingTime.getText().toString();
 
         assertEquals(expected, actual);
     }
