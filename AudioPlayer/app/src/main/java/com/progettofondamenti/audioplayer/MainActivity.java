@@ -36,7 +36,11 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * The main activity of the program.
- * As of 24/04/2015, it needs to be refactored heavily.
+ *
+ *1) Default setup and initialization of activity_main.xml
+ *
+ *
+ *
  */
 public class MainActivity extends ActionBarActivity {
 
@@ -44,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
     private iPlayer player;
     private Handler handler = new Handler();
     private double timeElapsed = 0;
+
 
     private static SeekBar sk;
 	private static PlayButton playButton;
