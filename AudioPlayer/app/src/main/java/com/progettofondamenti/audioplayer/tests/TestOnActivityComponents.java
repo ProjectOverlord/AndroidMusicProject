@@ -1,6 +1,10 @@
 package com.progettofondamenti.audioplayer.tests;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.progettofondamenti.audioplayer.MainActivity;
@@ -18,6 +22,8 @@ public class TestOnActivityComponents
     private TextView songText;
     private TextView elapsedTime;
     private TextView remainingTime;
+    private static int PLAY_TIME = 30000;
+
 
 
     public TestOnActivityComponents() {
@@ -34,6 +40,7 @@ public class TestOnActivityComponents
         songText = (TextView) mainActivity.findViewById(R.id.songTitle);
         elapsedTime= (TextView)mainActivity.findViewById(R.id.elapsedTime);
         remainingTime = (TextView)mainActivity.findViewById(R.id.remainingTime);
+        getActivity();
 
     }
 
@@ -73,5 +80,22 @@ public class TestOnActivityComponents
 
         assertEquals(expected, actual);
     }
+
+    /**
+     * Launch music player and sleep for 30 seconds to capture
+     * the music player power usage base line
+     *
+     * @throws Exception
+     */
+    public void testLaunchMusicPlayer() throws Exception {
+
+        try {
+            Thread.sleep(PLAY_TIME);
+        } catch (Exception e) {
+            assertTrue("MusicPlayer Do Nothing", false);
+        }
+        assertTrue("MusicPlayer Do Nothing", true);
+    }
+
 
 }
