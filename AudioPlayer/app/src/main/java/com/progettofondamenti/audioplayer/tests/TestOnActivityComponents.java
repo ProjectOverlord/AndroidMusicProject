@@ -16,6 +16,7 @@ public class TestOnActivityComponents
 
     private MainActivity mainActivity;
     private TextView songText;
+    private TextView elapsedTime;
 
 
     public TestOnActivityComponents() {
@@ -30,11 +31,12 @@ public class TestOnActivityComponents
         super.setUp();
         mainActivity = getActivity();
         songText = (TextView) mainActivity.findViewById(R.id.songTitle);
+        elapsedTime= (TextView)mainActivity.findViewById(R.id.elapsedTime);
     }
 
     /**
      *
-     * metodo che controlla che la stringa sia corretta
+     * metodo che controlla che la stringa del titolo sia corretta
      */
     public void testMyFirstTestTextView_labelText() {
         final String expected = "W.A.Mozart - Concerto No.21 - Andante";
@@ -43,5 +45,18 @@ public class TestOnActivityComponents
         assertEquals(expected, actual);
     }
 
+
+    /**
+     * metodo che controlla che la stringa della durata sia corretta
+     */
+
+    public void testTextViewElapsedTime() {
+
+        final String expected = "0 min, 0 sec";
+
+        final String actual = elapsedTime.getText().toString();
+
+        assertEquals(expected, actual);
+    }
 
 }
