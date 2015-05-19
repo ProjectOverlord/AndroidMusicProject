@@ -2,7 +2,7 @@ package com.progettofondamenti.audioplayer.listeners;
 
 import android.view.View;
 
-import com.progettofondamenti.audioplayer.iPlayer;
+import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
  * Listener for the NextButton.
@@ -11,9 +11,9 @@ import com.progettofondamenti.audioplayer.iPlayer;
  */
 public class NextListener implements View.OnClickListener{
 
-    private iPlayer player;
+    private IPlayer player;
 
-    public NextListener(iPlayer player){
+    public NextListener(IPlayer player){
         super();
         this.player=player;
     }

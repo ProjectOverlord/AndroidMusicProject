@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.widget.SeekBar;
 
 import com.progettofondamenti.audioplayer.BarUpdater;
-import com.progettofondamenti.audioplayer.iPlayer;
+import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
  * Listener for the SeekBar
@@ -14,10 +14,10 @@ public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     private BarUpdater barUpdater;
     private android.os.Handler handler = new Handler();
-    private iPlayer player;
+    private IPlayer player;
 
 
-    public SeekBarListener(BarUpdater barUpdater, Handler handler, iPlayer player) {
+    public SeekBarListener(BarUpdater barUpdater, Handler handler, IPlayer player) {
         this.barUpdater = barUpdater;
         this.handler = handler;
         this.player = player;

@@ -1,17 +1,10 @@
 package com.progettofondamenti.audioplayer.buttons;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
 
-import com.progettofondamenti.audioplayer.BarUpdater;
 import com.progettofondamenti.audioplayer.R;
-import com.progettofondamenti.audioplayer.iPlayer;
-import com.progettofondamenti.audioplayer.listeners.PlayListener;
 
 /**
  * This class should be the one representing the button that calls the play()

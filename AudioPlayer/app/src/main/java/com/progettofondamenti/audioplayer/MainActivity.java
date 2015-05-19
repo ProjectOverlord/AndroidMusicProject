@@ -3,17 +3,12 @@ package com.progettofondamenti.audioplayer;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -45,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends ActionBarActivity {
 
     /* Declarations */
-    private iPlayer player;
+    private IPlayer player;
     private Handler handler = new Handler();
     private double timeElapsed = 0;
 

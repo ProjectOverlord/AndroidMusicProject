@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class BarUpdater implements Runnable {
 
-    private iPlayer player;
+    private IPlayer player;
     private Handler handler;
     private double timeElapsed = 0;
     private double finalTime;
@@ -22,7 +22,7 @@ public class BarUpdater implements Runnable {
     private static TextView remainingTime;
 
 
-    public BarUpdater(iPlayer player, Handler handler, SeekBar seekBar, TextView elapsedTime, TextView remainingTime) {
+    public BarUpdater(IPlayer player, Handler handler, SeekBar seekBar, TextView elapsedTime, TextView remainingTime) {
         BarUpdater.seekBar = seekBar;
         this.player = player;
         BarUpdater.elapsedTime = elapsedTime;

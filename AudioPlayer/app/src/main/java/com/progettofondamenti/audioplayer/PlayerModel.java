@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author CL
  */
-public class PlayerModel implements iPlayer {
+public class PlayerModel implements IPlayer {
 
 	/* Defining upper and lower limits of forward and backward times.
 	 * Ideally there should be an option in the settings

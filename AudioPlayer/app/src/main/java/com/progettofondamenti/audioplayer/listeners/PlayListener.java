@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.SeekBar;
 
 import com.progettofondamenti.audioplayer.BarUpdater;
-import com.progettofondamenti.audioplayer.iPlayer;
+import com.progettofondamenti.audioplayer.IPlayer;
 
 import android.os.Handler;
 
@@ -13,12 +13,12 @@ import android.os.Handler;
  */
 public class PlayListener implements View.OnClickListener {
 
-	private iPlayer player;
+	private IPlayer player;
 	private SeekBar seekBar;
 	private Handler handler;
 	private BarUpdater barUpdater;
 
-	public PlayListener(iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
+	public PlayListener(IPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 		super();
 		this.player = player;
 		this.handler = handler;

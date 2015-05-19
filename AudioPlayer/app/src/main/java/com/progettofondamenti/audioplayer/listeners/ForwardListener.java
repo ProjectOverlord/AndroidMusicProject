@@ -2,7 +2,7 @@ package com.progettofondamenti.audioplayer.listeners;
 
 import android.view.View;
 
-import com.progettofondamenti.audioplayer.iPlayer;
+import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
  * Listener for the ForwardButton.
@@ -11,9 +11,9 @@ import com.progettofondamenti.audioplayer.iPlayer;
  */
 public class ForwardListener implements View.OnClickListener{
 
-    private iPlayer player;
+    private IPlayer player;
 
-    public ForwardListener(iPlayer player){
+    public ForwardListener(IPlayer player){
         super();
         this.player=player;
     }

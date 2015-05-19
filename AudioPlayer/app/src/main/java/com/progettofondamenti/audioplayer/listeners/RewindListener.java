@@ -2,7 +2,7 @@ package com.progettofondamenti.audioplayer.listeners;
 
 import android.view.View;
 
-import com.progettofondamenti.audioplayer.iPlayer;
+import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
  * Listener for the RewindButton.
@@ -11,9 +11,9 @@ import com.progettofondamenti.audioplayer.iPlayer;
  */
 public class RewindListener implements View.OnClickListener{
 
-	private iPlayer player;
+	private IPlayer player;
 
-	public RewindListener(iPlayer player){
+	public RewindListener(IPlayer player){
 		super();
 		this.player = player;
 	}
