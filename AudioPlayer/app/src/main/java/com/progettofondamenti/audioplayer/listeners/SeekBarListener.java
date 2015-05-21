@@ -13,7 +13,7 @@ import com.progettofondamenti.audioplayer.IPlayer;
 public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
     private BarUpdater barUpdater;
-    private android.os.Handler handler = new Handler();
+    private android.os.Handler handler;
     private IPlayer player;
 
 

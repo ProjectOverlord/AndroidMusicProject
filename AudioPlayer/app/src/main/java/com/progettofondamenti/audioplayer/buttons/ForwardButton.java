@@ -13,7 +13,12 @@ import com.progettofondamenti.audioplayer.R;
  */
 public class ForwardButton extends ImageButton{
 
-    public ForwardButton(Context context, AttributeSet attrs){
+	public ForwardButton(Context context) {
+		super(context);
+		findViewById(R.id.buttonFf);
+	}
+
+	public ForwardButton(Context context, AttributeSet attrs){
         super(context,attrs);
         findViewById(R.id.buttonFf);
     }

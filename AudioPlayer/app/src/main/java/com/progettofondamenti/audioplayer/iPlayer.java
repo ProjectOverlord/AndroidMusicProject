@@ -9,34 +9,34 @@ import java.io.IOException;
  * That way it is possible to offer different implementations, giving
  * the code more flexibility.
  */
-public interface iPlayer {
+public interface IPlayer {
 
-	public void play();
+	public abstract void play();
 
-	public void pause();
+	public abstract void pause();
 
-	public void stop();
+	public abstract void stop();
 
-	public void rewind();
+	public abstract void rewind();
 
-	public void forward();
+	public abstract void forward();
 
-	public void previous();
+	public abstract void previous();
 
-	public void next();
+	public abstract void next();
 
-	public void seek(int to);
+	public abstract void seek(int to);
 
-	public int getPlayerPosition();
+	public abstract int getPlayerPosition();
 
-	public int getTotalDuration();
+	public abstract int getTotalDuration();
 
-	public void setContentToStream(String path) throws IOException;
+	public abstract void setContentToStream(String path) throws IOException;
 
-	public void setLocalFileToPlay(String path) throws IOException;
+	public abstract void setLocalFileToPlay(String path) throws IOException;
 
-	public void initializeMediaPlayerProvvisorio(Context context);
+	public abstract void initializeMediaPlayerProvvisorio(Context context);
 
-	public void die();
+	public abstract void die();
 
 }
