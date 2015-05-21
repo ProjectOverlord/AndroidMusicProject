@@ -11,7 +11,7 @@ import java.io.IOException;
  * This class aims to be the model for the audio player.
  * No other class should be allowed to see the effective mediaPlayer.
  *
- * This is an implementation of the iPlayer interface, which means
+ * This is an implementation of the IPlayer interface, which means
  * that other players can be implemented as long as they possess the same methods.
  *
  * @author CL

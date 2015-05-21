@@ -24,26 +24,26 @@ public class PlayButton extends ImageButton {
 		findViewById(R.id.buttonPlay);
 	}
 
-//	public PlayButton(Context context, iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
+//	public PlayButton(Context context, IPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 //		super(context);
 //		findViewById(R.id.buttonPlay);
 //		this.setOnClickListener(new PlayListener(player, seekBar, handler, barUpdater));
 //	}
 //
-//	public PlayButton(Context context, AttributeSet attrs, iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
+//	public PlayButton(Context context, AttributeSet attrs, IPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 //		super(context, attrs);
 //		findViewById(R.id.buttonPlay);
 //		this.setOnClickListener(new PlayListener(player, seekBar, handler, barUpdater));
 //	}
 //
-//	public PlayButton(Context context, AttributeSet attrs, int defStyleAttr, iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
+//	public PlayButton(Context context, AttributeSet attrs, int defStyleAttr, IPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 //		super(context, attrs, defStyleAttr);
 //		findViewById(R.id.buttonPlay);
 //		this.setOnClickListener(new PlayListener(player, seekBar, handler, barUpdater));
 //	}
 //
 //	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-//	public PlayButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, iPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
+//	public PlayButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, IPlayer player, SeekBar seekBar, Handler handler, BarUpdater barUpdater) {
 //		super(context, attrs, defStyleAttr, defStyleRes);
 //		findViewById(R.id.buttonPlay);
 //		this.setOnClickListener(new PlayListener(player, seekBar, handler, barUpdater));
