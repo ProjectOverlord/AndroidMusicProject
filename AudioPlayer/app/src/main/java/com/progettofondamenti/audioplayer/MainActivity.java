@@ -5,12 +5,10 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.progettofondamenti.audioplayer.buttons.ForwardButton;
@@ -25,27 +23,18 @@ import com.progettofondamenti.audioplayer.listeners.PauseListener;
 import com.progettofondamenti.audioplayer.listeners.PlayListener;
 import com.progettofondamenti.audioplayer.listeners.PreviousListener;
 import com.progettofondamenti.audioplayer.listeners.RewindListener;
-import com.progettofondamenti.audioplayer.listeners.SeekBarListener;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * The main activity of the program.
  *
  *1) Default setup and initialization of activity_main.xml
- *
- *
- *
  */
 public class MainActivity extends ActionBarActivity {
 
     /* Declarations */
+	/* Initializes the player given the context of this activity */
     private IPlayer player;
-    private Handler handler = new Handler();
-    private double timeElapsed = 0;
 
-
-    private static SeekBar sk;
 	private static PlayButton playButton;
     private static PauseButton pauseButton;
     private static RewindButton rewButton;
@@ -53,12 +42,10 @@ public class MainActivity extends ActionBarActivity {
     private static PreviousButton previousButton;
     private static NextButton nextButton;
     private static TextView songTitle;
-    private static TextView elapsedTime;
-    private static TextView remainingTime;
 
     private static LinearLayout layout;
 
-    private BarUpdater barUpdater;
+    private PlayerView playerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,19 +53,18 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Initializes the player given the context of this activity */
 		player = new PlayerModel(this.getApplicationContext());
 
+		/* Inizializza le componenti rimanenti rispetto hha quelle già dichiarate in PlayerView */
         initializeXmlComponents();
+
+		/* Creiamo la view con kdvhijds */
+		playerView = new PlayerView(player, this);
+		playerView.run();
 
         setFragmentSettings();
 
-        /* Initializes barUpdater, which is a Runnable */
-        barUpdater = new BarUpdater(player, handler, sk, elapsedTime, remainingTime);
-
-        sk.setOnSeekBarChangeListener(new SeekBarListener(barUpdater,handler,player));
-
-		playButton.setOnClickListener(new PlayListener(player, sk, handler, barUpdater));
+		playButton.setOnClickListener(new PlayListener(player));
 
 
         pauseButton.setOnClickListener(new PauseListener(player));
@@ -103,19 +89,8 @@ public class MainActivity extends ActionBarActivity {
 
         layout = (LinearLayout) findViewById(R.id.container);
 
-        elapsedTime = (TextView) findViewById(R.id.elapsedTime);
-        elapsedTime.setText("0 min, 0 sec");
-
-        remainingTime = (TextView) findViewById(R.id.remainingTime);
-        remainingTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes((long) player.getTotalDuration()),
-                TimeUnit.MILLISECONDS.toSeconds((long) player.getTotalDuration())
-                    - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long) player.getTotalDuration()))));
-
         songTitle = (TextView) findViewById(R.id.songTitle);
         songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
-
-        sk=(SeekBar) findViewById(R.id.bar);
-        sk.setClickable(true);
 
 		playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
