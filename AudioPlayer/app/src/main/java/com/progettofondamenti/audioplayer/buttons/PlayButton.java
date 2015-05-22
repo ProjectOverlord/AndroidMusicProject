@@ -4,9 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 
-import com.progettofondamenti.audioplayer.IPlayer;
 import com.progettofondamenti.audioplayer.R;
-import com.progettofondamenti.audioplayer.listeners.PlayListener;
 
 /**
  * This class should be the one representing the button that calls the play()
