@@ -55,30 +55,23 @@ public class MainActivity extends ActionBarActivity {
 
 		player = new PlayerModel(this.getApplicationContext());
 
-		/* Inizializza le componenti rimanenti rispetto hha quelle già dichiarate in PlayerView */
+		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
         initializeXmlComponents();
 
-		/* Creiamo la view con kdvhijds */
 		playerView = new PlayerView(player, this);
 		playerView.run();
 
         setFragmentSettings();
 
-		playButton.setOnClickListener(new PlayListener(player));
+        setListenersToButtons();
+    }
 
-
+    private void setListenersToButtons() {
+        playButton.setOnClickListener(new PlayListener(player));
         pauseButton.setOnClickListener(new PauseListener(player));
-
-
         rewButton.setOnClickListener(new RewindListener(player));
-
-
         ffButton.setOnClickListener(new ForwardListener(player));
-
-
         previousButton.setOnClickListener(new PreviousListener(player));
-
-
         nextButton.setOnClickListener(new NextListener(player));
     }
 
@@ -133,9 +126,9 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        /* Handle action bar item clicks here. The action bar will
+         * automatically handle clicks on the Home/Up button, so long
+         * as you specify a parent activity in AndroidManifest.xml. */
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
