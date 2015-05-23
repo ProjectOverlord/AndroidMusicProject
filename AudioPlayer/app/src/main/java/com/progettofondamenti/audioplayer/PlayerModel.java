@@ -35,19 +35,16 @@ public class PlayerModel implements IPlayer {
     private MediaPlayer mediaPlayer;
 	private String uri;
 
+	/* Empty constructor used to */
 	public PlayerModel() {
 		mediaPlayer = new MediaPlayer();
 	}
 
+	/* Constructor used to play a specific file inside the app*/
     public PlayerModel(Context context) {
         mediaPlayer = new MediaPlayer();
-		initializeMediaPlayerProvvisorio(context);
+		initializeMediaPlayerWithLocalFile(context);
     }
-
-	public PlayerModel(Context context, String uri) throws IOException {
-		this.uri = uri;
-		initializeMPStreaming(uri);
-	}
 
     @Override
 	public void play() {
@@ -122,20 +119,6 @@ public class PlayerModel implements IPlayer {
 		return mediaPlayer.getDuration();
 	}
 
-	/*
-	 * This method specifies the path to the file (or the URL to the stream!)
-	 *
-	 * TODO: Do not understand why the initialization doesn't work
-	 *
-	 * @param path
-	 * @throws IOException
-	 */
-	@Override
-	public void setContentToStream(String path) throws IOException {
-		mediaPlayer.reset();
-		mediaPlayer.setDataSource(path);
-	}
-
 
 	/*
 	 * This method is specific for a local file and ensures the file exists
@@ -156,51 +139,21 @@ public class PlayerModel implements IPlayer {
 
 		mediaPlayer.setDataSource(fileInputStream.getFD());
 
-		/* NOTA IMPORTANTE per chiunque voglia provare a sistemare il codice
-		 *
-		 * premetto che non posso testare nulla in assenza del codice del server..
-		 * se vogliamo poter scaricare il file audio ed eseguirlo dovrebbe essere sufficiente chiamare prepare(),
-		 * dopo aver settato il dataSource, mentre se vogliamo fare una sorta di streaming,
-		 * è necessario impostare il tipo con il metodo setAudioStreamType commentato sotto e
-		 * scegliere prepareAsync(). Quanto detto è dovuto al fatto che prepare() non può andar bene per lo streaming,
-		 * dato che bisogna attendere lo scaricamento perché esegua correttamente.
-		 * Inoltre bisognerebbe anche utilizzare
-		 * mPlayer.setOnPreparedListener(new OnPreparedListener() {
-		 *
-		 * @Override
-		 * public void onPrepared(MediaPlayer mp) {
-		 * mPlayer.start();
-		 * }
-		 * });
-		 *
-		 * Nel caso di non streaming non riesco a capire se basta passare l'uri a setDataSource senza
-		 * il FileInputStream o meno, visto che trovo molti esempi che fanno ricorso a soluzioni contrastanti...
-		 * (anche perché è impossibile fare prove)
-		 *
-		 * spero di essere stato d'aiuto a qualcuno,
-		 * ho scritto qui per evidenziare nel codice la questione...
-		 * by Fra
-		 *
-		 * */
-
-
-		// dovrebbe essere meglio per  lo streaming
-		//mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-		mediaPlayer.prepare();
-
-		// serve per lo streaming
-		//mediaPlayer.prepareAsync();
-
 		fileInputStream.close();
 	}
 
+	/*
+	 * This method is specific for a local mp3 file
+	 */
 	@Override
-	public void initializeMediaPlayerProvvisorio(Context context) {
+	public void initializeMediaPlayerWithLocalFile(Context context) {
 		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
 	}
 
-
+	/*
+	 * This method sets the mediaplayer with a specific html address in order to play a song
+	 * dowloaded from the server
+	 */
 	@Override
 	public void initializeMPStreaming(String url) throws IOException {
 
