@@ -24,6 +24,8 @@ import com.progettofondamenti.audioplayer.listeners.PlayListener;
 import com.progettofondamenti.audioplayer.listeners.PreviousListener;
 import com.progettofondamenti.audioplayer.listeners.RewindListener;
 
+import java.io.IOException;
+
 /**
  * The main activity of the program.
  *
@@ -47,13 +49,28 @@ public class MainActivity extends ActionBarActivity {
 
     private PlayerView playerView;
 
+    private String uri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /* Default setup and initialization of activity_main.xml */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		player = new PlayerModel(this.getApplicationContext());
+        // costruttore per uso con file presente nella app
+//		player = new PlayerModel(this.getApplicationContext());
+
+        uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
+
+        // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROM
+
+        player = new PlayerModel();
+
+        try {
+            player.initializeMPStreaming(uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
         initializeXmlComponents();
@@ -108,13 +125,13 @@ public class MainActivity extends ActionBarActivity {
             fragmentTransaction.commit();
         }
     }
+
     /**
      * sets the color of the LinearLayout given a color string
      * @param color stringa che descrive il colore
      */
     public static void setBackgroundColor(String color){
         layout.setBackgroundColor(Color.parseColor(color));
-
     }
 
     @Override
@@ -126,20 +143,15 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /* Handle action bar item clicks here. The action bar will
-         * automatically handle clicks on the Home/Up button, so long
-         * as you specify a parent activity in AndroidManifest.xml. */
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
             // creates and Intent in order to call the SettingActivity
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

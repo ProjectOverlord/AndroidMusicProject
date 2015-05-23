@@ -8,11 +8,11 @@ import android.preference.PreferenceManager;
 
 /**
  * Created by francesco on 16/05/15.
+ * @author Francesco
  */
 public class MyPreferences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         Activity activity;
-        //RelativeLayout layout;
 
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

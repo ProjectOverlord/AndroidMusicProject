@@ -55,7 +55,6 @@ public class PlayerView implements Runnable{
 		seekBar.setProgress(player.getPlayerPosition());
 		seekBar.setMax(player.getTotalDuration());
 
-
 		updateTime(elapsedTime, player.getPlayerPosition());
 
 		updateTime(remainingTime, (player.getTotalDuration() - player.getPlayerPosition()));

@@ -1,6 +1,7 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 
 import java.io.File;
@@ -32,15 +33,21 @@ public class PlayerModel implements IPlayer {
 
 	/* Declaring objects */
     private MediaPlayer mediaPlayer;
+	private String uri;
 
 	public PlayerModel() {
-
+		mediaPlayer = new MediaPlayer();
 	}
 
     public PlayerModel(Context context) {
         mediaPlayer = new MediaPlayer();
 		initializeMediaPlayerProvvisorio(context);
     }
+
+	public PlayerModel(Context context, String uri) throws IOException {
+		this.uri = uri;
+		initializeMPStreaming(uri);
+	}
 
     @Override
 	public void play() {
@@ -191,6 +198,15 @@ public class PlayerModel implements IPlayer {
 	@Override
 	public void initializeMediaPlayerProvvisorio(Context context) {
 		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
+	}
+
+
+	@Override
+	public void initializeMPStreaming(String url) throws IOException {
+
+		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		mediaPlayer.setDataSource(url);
+		mediaPlayer.prepare(); // might take long! (for buffering, etc)
 	}
 
 	@Override

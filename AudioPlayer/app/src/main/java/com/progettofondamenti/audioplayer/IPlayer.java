@@ -37,6 +37,8 @@ public interface IPlayer {
 
 	public abstract void initializeMediaPlayerProvvisorio(Context context);
 
+	public void initializeMPStreaming(String url) throws IOException;
+
 	public abstract void die();
 
 }
