@@ -164,6 +164,11 @@ public class PlayerModel implements IPlayer {
 	}
 
 	@Override
+	public void reset() {
+		mediaPlayer.reset();
+	}
+
+	@Override
 	public void die(){
 		mediaPlayer.release();
 	}
