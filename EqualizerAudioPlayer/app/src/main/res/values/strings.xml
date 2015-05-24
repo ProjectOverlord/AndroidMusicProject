@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">EqualizerAudioPlayer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string-array name="colors">
+        <item>Default</item>
+        <item>White</item>
+        <item>Black</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <string-array name="colors_values">
+        <item>#FF3FB9E6</item>
+        <item>#FFFFFF</item>
+        <item>#000000</item>
+        <item>#00FF00</item>
+        <item>#FF0000FF</item>
+        <item>#FF0000</item>
+        <item>#FFFF00</item>
+    </string-array>
+    <string name="title_activity_equalizer">EqualizerActivity</string>
+
+</resources>
