@@ -212,7 +212,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onRestart() {
         super.onRestart();
 
-        player.pause();
+//        player.pause();
+
     }
 
     @Override
