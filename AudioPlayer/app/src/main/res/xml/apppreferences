@@ -16,10 +16,11 @@
         android:title="Notification"
         android:summary="Tick or untick to turn on or off notification"
         android:defaultValue="false" />
+
     <EditTextPreference
         android:key="pref_savepath"
         android:title="Server location"
         android:summary="Set default server path"
-        android:defaultValue="uri" />
+        android:defaultValue="http://192.168.1.5:8080/mp3.mp3" />
 
 </PreferenceScreen>

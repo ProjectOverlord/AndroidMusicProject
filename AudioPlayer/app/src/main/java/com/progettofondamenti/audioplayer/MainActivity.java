@@ -3,8 +3,10 @@ package com.progettofondamenti.audioplayer;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +35,9 @@ import java.io.IOException;
  */
 public class MainActivity extends ActionBarActivity {
 
+    /* Specific code for activity results */
+    private static final int RESULT_SETTINGS = 1;
+
     /* Declarations */
 	/* Initializes the player given the context of this activity */
     private IPlayer player;
@@ -51,6 +56,14 @@ public class MainActivity extends ActionBarActivity {
 
     private String uri;
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /* Default setup and initialization of activity_main.xml */
@@ -60,8 +73,9 @@ public class MainActivity extends ActionBarActivity {
         // costruttore per uso con file presente nella app
 //		player = new PlayerModel(this.getApplicationContext());
 
-        uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
+        showUserSettings();
 
+        // uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
         // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROM
 
         player = new PlayerModel();
@@ -83,6 +97,9 @@ public class MainActivity extends ActionBarActivity {
         setListenersToButtons();
     }
 
+    /*
+     * Sets the specific listeners
+     */
     private void setListenersToButtons() {
         playButton.setOnClickListener(new PlayListener(player));
         pauseButton.setOnClickListener(new PauseListener(player));
@@ -149,10 +166,31 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             // creates and Intent in order to call the SettingActivity
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, RESULT_SETTINGS);
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /*
+     * Sets the informations provided by the settings
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_SETTINGS){
+            showUserSettings();
+        }
+    }
+
+    /*
+     * this method retrives information from the settings activity
+     */
+    private void showUserSettings(){
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String tmp = sharedPrefs.getString("pref_savepath", "NULL");
+        setUri(tmp);
     }
 
     @Override
@@ -167,6 +205,7 @@ public class MainActivity extends ActionBarActivity {
         super.onDestroy();
 
         player.die();
+
     }
 
     @Override

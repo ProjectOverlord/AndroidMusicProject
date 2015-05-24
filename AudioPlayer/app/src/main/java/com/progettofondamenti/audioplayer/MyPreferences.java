@@ -1,8 +1,10 @@
 package com.progettofondamenti.audioplayer;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
@@ -12,8 +14,9 @@ import android.preference.PreferenceManager;
  */
 public class MyPreferences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        Activity activity;
+        private Activity activity;
 
+        @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             activity=getActivity();
@@ -27,9 +30,9 @@ public class MyPreferences extends PreferenceFragment implements SharedPreferenc
             // Set background color of the activity
             ((MainActivity)getActivity()).setBackgroundColor(sp.getString(key, ""));
             }
-
-
         }
+
+        @Override
         public void onResume(){
             super.onResume();
             // Set background color of the activity
@@ -38,14 +41,13 @@ public class MyPreferences extends PreferenceFragment implements SharedPreferenc
 
             // Register OnSharedPreferenceChangeListener
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-
         }
 
+        @Override
         public void onPause(){
             super.onPause();
             // Unregister OnSharedPreferenceChangeListener
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-
         }
 }
 

@@ -3,6 +3,7 @@ package com.progettofondamenti.audioplayer;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.PowerManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +36,7 @@ public class PlayerModel implements IPlayer {
     private MediaPlayer mediaPlayer;
 	private String uri;
 
-	/* Empty constructor used to */
+	/* Empty constructor used to play in streaming */
 	public PlayerModel() {
 		mediaPlayer = new MediaPlayer();
 	}
