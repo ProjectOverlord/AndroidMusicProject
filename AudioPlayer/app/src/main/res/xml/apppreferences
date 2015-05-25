@@ -12,14 +12,15 @@
         android:title="Background" />
 
     <CheckBoxPreference
-        android:key="pref_notification"
-        android:title="Notification"
+        android:key="pref_background"
+        android:title="Play background"
         android:summary="Tick or untick to turn on or off notification"
         android:defaultValue="false" />
 
     <EditTextPreference
         android:key="pref_savepath"
         android:title="Server location"
-        android:summary="Set default server path" />
+        android:summary="Set default server path"
+        />
 
 </PreferenceScreen>

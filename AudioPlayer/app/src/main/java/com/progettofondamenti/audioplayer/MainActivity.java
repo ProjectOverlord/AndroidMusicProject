@@ -50,6 +50,12 @@ public class MainActivity extends ActionBarActivity {
     private static NextButton nextButton;
     private static TextView songTitle;
 
+    private boolean backgroundPlaying;
+
+    public void setBackgroundPlaying(boolean backgroundPlaying) {
+        this.backgroundPlaying = backgroundPlaying;
+    }
+
     private static LinearLayout layout;
 
     private PlayerView playerView;
@@ -200,6 +206,8 @@ public class MainActivity extends ActionBarActivity {
         String tmp = sharedPrefs.getString("pref_savepath", "NULL");
         setUri(tmp);
 
+        setBackgroundPlaying(sharedPrefs.getBoolean("pref_background", false));
+
         try {
             player.initializeMPStreaming(tmp);
         } catch (IOException e) {
@@ -212,7 +220,8 @@ public class MainActivity extends ActionBarActivity {
     public void onPause() {
         super.onPause();
 
-        player.pause();
+        if (!backgroundPlaying)
+            player.pause();
     }
 
     @Override

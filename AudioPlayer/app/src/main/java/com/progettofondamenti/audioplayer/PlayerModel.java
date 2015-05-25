@@ -160,7 +160,7 @@ public class PlayerModel implements IPlayer {
 
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setDataSource(url);
-		mediaPlayer.prepareAsync(); // might take long! (for buffering, etc)
+		mediaPlayer.prepare(); // might take long! (for buffering, etc)
 	}
 
 	@Override

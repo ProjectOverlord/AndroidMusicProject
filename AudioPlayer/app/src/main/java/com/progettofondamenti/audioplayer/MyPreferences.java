@@ -14,40 +14,39 @@ import android.preference.PreferenceManager;
  */
 public class MyPreferences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-        private Activity activity;
+    private Activity activity;
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            activity=getActivity();
-            addPreferencesFromResource(R.xml.apppreferences);
-            setRetainInstance(true);
-        }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        activity=getActivity();
+        addPreferencesFromResource(R.xml.apppreferences);
+        setRetainInstance(true);
+    }
 
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sp, String key){
-            if(key.equals("pref_color")){
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sp, String key){
+        if(key.equals("pref_color")){
             // Set background color of the activity
             ((MainActivity)getActivity()).setBackgroundColor(sp.getString(key, ""));
-            }
         }
+    }
 
-        @Override
-        public void onResume(){
-            super.onResume();
-            // Set background color of the activity
-            SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(activity);
-            ((MainActivity)getActivity()).setBackgroundColor(sp.getString("pref_color", ""));
+    @Override
+    public void onResume(){
+        super.onResume();
+        // Set background color of the activity
+        SharedPreferences sp= PreferenceManager.getDefaultSharedPreferences(activity);
+        ((MainActivity)getActivity()).setBackgroundColor(sp.getString("pref_color", ""));
 
-            // Register OnSharedPreferenceChangeListener
-            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-        }
+        // Register OnSharedPreferenceChangeListener
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    }
 
-        @Override
-        public void onPause(){
-            super.onPause();
-            // Unregister OnSharedPreferenceChangeListener
-            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-        }
+    @Override
+    public void onPause(){
+        super.onPause();
+        // Unregister OnSharedPreferenceChangeListener
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
-

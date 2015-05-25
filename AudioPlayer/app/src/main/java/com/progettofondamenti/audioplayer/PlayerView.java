@@ -22,26 +22,26 @@ import java.util.concurrent.TimeUnit;
  */
 public class PlayerView implements Runnable{
 
-    private IPlayer player;
+	private IPlayer player;
 
-    private SeekBar seekBar;
-    private TextView elapsedTime;
-    private TextView remainingTime;
+	private SeekBar seekBar;
+	private TextView elapsedTime;
+	private TextView remainingTime;
 
 	private Handler handler = new Handler();
 
-    public PlayerView(IPlayer player, ActionBarActivity activity) {
-        this.player = player;
+	public PlayerView(IPlayer player, ActionBarActivity activity) {
+		this.player = player;
 
-        seekBar = (SeekBar) activity.findViewById(R.id.bar);
+		seekBar = (SeekBar) activity.findViewById(R.id.bar);
 		seekBar.setClickable(true);
 		seekBar.setOnSeekBarChangeListener(new SeekBarListener(player));
 
-        elapsedTime = (TextView) activity.findViewById(R.id.elapsedTime);
+		elapsedTime = (TextView) activity.findViewById(R.id.elapsedTime);
 		updateTime(elapsedTime, 0);
 		remainingTime = (TextView) activity.findViewById(R.id.remainingTime);
 		updateTime(remainingTime, player.getTotalDuration());
-    }
+	}
 
 	/*
      * Meccanismo di aggiornamento delle componenti grafiche associate al player, quali barra
