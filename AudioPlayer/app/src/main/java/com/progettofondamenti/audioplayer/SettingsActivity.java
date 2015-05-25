@@ -31,8 +31,9 @@ public class SettingsActivity extends PreferenceActivity  {
 
         path = (EditTextPreference) findPreference("pref_savepath");
 
-        SharedPreferences getPrefSavepath = getSharedPreferences("pref_savepath", Context.MODE_PRIVATE);
-        path.setText("http://192.168.1.5:8080/mp3.mp3");
+        SharedPreferences getPrefSavepath = getSharedPreferences("pref_savepath", Context.MODE_MULTI_PROCESS);
+        path.setText("http://10.87.136.158:8080/mp3.mp3");
+
     }
 
     @Override

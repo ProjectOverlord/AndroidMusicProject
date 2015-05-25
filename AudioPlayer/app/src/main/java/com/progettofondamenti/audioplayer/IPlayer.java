@@ -35,10 +35,12 @@ public interface IPlayer {
 
 	public abstract void initializeMediaPlayerWithLocalFile(Context context);
 
-	public void initializeMPStreaming(String url) throws IOException;
+	public abstract void initializeMPStreaming(String url) throws IOException;
 
-	public void reset();
+	public abstract void reset();
 
 	public abstract void die();
+
+	public abstract boolean isPlaying();
 
 }

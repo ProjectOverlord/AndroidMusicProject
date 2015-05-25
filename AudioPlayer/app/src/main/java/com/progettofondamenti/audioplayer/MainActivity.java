@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
 	/* Initializes the player given the context of this activity */
     private IPlayer player;
 
-	private static PlayButton playButton;
+    private static PlayButton playButton;
     private static PauseButton pauseButton;
     private static RewindButton rewButton;
     private static ForwardButton ffButton;
@@ -73,24 +73,18 @@ public class MainActivity extends ActionBarActivity {
         // costruttore per uso con file presente nella app
 //		player = new PlayerModel(this.getApplicationContext());
 
+        player = new PlayerModel();
+
         showUserSettings();
 
         // uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
         // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROM
 
-        player = new PlayerModel();
-
-        try {
-            player.initializeMPStreaming(uri);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
 		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
         initializeXmlComponents();
 
-		playerView = new PlayerView(player, this);
-		playerView.run();
+        playerView = new PlayerView(player, this);
+        playerView.run();
 
         setFragmentSettings();
 
@@ -117,9 +111,15 @@ public class MainActivity extends ActionBarActivity {
         layout = (LinearLayout) findViewById(R.id.container);
 
         songTitle = (TextView) findViewById(R.id.songTitle);
-        songTitle.setText("W.A.Mozart - Concerto No.21 - Andante");
 
-		playButton = (PlayButton) findViewById(R.id.buttonPlay);
+		/* TODO: Invertire la stringa e farlo partire dall'inizio.
+		 * Farlo nella view. E' anche da tenere aggiornato cambiando l'uri */
+
+        String tmp = uri.split("//")[1];
+        tmp = tmp.split("/")[1];
+        songTitle.setText(tmp);
+
+        playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
         rewButton = (RewindButton) findViewById(R.id.buttonRew);
         ffButton = (ForwardButton) findViewById(R.id.buttonFf);
@@ -186,11 +186,26 @@ public class MainActivity extends ActionBarActivity {
 
     /*
      * this method retrives information from the settings activity
+     * TODO: Metodo che viene chiamato OGNI VOLTA CHE:
+     * 		- Viene creata l'Activity
+     * 		- Si torna a questa Activity da un'altra.
      */
     private void showUserSettings(){
+        if (player.isPlaying()){
+            player.stop();
+        }
+        player.reset();
+
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String tmp = sharedPrefs.getString("pref_savepath", "NULL");
         setUri(tmp);
+
+        try {
+            player.initializeMPStreaming(tmp);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Sticazzi");
+        }
     }
 
     @Override

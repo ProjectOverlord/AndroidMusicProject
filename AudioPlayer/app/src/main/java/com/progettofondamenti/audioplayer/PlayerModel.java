@@ -33,7 +33,7 @@ public class PlayerModel implements IPlayer {
 	private int backwardTime = 2000;
 
 	/* Declaring objects */
-    private MediaPlayer mediaPlayer;
+	private MediaPlayer mediaPlayer;
 	private String uri;
 
 	/* Empty constructor used to play in streaming */
@@ -42,15 +42,15 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/* Constructor used to play a specific file inside the app*/
-    public PlayerModel(Context context) {
-        mediaPlayer = new MediaPlayer();
+	public PlayerModel(Context context) {
+		mediaPlayer = new MediaPlayer();
 		initializeMediaPlayerWithLocalFile(context);
-    }
+	}
 
-    @Override
+	@Override
 	public void play() {
 		mediaPlayer.start();
-    }
+	}
 
 	@Override
 	public void pause() {
@@ -160,7 +160,7 @@ public class PlayerModel implements IPlayer {
 
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setDataSource(url);
-		mediaPlayer.prepare(); // might take long! (for buffering, etc)
+		mediaPlayer.prepareAsync(); // might take long! (for buffering, etc)
 	}
 
 	@Override
@@ -189,5 +189,9 @@ public class PlayerModel implements IPlayer {
 		} else {
 			this.forwardTime = MAX_FORWARD_TIME;
 		}
+	}
+
+	public boolean isPlaying(){
+		return mediaPlayer.isPlaying();
 	}
 }
