@@ -121,9 +121,10 @@ public class MainActivity extends ActionBarActivity {
 		/* TODO: Invertire la stringa e farlo partire dall'inizio.
 		 * Farlo nella view. E' anche da tenere aggiornato cambiando l'uri */
 
-        String tmp = uri.split("//")[1];
+        /*String tmp = uri.split("//")[1];
         tmp = tmp.split("/")[1];
-        songTitle.setText(tmp);
+        songTitle.setText(tmp);*/
+        songTitle.setText("Windows puppa");
 
         playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
