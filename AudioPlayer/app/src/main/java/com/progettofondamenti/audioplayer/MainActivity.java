@@ -204,8 +204,10 @@ public class MainActivity extends ActionBarActivity {
         player.reset();
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String tmp = sharedPrefs.getString("pref_savepath", "NULL");
+        // String tmp = sharedPrefs.getString("pref_savepath", "NULL");
+        String tmp = "http://192.168.1.169:8080/mp3.mp3";
         setUri(tmp);
+
 
         setBackgroundPlaying(sharedPrefs.getBoolean("pref_background", false));
 
