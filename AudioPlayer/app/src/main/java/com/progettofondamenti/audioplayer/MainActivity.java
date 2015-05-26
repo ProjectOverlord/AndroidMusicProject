@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -60,15 +61,7 @@ public class MainActivity extends ActionBarActivity {
 
     private PlayerView playerView;
 
-    private String uri;
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
+    private String serverSuffix = "http://192.168.1.169:8080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +74,14 @@ public class MainActivity extends ActionBarActivity {
 
         player = new PlayerModel();
 
-        showUserSettings();
+		TitlesList titlesList = new TitlesList(serverSuffix);
+
+		PlayerObserverTitles playerObserver = new PlayerObserverTitles(player, titlesList);
+
+		applySettings();
 
         // uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
-        // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROM
+        // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROAM
 
 		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
         initializeXmlComponents();
@@ -187,7 +184,7 @@ public class MainActivity extends ActionBarActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_SETTINGS){
-            showUserSettings();
+            applySettings();
         }
     }
 
@@ -197,7 +194,7 @@ public class MainActivity extends ActionBarActivity {
      * 		- Viene creata l'Activity
      * 		- Si torna a questa Activity da un'altra.
      */
-    private void showUserSettings(){
+    private void applySettings(){
         if (player.isPlaying()){
             player.stop();
         }
@@ -205,18 +202,8 @@ public class MainActivity extends ActionBarActivity {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         // String tmp = sharedPrefs.getString("pref_savepath", "NULL");
-        String tmp = "http://192.168.1.169:8080/mp3.mp3";
-        setUri(tmp);
-
 
         setBackgroundPlaying(sharedPrefs.getBoolean("pref_background", false));
-
-        try {
-            player.initializeMPStreaming(tmp);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Sticazzi");
-        }
     }
 
     @Override

@@ -36,11 +36,20 @@ public class FileService implements IService {
 		// formats. Must generalize for many (interface..?)
 		if (filename.endsWith("mp3")) {
 			message.setContentType(ContentType.MP3);
-		}
+		} else
+			if (filename.endsWith("txt"))
+				message.setContentType(ContentType.TXT);
+		
 
 		// Answers the HTTP request sending the requested file
 		message.openHttpAnswer(clientSocket);
-		copyBinaryFile(filename, clientSocket.getOutputStream());
+		
+		// TODO: 
+		if (filename.endsWith("txt")) {
+			copyTextFile(filename, message.getOutputStreamWriter());
+		}
+		else
+			copyBinaryFile(filename, clientSocket.getOutputStream());
 		message.closeHttpAnswer();
 	}
 
@@ -66,8 +75,12 @@ public class FileService implements IService {
 	private void copyTextFile(String filename, OutputStreamWriter out)
 			throws FileNotFoundException, IOException {
 
+		System.err.println("FILENAME: "+filename);
+
 		BufferedReader fileReader = new BufferedReader(new FileReader(filename));
 		String fileLine = fileReader.readLine();
+		System.err.println("FILELINE: "+fileLine);
+
 		while (fileLine != null) {
 			out.write(fileLine + "\n");
 			fileLine = fileReader.readLine();

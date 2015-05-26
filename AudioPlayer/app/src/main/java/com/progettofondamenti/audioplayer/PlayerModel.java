@@ -1,13 +1,17 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.PowerManager;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * This class aims to be the model for the audio player.
@@ -161,6 +165,7 @@ public class PlayerModel implements IPlayer {
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setDataSource(url);
 		mediaPlayer.prepare(); // might take long! (for buffering, etc)
+
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package com.progettofondamenti.audioplayer.listeners;
 
+import android.util.Log;
 import android.view.View;
 
 import com.progettofondamenti.audioplayer.IPlayer;
+
+import java.io.IOException;
 
 /**
  * Listener for the NextButton.
@@ -20,6 +23,18 @@ public class NextListener implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        player.next();
+
+        // player.next();
+        if (player.isPlaying()){
+            player.stop();
+        }
+        player.reset();
+
+        try {
+            player.initializeMPStreaming("http://192.168.1.169:8080/aac.m4a");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("---------", "Sticazzi");
+        }
     }
 }

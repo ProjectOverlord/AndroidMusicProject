@@ -7,6 +7,7 @@ package server;
  *
  */
 public enum ContentType {
+	TXT("text/plain"),
 	HTML("text/html"),
 	XML("text/xml"),
 	FLAC("audio/flac"),
