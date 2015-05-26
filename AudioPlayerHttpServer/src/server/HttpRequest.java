@@ -56,7 +56,9 @@ public class HttpRequest {
 	 */
 	private void findUri() {
 		String firstLine = requestLines.getFirst();
-		String[] lineElements = firstLine.split(" ");
+		// The limit (3) supports a request like: "GET /Deai.wav HTTP/1.1"
+		String[] lineElements = firstLine.split(" ", 3);
+		System.err.println(firstLine);
 		String uri = lineElements[1];
 
 		this.uri = uri;
