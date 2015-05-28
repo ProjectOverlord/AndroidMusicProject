@@ -9,15 +9,24 @@ import com.progettofondamenti.audioplayer.R;
 /**
  * This class should be the one representing the button that calls the next()
  * method of the player.
- * Created by Filippo on 16/05/15.
+ * @author team
+ * @see android.widget.ImageButton
  */
 public class NextButton extends ImageButton{
 
+    /**
+     * NextButton()
+     * @param context,attrs
+     */
     public NextButton(Context context, AttributeSet attrs){
         super(context, attrs);
         findViewById(R.id.buttonNext);
     }
 
+    /**
+     * NextButton()
+     * @param context,attrs,defStyleAttr
+     */
     public NextButton(Context context, AttributeSet attrs, int defStyleAttr){
         super(context, attrs, defStyleAttr);
         findViewById(R.id.buttonNext);

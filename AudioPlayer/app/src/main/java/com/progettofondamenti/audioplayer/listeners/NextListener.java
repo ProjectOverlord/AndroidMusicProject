@@ -10,17 +10,27 @@ import java.io.IOException;
 /**
  * Listener for the NextButton.
  *
- * Created by Filippo on 16/05/15.
+ * @author team
+ * @see android.view.View.OnClickListener
  */
 public class NextListener implements View.OnClickListener{
 
     private IPlayer player;
 
+    /**
+     * NextListener()
+     * @param player
+     */
     public NextListener(IPlayer player){
         super();
         this.player=player;
     }
 
+    /**
+     * NextListener()
+     * @param v
+     * @exception IOException
+     */
     @Override
     public void onClick(View v) {
 

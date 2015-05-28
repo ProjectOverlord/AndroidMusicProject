@@ -9,15 +9,24 @@ import com.progettofondamenti.audioplayer.R;
 /**
  * This class should be the one representing the button that calls the pause()
  * method of the player.
- * Created by Saeval on 16/05/2015.
+ * @author team
+ * @see android.widget.ImageButton
  */
 public class PauseButton extends ImageButton{
 
+	/**
+	 * PauseButton()
+ 	 * @param context,attrs
+	 */
 	public PauseButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		findViewById(R.id.buttonPause);
 	}
 
+	/**
+	 * PauseButton()
+	 * @param context,attrs,defStyleAttr
+	 */
 	public PauseButton(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		findViewById(R.id.buttonPause);

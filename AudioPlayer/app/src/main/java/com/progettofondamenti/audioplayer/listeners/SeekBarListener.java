@@ -7,7 +7,8 @@ import com.progettofondamenti.audioplayer.IPlayer;
 /**
  * Simplified listener
  *
- * @author CL & MS
+ * @author team
+ * @see android.widget.SeekBar.OnSeekBarChangeListener
  */
 public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 

@@ -7,7 +7,8 @@ import com.progettofondamenti.audioplayer.IPlayer;
 /**
  * Now the player listener seems just fine
  *
- * @author claudio
+ * @author team
+ * @see android.view.View.OnClickListener
  */
 public class PlayListener implements View.OnClickListener {
 
