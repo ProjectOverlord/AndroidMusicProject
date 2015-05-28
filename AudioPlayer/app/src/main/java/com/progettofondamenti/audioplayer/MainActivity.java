@@ -31,8 +31,8 @@ import java.io.IOException;
 
 /**
  * The main activity of the program.
- *
- *1) Default setup and initialization of activity_main.xml
+ * @author team
+ * @see android.support.v7.app.ActionBarActivity
  */
 public class MainActivity extends ActionBarActivity {
 
@@ -149,7 +149,7 @@ public class MainActivity extends ActionBarActivity {
 
     /**
      * sets the color of the LinearLayout given a color string
-     * @param color stringa che descrive il colore
+     * @param color string that describes the color
      */
     public static void setBackgroundColor(String color){
         layout.setBackgroundColor(Color.parseColor(color));

@@ -8,6 +8,7 @@ import java.io.IOException;
  * This is the interface for all the possible Player implementations.
  * That way it is possible to offer different implementations, giving
  * the code more flexibility.
+ * @author team
  */
 public interface IPlayer {
 
@@ -31,10 +32,20 @@ public interface IPlayer {
 
 	public abstract int getTotalDuration();
 
+	/**
+	 * setLocalFileToPlay()
+	 * @param path (String)
+	 * @throws IOException
+	 */
 	public abstract void setLocalFileToPlay(String path) throws IOException;
 
 	public abstract void initializeMediaPlayerWithLocalFile(Context context);
 
+	/**
+	 * initializeMPStreaming()
+	 * @param url (String)
+	 * @throws IOException
+	 */
 	public abstract void initializeMPStreaming(String url) throws IOException;
 
 	public abstract void reset();

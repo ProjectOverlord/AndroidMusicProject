@@ -9,8 +9,12 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 /**
- * Created by francesco on 16/05/15.
- * @author Francesco
+ *this class allows you to interact with any activity
+ *using what it receives from the settings( object SharedPreferences ) to set something
+ * @author team
+ * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener
+ * @see PreferenceFragment
+ *
  */
 public class MyPreferences extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
