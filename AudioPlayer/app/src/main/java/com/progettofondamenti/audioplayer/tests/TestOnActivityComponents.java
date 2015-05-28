@@ -12,8 +12,9 @@ import com.progettofondamenti.audioplayer.R;
 
 /**
  * Junit Test Class
- * test che verifica la correttezza dei componenti
- * Created by Erica on 13/05/15.
+ * This class checks the correctness of components
+ * @author team
+ * @see android.test.ActivityInstrumentationTestCase2
  */
 public class TestOnActivityComponents
         extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -45,8 +46,8 @@ public class TestOnActivityComponents
     }
 
     /**
-     *
-     * metodo che controlla che la stringa del titolo sia corretta
+     *testMyFirstTestTextView_labelText()
+     * method that controls the title string is correct
      */
     public void testMyFirstTestTextView_labelText() {
         final String expected = "W.A.Mozart - Concerto No.21 - Andante";
@@ -57,7 +58,8 @@ public class TestOnActivityComponents
 
 
     /**
-     * metodo che controlla che la stringa della durata sia corretta
+     *testTextViewElapsedTime()
+     *method that controls the length of the string is correct
      */
 
     public void testTextViewElapsedTime() {
@@ -70,7 +72,8 @@ public class TestOnActivityComponents
     }
 
     /**
-     * metodo che controlla che la stringa del tempo totale sia giusta
+     * testTextViewRemainingTime()
+     * Method that controls the string of the total time is correct
      */
     public void testTextViewRemainingTime() {
 
@@ -82,6 +85,7 @@ public class TestOnActivityComponents
     }
 
     /**
+     * testLaunchMusicPlayer()
      * Launch music player and sleep for 30 seconds to capture
      * the music player power usage base line
      *

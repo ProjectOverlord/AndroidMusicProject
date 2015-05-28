@@ -4,7 +4,8 @@ import android.test.InstrumentationTestCase;
 
 /**
  * Simple example class for JUnit test
- * Created by francesco on 13/05/15.
+ * @author team
+ * @see android.test.InstrumentationTestCase
  */
 public class ExampleTest extends InstrumentationTestCase {
 
