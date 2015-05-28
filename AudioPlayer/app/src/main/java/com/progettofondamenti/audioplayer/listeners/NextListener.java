@@ -17,20 +17,13 @@ public class NextListener implements View.OnClickListener{
 
     private IPlayer player;
 
-    /**
-     * NextListener()
-     * @param player
-     */
+
     public NextListener(IPlayer player){
         super();
         this.player=player;
     }
 
-    /**
-     * NextListener()
-     * @param v
-     * @exception IOException
-     */
+
     @Override
     public void onClick(View v) {
 

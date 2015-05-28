@@ -19,6 +19,7 @@ public class PlayListener implements View.OnClickListener {
 		this.player = player;
 	}
 
+
 	@Override
 	public void onClick(View v) {
 		player.play();

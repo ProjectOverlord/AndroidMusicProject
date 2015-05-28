@@ -14,20 +14,13 @@ public class ForwardListener implements View.OnClickListener{
 
     private IPlayer player;
 
-    /**
-     * ForwardListener()
-     * @param player
-     */
+
     public ForwardListener(IPlayer player){
         super();
         this.player=player;
     }
 
-    /**
-     * override
-     * ForwardListener()
-     * @param v
-     */
+
     @Override
     public void onClick(View v) {
         player.forward();

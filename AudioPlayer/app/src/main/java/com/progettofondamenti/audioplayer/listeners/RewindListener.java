@@ -23,11 +23,7 @@ public class RewindListener implements View.OnClickListener{
 		this.player = player;
 	}
 
-	/**
-	 * ovverride
-	 * onClick()
-	 * @param v
-	 */
+
 	@Override
 	public void onClick(View v) {
 		player.rewind();

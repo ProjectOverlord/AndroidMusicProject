@@ -14,20 +14,13 @@ public class PauseListener implements View.OnClickListener {
 
 	private IPlayer player;
 
-	/**
-	 * PauseListener()
-	 * @param player
-	 */
+
 	public PauseListener(IPlayer player){
 		super();
 		this.player = player;
 	}
 
-	/**
-	 * override
-	 * PauseListener()
-	 * @param v
-	 */
+
 	@Override
 	public void onClick(View v) {
 		player.pause();

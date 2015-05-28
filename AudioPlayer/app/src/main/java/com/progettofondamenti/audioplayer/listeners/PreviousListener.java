@@ -14,20 +14,13 @@ public class PreviousListener implements View.OnClickListener{
 
     private IPlayer player;
 
-    /**
-     * PreviousListener()
-     * @param player
-     */
+
     public PreviousListener(IPlayer player){
         super();
         this.player=player;
     }
 
-    /**
-     * override()
-     * PreviousListener()
-     * @param v
-     */
+
     @Override
     public void onClick(View v) {
         player.previous();
