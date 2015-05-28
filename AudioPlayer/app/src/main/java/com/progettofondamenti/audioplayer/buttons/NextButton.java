@@ -14,19 +14,13 @@ import com.progettofondamenti.audioplayer.R;
  */
 public class NextButton extends ImageButton{
 
-    /**
-     * NextButton()
-     * @param context,attrs
-     */
+
     public NextButton(Context context, AttributeSet attrs){
         super(context, attrs);
         findViewById(R.id.buttonNext);
     }
 
-    /**
-     * NextButton()
-     * @param context,attrs,defStyleAttr
-     */
+
     public NextButton(Context context, AttributeSet attrs, int defStyleAttr){
         super(context, attrs, defStyleAttr);
         findViewById(R.id.buttonNext);

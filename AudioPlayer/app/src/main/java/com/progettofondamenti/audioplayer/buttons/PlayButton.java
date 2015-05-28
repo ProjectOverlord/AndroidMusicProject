@@ -16,19 +16,13 @@ import com.progettofondamenti.audioplayer.R;
  */
 public class PlayButton extends ImageButton {
 
-	/**
-	 * PlayButton()
-	 * @param context,attrs
-	 */
+
 	public  PlayButton (Context context, AttributeSet attrs){
 		super(context, attrs);
 		findViewById(R.id.buttonPlay);
 	}
 
-	/**
-	 * PlayButton()
-	 * @param context,attrs,defStyleAttr
-	 */
+
 	public  PlayButton (Context context, AttributeSet attrs, int defStyleAttr){
 		super(context, attrs, defStyleAttr);
 		findViewById(R.id.buttonPlay);
