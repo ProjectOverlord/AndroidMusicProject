@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 /**
+ * Class used to access and manipulate the file with the song titles.
+ *
  * Created by claudio on 26/05/15.
  */
-public class TitlesList extends Observable implements Runnable{
+public class TitlesList extends Observable {
 
 	private String serverSuffix;
 	private static String titlesFileName = "song_titles.txt";
@@ -24,16 +26,10 @@ public class TitlesList extends Observable implements Runnable{
 	public TitlesList(String serverSuffix) {
 		super();
 		setServerSuffix(serverSuffix);
-		fillTitlesFromServer(serverSuffix);
 	}
 
 	public void setServerSuffix(String serverSuffix) {
 		this.serverSuffix = serverSuffix;
-	}
-
-	public void fillTitlesFromServer(String serverSuffix) {
-		Thread thread = new Thread(this);
-		thread.start();
 	}
 
 	public String getNextTitle() {
@@ -51,28 +47,11 @@ public class TitlesList extends Observable implements Runnable{
 			index = 0;
 	}
 
-	@Override
-	public void run() {
-		try {
-			// Create a URL for the desired page
-			URL url = new URL(serverSuffix+titlesFileName);
-			Log.e("-----URL-----", url.toString());
+	public ArrayList<String> getTitles(){
+		return titles;
+	}
 
-			// Read all the text returned by the server
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-			String str;
-			while ((str = in.readLine()) != null) {
-				titles.add(str);
-			}
-			in.close();
-
-			setChanged();
-			notifyObservers();
-
-		} catch (MalformedURLException e) {
-			Log.e("--------", e.getMessage());
-		} catch (IOException e) {
-			Log.e("--------", "fuffaboccia");
-		}
+	public String getServerSuffix(){
+		return serverSuffix;
 	}
 }

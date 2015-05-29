@@ -74,14 +74,29 @@ public class MainActivity extends ActionBarActivity {
 
         player = new PlayerModel();
 
-		TitlesList titlesList = new TitlesList(serverSuffix);
+//		TitlesList titlesList = new TitlesList(serverSuffix);
+//		PlayerObserverTitles playerObserver = new PlayerObserverTitles(player, titlesList);
 
-		PlayerObserverTitles playerObserver = new PlayerObserverTitles(player, titlesList);
+		// Create task and execute it.
+		TitlesListTask task = new TitlesListTask(serverSuffix);
+		task.execute(null, null, null);
+
+		// This is here for debug purposes, I guess eventually it can be deleted.
+		String fileToPlay = "Non inizializzato";
+
+		// Wait for the task to be done. Lombardi sarebbe contento.
+		while(!task.getDone());
+
+		try {
+			fileToPlay = task.getTitlesList().getNextTitle();
+			player.initializeMPStreaming(fileToPlay);
+		} catch (IOException e) {
+			e.printStackTrace();
+			Log.e("-------", e.getMessage());
+			Log.e("-------", fileToPlay);
+		}
 
 		applySettings();
-
-        // uri = "http://192.168.1.5:8080/mp3.mp3"; // wifi casa Francesco
-        // uri = "http://10.87.136.158:8080/mp3.mp3"; // EDUROAM
 
 		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
         initializeXmlComponents();

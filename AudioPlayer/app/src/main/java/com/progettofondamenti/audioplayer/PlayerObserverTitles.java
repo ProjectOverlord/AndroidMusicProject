@@ -7,6 +7,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * With TitlesListTask implemented, this class is now useless.
+ * Keeping it anyway because you never know - Saev.
+ *
  * Created by claudio on 26/05/15.
  */
 public class PlayerObserverTitles implements Observer {
