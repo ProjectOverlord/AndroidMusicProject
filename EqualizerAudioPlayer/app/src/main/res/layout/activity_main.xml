@@ -74,7 +74,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <com.progettofondamenti.audioplayer.buttons.PreviousButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.PreviousButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Previous"
@@ -82,7 +82,7 @@
             android:src="@android:drawable/ic_media_previous"
             android:backgroundTint="#ff35b6e5"/>
 
-        <com.progettofondamenti.audioplayer.buttons.RewindButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.RewindButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Rewind"
@@ -90,7 +90,7 @@
             android:src="@android:drawable/ic_media_rew"
             android:backgroundTint="#ff35b6e5"/>
 
-        <com.progettofondamenti.audioplayer.buttons.PlayButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.PlayButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Play"
@@ -98,7 +98,7 @@
             android:src="@android:drawable/ic_media_play"
             android:backgroundTint="#ff35b6e5"/>
 
-        <com.progettofondamenti.audioplayer.buttons.PauseButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.PauseButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Pause"
@@ -106,7 +106,7 @@
             android:src="@android:drawable/ic_media_pause"
             android:backgroundTint="#ff35b6e5"/>
 
-        <com.progettofondamenti.audioplayer.buttons.ForwardButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.ForwardButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Forward"
@@ -114,7 +114,7 @@
             android:src="@android:drawable/ic_media_ff"
             android:backgroundTint="#ff35b6e5"/>
 
-        <com.progettofondamenti.audioplayer.buttons.NextButton
+        <com.progettofondamenti.equalizeraudioplayer.buttons.NextButton
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:text="Next"

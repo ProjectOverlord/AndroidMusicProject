@@ -17,7 +17,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
+/**
+ * This is the activity that provides the user the possibility to set up
+ * the equalizer
+ * @author francesco
+ */
 public class EqualizerActivity extends ActionBarActivity {
 
     private Equalizer mEqualizer;
