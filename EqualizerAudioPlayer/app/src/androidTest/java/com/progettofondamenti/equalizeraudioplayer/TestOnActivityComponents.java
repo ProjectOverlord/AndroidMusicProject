@@ -17,8 +17,6 @@ public class TestOnActivityComponents
     private TextView remainingTime;
     private static int PLAY_TIME = 30000;
 
-
-
     public TestOnActivityComponents() {
         super(MainActivity.class);
     }
@@ -34,7 +32,6 @@ public class TestOnActivityComponents
         elapsedTime= (TextView)mainActivity.findViewById(R.id.elapsedTime);
         remainingTime = (TextView)mainActivity.findViewById(R.id.remainingTime);
         getActivity();
-
     }
 
     /**
@@ -89,6 +86,5 @@ public class TestOnActivityComponents
         }
         assertTrue("MusicPlayer Do Nothing", true);
     }
-
 
 }
