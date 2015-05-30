@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
 		/* Inizializza le componenti rimanenti rispetto hha quelle già dichiarate in PlayerView */
         initializeXmlComponents();
 
-		/* Creiamo la view con kdvhijds */
+        /* creazione della view */
 		playerView = new PlayerView(player, this);
 		playerView.run();
 
@@ -110,36 +110,30 @@ public class MainActivity extends ActionBarActivity {
         if(myFragment==null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            //add a fragment
             myFragment = new MyPreferences();
             fragmentTransaction.add(R.id.container, myFragment, "MyPreferences");
             fragmentTransaction.commit();
         }
     }
+
     /**
      * sets the color of the LinearLayout given a color string
      * @param color stringa che descrive il colore
      */
     public static void setBackgroundColor(String color){
         layout.setBackgroundColor(Color.parseColor(color));
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+       int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
             // creates and Intent in order to call the SettingActivity
@@ -157,10 +151,11 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         if (id == R.id.equalizer_item2){
+
             // EQUALIZZATORE PERSONALIZZATO
             Intent intentEq = new Intent(MainActivity.this, EqualizerActivity.class);
             intentEq.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, player.getIdAudioSession());
-            startActivity(intentEq);
+            startActivityForResult(intentEq,1);
             return true;
         }
 
@@ -174,6 +169,9 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
 
+        if (resultCode == 1){
+            return;
+        }
 
     }
 
