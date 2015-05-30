@@ -38,10 +38,6 @@ public class PlayerModel implements IPlayer {
 		return mediaPlayer;
 	}
 
-	public void setMediaPlayer(MediaPlayer mediaPlayer) {
-		this.mediaPlayer = mediaPlayer;
-	}
-
 	public PlayerModel() {
 
 	}
@@ -94,10 +90,8 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/*
-	 * This method should reset the actual song or go to the previous one
-	 * if called when the song is in his first couple of seconds.
+	 * This methods makes the song start from the beginning
 	 *
-	 * TODO: As of now, this method just restart the song.
 	 */
 	@Override
 	public void previous() {
@@ -105,9 +99,7 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/*
-	 * This method should go to the next song.
-	 *
-	 * TODO: As of now, this method just skips to the end of the song.
+	 * This method seeks the player to the end of the song
 	 */
 	@Override
 	public void next() {
@@ -124,79 +116,6 @@ public class PlayerModel implements IPlayer {
 		return mediaPlayer.getDuration();
 	}
 
-	/*
-	 * This method specifies the path to the file (or the URL to the stream!)
-	 *
-	 * TODO: Do not understand why the initialization doesn't work
-	 *
-	 * @param path
-	 * @throws IOException
-	 */
-	@Override
-	public void setContentToStream(String path) throws IOException {
-		mediaPlayer.reset();
-		mediaPlayer.setDataSource(path);
-	}
-
-
-	/*
-	 * This method is specific for a local file and ensures the file exists
-	 * before proceeding.
-	 *
-	 * TODO: Do not understand why the initialization doesn't work
-	 *
-	 * @param path
-	 * @throws IOException
-	 */
-	@Override
-	public void setLocalFileToPlay(String path) throws IOException {
-		// mediaPlayer.reset();
-
-		/* aggiunta di prova: ricompongo il file dal path e lo passo allo stream */
-		File file = new File(path);
-		FileInputStream fileInputStream = new FileInputStream(file);
-
-		mediaPlayer.setDataSource(fileInputStream.getFD());
-
-		/* NOTA IMPORTANTE per chiunque voglia provare a sistemare il codice
-		 *
-		 * premetto che non posso testare nulla in assenza del codice del server..
-		 * se vogliamo poter scaricare il file audio ed eseguirlo dovrebbe essere sufficiente chiamare prepare(),
-		 * dopo aver settato il dataSource, mentre se vogliamo fare una sorta di streaming,
-		 * è necessario impostare il tipo con il metodo setAudioStreamType commentato sotto e
-		 * scegliere prepareAsync(). Quanto detto è dovuto al fatto che prepare() non può andar bene per lo streaming,
-		 * dato che bisogna attendere lo scaricamento perché esegua correttamente.
-		 * Inoltre bisognerebbe anche utilizzare
-		 * mPlayer.setOnPreparedListener(new OnPreparedListener() {
-		 *
-		 * @Override
-		 * public void onPrepared(MediaPlayer mp) {
-		 * mPlayer.start();
-		 * }
-		 * });
-		 *
-		 * Nel caso di non streaming non riesco a capire se basta passare l'uri a setDataSource senza
-		 * il FileInputStream o meno, visto che trovo molti esempi che fanno ricorso a soluzioni contrastanti...
-		 * (anche perché è impossibile fare prove)
-		 *
-		 * spero di essere stato d'aiuto a qualcuno,
-		 * ho scritto qui per evidenziare nel codice la questione...
-		 * by Fra
-		 *
-		 * */
-
-
-		// dovrebbe essere meglio per  lo streaming
-		//mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-		mediaPlayer.prepare();
-
-		// serve per lo streaming
-		//mediaPlayer.prepareAsync();
-
-		fileInputStream.close();
-	}
-
 	@Override
 	public void initializeMediaPlayerProvvisorio(Context context) {
 		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
@@ -209,16 +128,13 @@ public class PlayerModel implements IPlayer {
 
 	@Override
 	public int getIdAudioSession() {
-		int id = mediaPlayer.getAudioSessionId();
-		return id;
+		return mediaPlayer.getAudioSessionId();
 	}
 
 	@Override
 	public void reset() {
 		mediaPlayer.reset();
 	}
-
-	// TODO: Remember to put options for these in the settings activity.
 
 	public void setBackwardTime(int backwardTime) {
 		if (backwardTime < MAX_BACKWORD_TIME) {

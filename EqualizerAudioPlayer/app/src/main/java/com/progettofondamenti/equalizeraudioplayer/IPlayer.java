@@ -31,10 +31,6 @@ public interface IPlayer {
 
 	public abstract int getTotalDuration();
 
-	public abstract void setContentToStream(String path) throws IOException;
-
-	public abstract void setLocalFileToPlay(String path) throws IOException;
-
 	public abstract void initializeMediaPlayerProvvisorio(Context context);
 
 	public abstract void die();
