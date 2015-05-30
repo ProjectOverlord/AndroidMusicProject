@@ -213,6 +213,11 @@ public class PlayerModel implements IPlayer {
 		return id;
 	}
 
+	@Override
+	public void reset() {
+		mediaPlayer.reset();
+	}
+
 	// TODO: Remember to put options for these in the settings activity.
 
 	public void setBackwardTime(int backwardTime) {

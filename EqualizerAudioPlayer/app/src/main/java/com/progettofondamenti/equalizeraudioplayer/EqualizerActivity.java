@@ -19,7 +19,9 @@ import java.util.ArrayList;
 
 /**
  * This is the activity that provides the user the possibility to set up
- * the equalizer
+ * the equalizer - the aim of this activity is t just to show the possibility to
+ * select specific frequencies parameters on a different song that starts at the
+ * moment of the creation of the activity.
  * @author francesco
  */
 public class EqualizerActivity extends ActionBarActivity {

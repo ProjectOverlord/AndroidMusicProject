@@ -41,4 +41,6 @@ public interface IPlayer {
 
 	public abstract int getIdAudioSession();
 
+	public abstract void reset();
+
 }
