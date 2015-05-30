@@ -19,7 +19,6 @@ public class SettingsActivity extends PreferenceActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // this method is deprecated, but it's necessary to provide support on older devices
         addPreferencesFromResource(R.xml.apppreferences);
     }
 
