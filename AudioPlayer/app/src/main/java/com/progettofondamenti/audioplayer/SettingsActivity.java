@@ -7,7 +7,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 /**
@@ -50,4 +49,7 @@ public class SettingsActivity extends PreferenceActivity  {
         background = getPrefSavepath.getBoolean("pref_background", false);
     }
 
+    public CheckBoxPreference getPlayCheck() {
+        return playCheck;
+    }
 }
