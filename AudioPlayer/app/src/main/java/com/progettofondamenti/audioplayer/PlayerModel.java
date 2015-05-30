@@ -1,17 +1,12 @@
 package com.progettofondamenti.audioplayer;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.os.PowerManager;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * This class aims to be the model for the audio player.

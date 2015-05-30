@@ -1,12 +1,5 @@
 package com.progettofondamenti.audioplayer;
 
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -42,9 +35,9 @@ public class TitlesList extends Observable {
 	 */
 	private void incrementIndex() {
 		if (index + 1 >= titles.size())
-			index++;
-		else
 			index = 0;
+		else
+			index++;
 	}
 
 	public ArrayList<String> getTitles(){
