@@ -1,7 +1,5 @@
 package com.progettofondamenti.audioplayer;
 
-import android.content.Context;
-
 import java.io.IOException;
 
 /**
@@ -31,15 +29,6 @@ public interface IPlayer {
 	public abstract int getPlayerPosition();
 
 	public abstract int getTotalDuration();
-
-	/**
-	 * setLocalFileToPlay()
-	 * @param path (String)
-	 * @throws IOException
-	 */
-	public abstract void setLocalFileToPlay(String path) throws IOException;
-
-	public abstract void initializeMediaPlayerWithLocalFile(Context context);
 
 	public abstract void reset();
 

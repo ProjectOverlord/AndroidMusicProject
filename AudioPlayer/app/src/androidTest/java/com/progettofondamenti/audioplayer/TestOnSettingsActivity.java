@@ -4,8 +4,9 @@ import android.preference.CheckBoxPreference;
 import android.test.ActivityInstrumentationTestCase2;
 
 /**
- * Created by francesco on 29/05/15.
- * @author francesco
+ * JUnit Test Class
+ * Specific class created to test the SettingsActivity
+ * @author team
  */
 public class TestOnSettingsActivity extends ActivityInstrumentationTestCase2<SettingsActivity> {
 

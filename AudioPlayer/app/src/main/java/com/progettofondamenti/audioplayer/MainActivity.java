@@ -130,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
         /*String tmp = uri.split("//")[1];
         tmp = tmp.split("/")[1];
         songTitle.setText(tmp);*/
-        songTitle.setText("Windows puppa");
+        songTitle.setText("Song title");
 
         playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);

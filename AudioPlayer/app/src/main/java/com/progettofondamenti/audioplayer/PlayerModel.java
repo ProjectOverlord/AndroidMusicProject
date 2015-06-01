@@ -1,11 +1,8 @@
 package com.progettofondamenti.audioplayer;
 
-import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -15,7 +12,7 @@ import java.io.IOException;
  * This is an implementation of the IPlayer interface, which means
  * that other players can be implemented as long as they possess the same methods.
  *
- * @author CL
+ * @author team
  */
 public class PlayerModel implements IPlayer {
 
@@ -23,7 +20,6 @@ public class PlayerModel implements IPlayer {
 	 * Ideally there should be an option in the settings
 	 * that already define those, but better safe than sorry.
 	 */
-
 	private static final int MAX_FORWARD_TIME = 60000;
 	private static final int MAX_BACKWORD_TIME = 60000;
 
@@ -33,20 +29,12 @@ public class PlayerModel implements IPlayer {
 
 	private TitlesList titlesList;
 
-	/* Declaring objects */
 	private MediaPlayer mediaPlayer;
 	private String uri;
 
-	/* Empty constructor used to play in streaming */
 	public PlayerModel(String serverSuffix) {
 		mediaPlayer = new MediaPlayer();
 		this.titlesList = new TitlesList(serverSuffix);
-	}
-
-	/* Constructor used to play a specific file inside the app*/
-	public PlayerModel(Context context) {
-		mediaPlayer = new MediaPlayer();
-		initializeMediaPlayerWithLocalFile(context);
 	}
 
 	@Override
@@ -66,7 +54,6 @@ public class PlayerModel implements IPlayer {
 
 	@Override
 	public void rewind() {
-		// check if we can go back at backwardTime seconds after song starts
 		mediaPlayer.seekTo(
 				((getPlayerPosition() - backwardTime) > 0) ?
 						(getPlayerPosition() - backwardTime)
@@ -77,7 +64,6 @@ public class PlayerModel implements IPlayer {
 
 	@Override
 	public void forward() {
-		// check if we can go forward at forwardTime seconds before song end
 		mediaPlayer.seekTo(
 				((getPlayerPosition() + forwardTime) <= getTotalDuration()) ?
 						(getPlayerPosition() + forwardTime)
@@ -92,10 +78,7 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/*
-	 * This method should reset the actual song or go to the previous one
-	 * if called when the song is in his first couple of seconds.
-	 *
-	 * TODO: As of now, this method just restart the song.
+	 * Makes the mediaplayer execute the previous song
 	 */
 	@Override
 	public void previous() throws IOException {
@@ -105,9 +88,7 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/*
-	 * This method should go to the next song.
-	 *
-	 * TODO: As of now, this method just skips to the end of the song.
+	 * Makes the mediaplayer execute the next song
 	 */
 	@Override
 	public void next() throws IOException {
@@ -116,59 +97,37 @@ public class PlayerModel implements IPlayer {
 		initializeMPStreaming(titlesList.getUrlOfNextSong());
 	}
 
+	/*
+	 * retrives the mediaplayer current position
+	 */
 	@Override
 	public int getPlayerPosition() {
 		return mediaPlayer.getCurrentPosition();
 	}
 
+	/*
+	 * retrives the total duration of the song player by the mediaplayer
+	 */
 	@Override
 	public int getTotalDuration() {
 		return mediaPlayer.getDuration();
 	}
 
-
-	/*
-	 * This method is specific for a local file and ensures the file exists
-	 * before proceeding.
-	 *
-	 * TODO: Do not understand why the initialization doesn't work
-	 *
-	 * @param path
-	 * @throws IOException
-	 */
-	@Override
-	public void setLocalFileToPlay(String path) throws IOException {
-		// mediaPlayer.reset();
-
-		/* aggiunta di prova: ricompongo il file dal path e lo passo allo stream */
-		File file = new File(path);
-		FileInputStream fileInputStream = new FileInputStream(file);
-
-		mediaPlayer.setDataSource(fileInputStream.getFD());
-
-		fileInputStream.close();
-	}
-
-	/*
-	 * This method is specific for a local mp3 file
-	 */
-	@Override
-	public void initializeMediaPlayerWithLocalFile(Context context) {
-		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
-	}
-
 	/*
 	 * This method sets the mediaplayer with a specific html address in order to play a song
-	 * dowloaded from the server
+	 * downloaded from the server
 	 */
 	private void initializeMPStreaming(String url) throws IOException {
 
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setDataSource(url);
 		mediaPlayer.prepare(); // might take long! (for buffering, etc)
-
 	}
 
+	/*
+	 * resets the mediaplayer
+	 * this is very important because gives the possibility to play different songs
+	 */
 	@Override
 	public void reset() {
 		if (isPlaying()){
@@ -177,6 +136,9 @@ public class PlayerModel implements IPlayer {
 		mediaPlayer.reset();
 	}
 
+	/*
+	 * releases the mediaplayer after it has been prepared and started
+	 */
 	@Override
 	public void die(){
 		mediaPlayer.release();
@@ -200,10 +162,18 @@ public class PlayerModel implements IPlayer {
 		}
 	}
 
+	/*
+	 * Retrives the titlesList object which contains all the song names
+	 */
+	@Override
 	public TitlesList getTitlesList() {
 		return titlesList;
 	}
 
+	/*
+	 * Retrives the playing state of the mediaplayer
+	 */
+	@Override
 	public boolean isPlaying(){
 		return mediaPlayer.isPlaying();
 	}
