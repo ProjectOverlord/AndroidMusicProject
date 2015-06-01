@@ -66,15 +66,18 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
     /**
      * testTextViewRemainingTime()
      * Method that controls the string of the total time is correct
+     *
+     * TODO: this test was useful when we were able to know the duration of the song before
+     * playing it - now that the song comes from the server we need to change it
      */
-    public void testTextViewRemainingTime() {
+   /* public void testTextViewRemainingTime() {
 
         final String expected = "1 min, 32 sec";
 
         final String actual = remainingTime.getText().toString();
 
         assertEquals(expected, actual);
-    }
+    }*/
 
     /**
      * testLaunchMusicPlayer()

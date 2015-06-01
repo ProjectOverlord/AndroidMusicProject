@@ -61,7 +61,8 @@ public class MainActivity extends ActionBarActivity {
 
     private PlayerView playerView;
 
-    private String serverSuffix = "http://192.168.1.169:8080/";
+//    private String serverSuffix = "http://192.168.1.169:8080/";  // casa Claudio
+    private String serverSuffix = "http://192.168.1.5:8080/";      // casa Francesco
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +70,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // costruttore per uso con file presente nella app
-//		player = new PlayerModel(this.getApplicationContext());
-
         player = new PlayerModel(serverSuffix);
-
-
-//		TitlesList titlesList = new TitlesList(serverSuffix);
-//		PlayerObserverTitles playerObserver = new PlayerObserverTitles(player, titlesList);
 
 		// Create task and execute it.
 		TitlesListTask task = new TitlesListTask(player);
 		task.execute(null, null, null);
-
-		// This is here for debug purposes, I guess eventually it can be deleted.
-		// String fileToPlay = "Non inizializzato";
 
 		// Wait for the task to be done. Lombardi sarebbe contento.
 		// TODO: SISTEMARE QUESTO WHILE DELLA MORTE
@@ -92,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
 		/*
 		 * next() serves also as initialization
 		 */
-
 		try {
 			player.next();
 		} catch (IOException e) {
@@ -167,7 +157,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /**
-     * sets the color of the LinearLayout given a color string
+     * Sets the color of the LinearLayout given a color string
      * @param color string that describes the color
      */
     public static void setBackgroundColor(String color){
@@ -176,7 +166,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -220,7 +209,6 @@ public class MainActivity extends ActionBarActivity {
         player.reset();
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        // String tmp = sharedPrefs.getString("pref_savepath", "NULL");
 
         setBackgroundPlaying(sharedPrefs.getBoolean("pref_background", false));
     }
@@ -245,14 +233,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onRestart() {
         super.onRestart();
 
-//        player.pause();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
 
     }
 }
