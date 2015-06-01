@@ -6,7 +6,7 @@ import java.util.Observable;
 /**
  * Class used to access and manipulate the file with the song titles.
  *
- * Created by claudio on 26/05/15.
+ * @author team
  */
 public class TitlesList extends Observable {
 
@@ -53,6 +53,9 @@ public class TitlesList extends Observable {
 			index++;
 	}
 
+	/*
+	 * Circular decrement
+	 */
 	private void decrementIndex() {
 		if (index - 1 < 0)
 			index = titles.size() - 1;

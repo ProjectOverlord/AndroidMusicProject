@@ -36,7 +36,6 @@ public class SettingsActivity extends PreferenceActivity  {
 
         getPrefSavepath = getSharedPreferences("pref_savepath", Context.MODE_MULTI_PROCESS);
 
-        // TODO: Rendere indirizzo generico - per il momento just change it.
         path.setText("http://10.87.136.158:8080/mp3.mp3");
 
     }

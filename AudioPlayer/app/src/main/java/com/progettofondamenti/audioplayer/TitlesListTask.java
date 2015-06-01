@@ -16,7 +16,7 @@ import java.net.URL;
  * That being said, MainActivity actually waits for this to be done
  * since it can't continue with its duty otherwise.
  *
- * Created by Saeval on 27/05/15.
+ * @author team
  */
 public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 
@@ -44,6 +44,8 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 			String suffix = player.getTitlesList().getServerSuffix();
 			String titles = titlesFileName;
 			URL url = new URL(suffix+titles);
+
+			// TODO: RENDERE MIGLIORE L'ESPRESSIONE SOPRA
 			//URL url = new URL(player.getTitlesList().getServerSuffix()+titlesFileName);
 			Log.e("-----URL-----", url.toString());
 
@@ -62,7 +64,6 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 					player.getTitlesList().getTitles().add(str);
 				str = in.readLine();
 			}
-
 
 			done = true;
 
