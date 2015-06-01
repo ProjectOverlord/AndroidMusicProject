@@ -5,6 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 /**
  * Created by francesco on 29/05/15.
+ * @author francesco
  */
 public class TestOnSettingsActivity extends ActivityInstrumentationTestCase2<SettingsActivity> {
 

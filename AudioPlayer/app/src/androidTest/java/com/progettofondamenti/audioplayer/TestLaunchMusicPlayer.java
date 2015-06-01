@@ -9,7 +9,7 @@ import android.widget.TextView;
  * @author team
  * @see ActivityInstrumentationTestCase2
  */
-public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<MainActivity> {
+public class TestLaunchMusicPlayer extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity mainActivity;
     private TextView songText;
@@ -19,7 +19,7 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
 
 
 
-    public TestOnActivityComponents() {
+    public TestLaunchMusicPlayer() {
         super(MainActivity.class);
     }
 
@@ -36,17 +36,6 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
         getActivity();
 
     }
-
-    /**
-     * Test on the editText that shows the song title
-     */
-    public void testSongTitle() {
-        final String expected = "Song title";
-
-        final String actual = songText.getText().toString();
-        assertEquals(expected, actual);
-    }
-
 
     /**
      *testTextViewElapsedTime()
@@ -79,13 +68,12 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
     }*/
 
     /**
-     * testLaunchMusicPlayer()
-     * Launch music player and sleep for 30 seconds to capture
+     * Launches music player and sleep for 30 seconds to capture
      * the music player power usage base line
      *
      * @throws Exception
      */
-    /*public void testLaunchMusicPlayer() throws Exception {
+    public void testLaunchMusicPlayer() throws Exception {
 
         try {
             Thread.sleep(PLAY_TIME);
@@ -93,7 +81,7 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
             assertTrue("MusicPlayer Do Nothing", false);
         }
         assertTrue("MusicPlayer Do Nothing", true);
-    }*/
+    }
 
 
 }
