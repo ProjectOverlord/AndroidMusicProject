@@ -47,7 +47,6 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
         assertEquals(expected, actual);
     }
 
-
     /**
      *testTextViewElapsedTime()
      *method that controls the length of the string is correct
@@ -77,23 +76,4 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
 
         assertEquals(expected, actual);
     }*/
-
-    /**
-     * testLaunchMusicPlayer()
-     * Launch music player and sleep for 30 seconds to capture
-     * the music player power usage base line
-     *
-     * @throws Exception
-     */
-    /*public void testLaunchMusicPlayer() throws Exception {
-
-        try {
-            Thread.sleep(PLAY_TIME);
-        } catch (Exception e) {
-            assertTrue("MusicPlayer Do Nothing", false);
-        }
-        assertTrue("MusicPlayer Do Nothing", true);
-    }*/
-
-
 }
