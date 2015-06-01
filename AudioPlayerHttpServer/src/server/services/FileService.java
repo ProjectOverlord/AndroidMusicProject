@@ -36,7 +36,8 @@ public class FileService implements IService {
 		// formats. Must generalize for many (interface..?)
 		if (filename.endsWith("mp3")) {
 			message.setContentType(ContentType.MP3);
-		} else
+		}
+			else
 			if (filename.endsWith("txt"))
 				message.setContentType(ContentType.TXT);
 		

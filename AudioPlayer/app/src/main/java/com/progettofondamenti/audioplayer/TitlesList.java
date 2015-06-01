@@ -30,6 +30,19 @@ public class TitlesList extends Observable {
 		return titles.get(index);
 	}
 
+	public String getUrlOfNextSong() {
+		return serverSuffix+getNextTitle();
+	}
+
+	public String getPreviousTitle() {
+		decrementIndex();
+		return titles.get(index);
+	}
+
+	public String getUrlOfPreviousSong() {
+		return serverSuffix+getPreviousTitle();
+	}
+
 	/**
 	 * Circular increment
 	 */
@@ -38,6 +51,13 @@ public class TitlesList extends Observable {
 			index = 0;
 		else
 			index++;
+	}
+
+	private void decrementIndex() {
+		if (index - 1 < 0)
+			index = titles.size() - 1;
+		else
+			index--;
 	}
 
 	public ArrayList<String> getTitles(){

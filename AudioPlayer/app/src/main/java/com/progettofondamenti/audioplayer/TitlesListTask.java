@@ -21,12 +21,12 @@ import java.net.URL;
 public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 
 	private static String titlesFileName = "song_titles.txt";
-	private TitlesList titlesList;
+	private IPlayer player;
 	private boolean done = false;
 
-	public TitlesListTask(String serverSuffix) {
+	public TitlesListTask(IPlayer player) {
 		super();
-		titlesList = new TitlesList(serverSuffix);
+		this.player = player;
 	}
 
 	/**
@@ -41,7 +41,10 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 	protected Long doInBackground(URL... urls) {
 		try {
 			// Create a URL for the desired page
-			URL url = new URL(titlesList.getServerSuffix()+titlesFileName);
+			String suffix = player.getTitlesList().getServerSuffix();
+			String titles = titlesFileName;
+			URL url = new URL(suffix+titles);
+			//URL url = new URL(player.getTitlesList().getServerSuffix()+titlesFileName);
 			Log.e("-----URL-----", url.toString());
 
 			// Right now, at least on Ubuntu, this takes forever.
@@ -54,19 +57,21 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 			InputStreamReader inputStreamReader = new InputStreamReader(urlConnection.getInputStream());
 			BufferedReader in = new BufferedReader(inputStreamReader);
 			String str = in.readLine();
-			while (str != null && str != "") {
-				titlesList.getTitles().add(str);
+			while(str != null) {
+				if (!str.trim().isEmpty()) // Does not consider blank lines
+					player.getTitlesList().getTitles().add(str);
 				str = in.readLine();
 			}
+
+
+			done = true;
 
 		} catch (MalformedURLException e) {
 			Log.e("--------", e.getMessage());
 		} catch (IOException e) {
 			Log.e("--------", "fuffaboccia");
 		}
-		done = true;
-		cancel(true);
-		return (long)titlesList.getTitles().size();
+		return (long)player.getTitlesList().getTitles().size();
 	}
 
 	@Override
@@ -76,10 +81,6 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 
 	public boolean getDone(){
 		return done;
-	}
-
-	public TitlesList getTitlesList(){
-		return titlesList;
 	}
 
 }

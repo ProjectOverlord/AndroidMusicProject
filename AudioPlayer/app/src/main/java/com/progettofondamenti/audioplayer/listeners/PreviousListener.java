@@ -1,8 +1,11 @@
 package com.progettofondamenti.audioplayer.listeners;
 
+import android.util.Log;
 import android.view.View;
 
 import com.progettofondamenti.audioplayer.IPlayer;
+
+import java.io.IOException;
 
 /**
  * Listener for the PreviousButton.
@@ -23,6 +26,11 @@ public class PreviousListener implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        player.previous();
+        try {
+            player.previous();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("---------", "Sticazzi");
+        }
     }
 }

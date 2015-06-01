@@ -72,28 +72,32 @@ public class MainActivity extends ActionBarActivity {
         // costruttore per uso con file presente nella app
 //		player = new PlayerModel(this.getApplicationContext());
 
-        player = new PlayerModel();
+        player = new PlayerModel(serverSuffix);
+
 
 //		TitlesList titlesList = new TitlesList(serverSuffix);
 //		PlayerObserverTitles playerObserver = new PlayerObserverTitles(player, titlesList);
 
 		// Create task and execute it.
-		TitlesListTask task = new TitlesListTask(serverSuffix);
+		TitlesListTask task = new TitlesListTask(player);
 		task.execute(null, null, null);
 
 		// This is here for debug purposes, I guess eventually it can be deleted.
-		String fileToPlay = "Non inizializzato";
+		// String fileToPlay = "Non inizializzato";
 
 		// Wait for the task to be done. Lombardi sarebbe contento.
+		// TODO: SISTEMARE QUESTO WHILE DELLA MORTE
 		while(!task.getDone());
 
+		/*
+		 * next() serves also as initialization
+		 */
+
 		try {
-			fileToPlay = task.getTitlesList().getNextTitle();
-			player.initializeMPStreaming(fileToPlay);
+			player.next();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Log.e("-------", e.getMessage());
-			Log.e("-------", fileToPlay);
 		}
 
 		applySettings();

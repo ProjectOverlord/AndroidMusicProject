@@ -31,13 +31,16 @@ public class PlayerModel implements IPlayer {
 	private int forwardTime = 2000;
 	private int backwardTime = 2000;
 
+	private TitlesList titlesList;
+
 	/* Declaring objects */
 	private MediaPlayer mediaPlayer;
 	private String uri;
 
 	/* Empty constructor used to play in streaming */
-	public PlayerModel() {
+	public PlayerModel(String serverSuffix) {
 		mediaPlayer = new MediaPlayer();
+		this.titlesList = new TitlesList(serverSuffix);
 	}
 
 	/* Constructor used to play a specific file inside the app*/
@@ -95,8 +98,10 @@ public class PlayerModel implements IPlayer {
 	 * TODO: As of now, this method just restart the song.
 	 */
 	@Override
-	public void previous() {
-		mediaPlayer.seekTo(0);
+	public void previous() throws IOException {
+		reset();
+
+		initializeMPStreaming(titlesList.getUrlOfPreviousSong());
 	}
 
 	/*
@@ -105,8 +110,10 @@ public class PlayerModel implements IPlayer {
 	 * TODO: As of now, this method just skips to the end of the song.
 	 */
 	@Override
-	public void next() {
-		mediaPlayer.seekTo(getTotalDuration());
+	public void next() throws IOException {
+		reset();
+
+		initializeMPStreaming(titlesList.getUrlOfNextSong());
 	}
 
 	@Override
@@ -154,8 +161,7 @@ public class PlayerModel implements IPlayer {
 	 * This method sets the mediaplayer with a specific html address in order to play a song
 	 * dowloaded from the server
 	 */
-	@Override
-	public void initializeMPStreaming(String url) throws IOException {
+	private void initializeMPStreaming(String url) throws IOException {
 
 		mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mediaPlayer.setDataSource(url);
@@ -165,6 +171,9 @@ public class PlayerModel implements IPlayer {
 
 	@Override
 	public void reset() {
+		if (isPlaying()){
+			stop();
+		}
 		mediaPlayer.reset();
 	}
 
@@ -189,6 +198,10 @@ public class PlayerModel implements IPlayer {
 		} else {
 			this.forwardTime = MAX_FORWARD_TIME;
 		}
+	}
+
+	public TitlesList getTitlesList() {
+		return titlesList;
 	}
 
 	public boolean isPlaying(){

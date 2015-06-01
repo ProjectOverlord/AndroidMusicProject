@@ -22,9 +22,9 @@ public interface IPlayer {
 
 	public abstract void forward();
 
-	public abstract void previous();
+	public abstract void previous() throws IOException;
 
-	public abstract void next();
+	public abstract void next() throws IOException;
 
 	public abstract void seek(int to);
 
@@ -41,16 +41,11 @@ public interface IPlayer {
 
 	public abstract void initializeMediaPlayerWithLocalFile(Context context);
 
-	/**
-	 * initializeMPStreaming()
-	 * @param url (String)
-	 * @throws IOException
-	 */
-	public abstract void initializeMPStreaming(String url) throws IOException;
-
 	public abstract void reset();
 
 	public abstract void die();
+
+	public abstract TitlesList getTitlesList();
 
 	public abstract boolean isPlaying();
 

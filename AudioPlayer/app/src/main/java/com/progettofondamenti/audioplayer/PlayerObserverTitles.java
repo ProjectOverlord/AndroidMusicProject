@@ -26,7 +26,7 @@ public class PlayerObserverTitles implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		try {
-			player.initializeMPStreaming(titlesList.getNextTitle());
+			player.next();
 		} catch (IOException e) {
 			Log.e("--------", e.getMessage());
 		}
