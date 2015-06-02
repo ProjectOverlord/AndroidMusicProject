@@ -17,6 +17,7 @@ import java.net.URL;
  * since it can't continue with its duty otherwise.
  *
  * @author team
+ * @see android.os.AsyncTask
  */
 public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 
@@ -28,7 +29,7 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 		this.player = player;
 	}
 
-	/**
+	/**NON JAVADOC
 	 * This method is called when the task execute() method is called.
 	 *
 	 * @param urls Uselesss stuff in our case. It's required

@@ -7,6 +7,7 @@ import java.util.Observable;
  * Class used to access and manipulate the file with the song titles.
  *
  * @author team
+ * @see java.util.Observable
  */
 public class TitlesList extends Observable {
 
@@ -45,6 +46,8 @@ public class TitlesList extends Observable {
 
 	/**
 	 * Circular increment
+	 * it allows the passage from a music track to the next
+	 * pressing forward , once you reach the last index ( titles.size ( ) ) , go to 0
 	 */
 	private void incrementIndex() {
 		if (index + 1 >= titles.size())
@@ -53,8 +56,9 @@ public class TitlesList extends Observable {
 			index++;
 	}
 
-	/*
+	/**
 	 * Circular decrement
+	 * allows the passage from one musical piece to the previous one
 	 */
 	private void decrementIndex() {
 		if (index - 1 < 0)
