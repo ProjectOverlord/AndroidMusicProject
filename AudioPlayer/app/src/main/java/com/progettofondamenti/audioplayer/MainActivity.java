@@ -30,7 +30,9 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 /**
- * The main activity of the program.
+ *
+ *This class is the main class in which the view is defined according to the characteristics specified in the XML file.
+ *also it is responsible for the use of various components described in other classes
  *
  * @author team
  * @see android.support.v7.app.ActionBarActivity
