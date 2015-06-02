@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.progettofondamenti.audioplayer.buttons.ForwardButton;
 import com.progettofondamenti.audioplayer.buttons.NextButton;
@@ -75,7 +74,6 @@ public class MainActivity extends ActionBarActivity {
     private static ForwardButton ffButton;
     private static PreviousButton previousButton;
     private static NextButton nextButton;
-    private static TextView songTitle;
 
     private boolean backgroundPlaying;
 
@@ -87,47 +85,48 @@ public class MainActivity extends ActionBarActivity {
 
     private PlayerView playerView;
 
-//    private String serverSuffix = "http://192.168.1.169:8080/";  // casa Claudio
-    private String serverSuffix = "http://192.168.1.5:8080/";      // casa Francesco
+    private String serverSuffix = "http://192.168.1.169:8080/";  // casa Claudio
+//    private String serverSuffix = "http://192.168.1.5:8080/";      // casa Francesco
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        /* Default setup and initialization of activity_main.xml */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         player = new PlayerModel(serverSuffix);
 
+        // Create task
+        TitlesListTask task = new TitlesListTask(player);
+        // Execute it and wait for the results before going on
+        try {
+            task.execute(null, null, null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Log.e("-------", e.getMessage());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            Log.e("-------", e.getMessage());
+        }
 
-		TitlesListTask task = new TitlesListTask(player);
+        applySettings();
 
-		try {
-			task.execute(null, null, null).get();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			Log.e("-------", e.getMessage());
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-			Log.e("-------", e.getMessage());
-		}
-
-		applySettings();
-
-
-        initializeXmlComponents();
-
-        playerView = new PlayerView(player, this);
-        playerView.run();
+		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
 
 		/*
 		 * next() serves also as initialization
 		 */
-		try {
-			player.next();
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e("-------", e.getMessage());
-		}
+        try {
+            player.next();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("-------", e.getMessage());
+        }
+
+        playerView = new PlayerView(player, this);
+        playerView.run();
+
+        initializeXmlComponents();
 
         setFragmentSettings();
 
@@ -135,7 +134,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    /**
+    /*
      * Sets the specific listeners
      */
     private void setListenersToButtons() {
@@ -147,22 +146,15 @@ public class MainActivity extends ActionBarActivity {
         nextButton.setOnClickListener(new NextListener(player));
     }
 
-    /**
+    /*
      * Initializes the application's XML components
      */
     private void initializeXmlComponents() {
 
         layout = (LinearLayout) findViewById(R.id.container);
 
-        songTitle = (TextView) findViewById(R.id.songTitle);
-
-		/* TODO : Reverse the string and do it from the beginning .
-		 * Do it in the view It 'also to be kept updated by changing the uri */
-
-        /*String tmp = uri.split("//")[1];
-        tmp = tmp.split("/")[1];
-        songTitle.setText(tmp);*/
-        songTitle.setText("Song title");
+		/* TODO: Invertire la stringa e farlo partire dall'inizio.
+		 * Farlo nella view. E' anche da tenere aggiornato cambiando l'uri */
 
         playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
@@ -172,9 +164,9 @@ public class MainActivity extends ActionBarActivity {
         nextButton = (NextButton) findViewById(R.id.buttonNext);
     }
 
-    /**
-     *  Sets the specific fragment in order to handle preferences
-     */
+    /*
+	 *  Sets the specific fragment in order to handle preferences
+	 */
     private void setFragmentSettings() {
         FragmentManager fragmentManager = getFragmentManager();
         MyPreferences myFragment=(MyPreferences)fragmentManager.findFragmentByTag("MyPreferences");
@@ -216,7 +208,9 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /*
+     * Sets the informations provided by the settings
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -226,11 +220,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /**
+    /*
      * this method retrives information from the settings activity
-     * TODO: A method is called every time:
-     * 		- is created the Activity
-     * 		- Return to this Activity to another.
+     * TODO: Metodo che viene chiamato OGNI VOLTA CHE:
+     * 		- Viene creata l'Activity
+     * 		- Si torna a questa Activity da un'altra.
      */
     private void applySettings(){
         if (player.isPlaying()){

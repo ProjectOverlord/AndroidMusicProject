@@ -33,6 +33,7 @@ public class PlayerView implements Runnable{
 	private SeekBar seekBar;
 	private TextView elapsedTime;
 	private TextView remainingTime;
+	private TextView songTitle;
 
 	private Handler handler = new Handler();
 
@@ -43,10 +44,14 @@ public class PlayerView implements Runnable{
 		seekBar.setClickable(true);
 		seekBar.setOnSeekBarChangeListener(new SeekBarListener(player));
 
+		songTitle = (TextView) activity.findViewById(R.id.songTitle);
+		updateDisplayedTitle();
+
 		elapsedTime = (TextView) activity.findViewById(R.id.elapsedTime);
 		updateTime(elapsedTime, 0);
 		remainingTime = (TextView) activity.findViewById(R.id.remainingTime);
 		updateTime(remainingTime, player.getTotalDuration());
+
 	}
 
 
@@ -60,14 +65,25 @@ public class PlayerView implements Runnable{
 
 		updateTime(remainingTime, (player.getTotalDuration() - player.getPlayerPosition()));
 
+		updateDisplayedTitle();
+
 		handler.postDelayed(this, 100);
 	}
 
-	/*The method "toMinutes" requires an API minimum 9 */
-	private void updateTime(TextView textView, int time){
+	/* Il metodo toMinutes abbisogna di un'API minima 9 */
+	private void updateTime(TextView textView, int time) {
 		textView.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(time),
 				TimeUnit.MILLISECONDS.toSeconds(time)
 						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time))));
+	}
+
+	/* Long and ugly method chain calls to simply get the title
+	 * of the file currently playing */
+	private void updateDisplayedTitle() {
+		songTitle.setText(player.getTitlesList().getTitles().get(
+						player.getTitlesList().getCurrentIndex()
+				)
+		);
 	}
 
 }
