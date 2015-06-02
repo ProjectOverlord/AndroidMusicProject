@@ -31,30 +31,6 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * The main activity of the program.
- * FunctionList:
- * 1)protected void onCreate(Bundle savedInstanceState)
- *      Default setup and initialization of activity_main.xml
- * TitlesListTask task = new TitlesListTask(player);
- *      Create task and Execute it and wait for the results before going on ( try catch cycle)
- * initializeXmlComponents();
- *      Initializes the remaining components to those already declared in PlayerView
- * 2)private void setListenersToButtons()
- *      see the javadoc function
- * 3)private void initializeXmlComponents()
- *      see the javadoc function
- * 4) private void setFragmentSettings()
- *      see the javadoc function
- * 5)public static void setBackgroundColor(String color)
- *      see the javadoc function
- * 6)public boolean onCreateOptionsMenu(Menu menu)
- *      creates the menu of the action bar activity
- * 7)public boolean onOptionsItemSelected(MenuItem item)
- *      Hooks items and manages their actions
- * 8)protected void onActivityResult(int requestCode, int resultCode, Intent data)
- *      Sets the informations provided by the settings
- * 9)private void applySettings()
- *      see the javadoc function
- * 10)public void onPause()   onDestroy()     onRestart()     onResume()
  *
  * @author team
  * @see android.support.v7.app.ActionBarActivity
@@ -188,12 +164,18 @@ public class MainActivity extends ActionBarActivity {
         layout.setBackgroundColor(Color.parseColor(color));
     }
 
+    /*
+     *  creates the menu of the action bar activity
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    /*
+     * Hooks items and manages their actions
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
