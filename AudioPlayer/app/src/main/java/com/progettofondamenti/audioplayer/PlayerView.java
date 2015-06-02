@@ -16,9 +16,15 @@ import java.util.concurrent.TimeUnit;
  * This is a part of the MVC implementation without the observable/observer DP.
  * The update is achieved with the runnable.
  *
- * TODO: Arianna puppa
+ * public void run()
+ * 		 Update mechanism of graphical components associated with the player,
+ * 		such as tick labels duration.
+ * 		It is used a timer handler that reads every 100 milliseconds the current position of reproduction,
+ * 		and implements the consequent updating of the bar.
  *
- * @author CL & MS
+ *@author team
+ * @see java.lang.Runnable
+ *
  */
 public class PlayerView implements Runnable{
 
@@ -43,12 +49,7 @@ public class PlayerView implements Runnable{
 		updateTime(remainingTime, player.getTotalDuration());
 	}
 
-	/*
-     * Meccanismo di aggiornamento delle componenti grafiche associate al player, quali barra
-     * e etichette di durata.
-     * Si è usato un handler temporizzato che legge ogni 100 millisecondi la posizione attuale
-     * di riproduzione, ed attua il conseguente aggiornamento della barra.
-     */
+
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void run()
 	{
@@ -62,7 +63,7 @@ public class PlayerView implements Runnable{
 		handler.postDelayed(this, 100);
 	}
 
-	/* Il metodo toMinutes abbisogna di un'API minima 9 */
+	/*The method "toMinutes" requires an API minimum 9 */
 	private void updateTime(TextView textView, int time){
 		textView.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(time),
 				TimeUnit.MILLISECONDS.toSeconds(time)
