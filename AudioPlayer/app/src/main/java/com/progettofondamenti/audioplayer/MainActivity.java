@@ -32,6 +32,31 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * The main activity of the program.
+ * FunctionList:
+ * 1)protected void onCreate(Bundle savedInstanceState)
+ *      Default setup and initialization of activity_main.xml
+ * TitlesListTask task = new TitlesListTask(player);
+ *      Create task and Execute it and wait for the results before going on ( try catch cycle)
+ * initializeXmlComponents();
+ *      Initializes the remaining components to those already declared in PlayerView
+ * 2)private void setListenersToButtons()
+ *      see the javadoc function
+ * 3)private void initializeXmlComponents()
+ *      see the javadoc function
+ * 4) private void setFragmentSettings()
+ *      see the javadoc function
+ * 5)public static void setBackgroundColor(String color)
+ *      see the javadoc function
+ * 6)public boolean onCreateOptionsMenu(Menu menu)
+ *      creates the menu of the action bar activity
+ * 7)public boolean onOptionsItemSelected(MenuItem item)
+ *      Hooks items and manages their actions
+ * 8)protected void onActivityResult(int requestCode, int resultCode, Intent data)
+ *      Sets the informations provided by the settings
+ * 9)private void applySettings()
+ *      see the javadoc function
+ * 10)public void onPause()   onDestroy()     onRestart()     onResume()
+ *
  * @author team
  * @see android.support.v7.app.ActionBarActivity
  */
@@ -67,15 +92,15 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /* Default setup and initialization of activity_main.xml */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         player = new PlayerModel(serverSuffix);
 
-		// Create task
+
 		TitlesListTask task = new TitlesListTask(player);
-        // Execute it and wait for the results before going on
+
 		try {
 			task.execute(null, null, null).get();
 		} catch (InterruptedException e) {
@@ -88,7 +113,7 @@ public class MainActivity extends ActionBarActivity {
 
 		applySettings();
 
-		/* Inizializza le componenti rimanenti rispetto a quelle già dichiarate in PlayerView */
+
         initializeXmlComponents();
 
         playerView = new PlayerView(player, this);
@@ -110,7 +135,7 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    /*
+    /**
      * Sets the specific listeners
      */
     private void setListenersToButtons() {
@@ -122,7 +147,7 @@ public class MainActivity extends ActionBarActivity {
         nextButton.setOnClickListener(new NextListener(player));
     }
 
-    /*
+    /**
      * Initializes the application's XML components
      */
     private void initializeXmlComponents() {
@@ -131,8 +156,8 @@ public class MainActivity extends ActionBarActivity {
 
         songTitle = (TextView) findViewById(R.id.songTitle);
 
-		/* TODO: Invertire la stringa e farlo partire dall'inizio.
-		 * Farlo nella view. E' anche da tenere aggiornato cambiando l'uri */
+		/* TODO : Reverse the string and do it from the beginning .
+		 * Do it in the view It 'also to be kept updated by changing the uri */
 
         /*String tmp = uri.split("//")[1];
         tmp = tmp.split("/")[1];
@@ -147,7 +172,7 @@ public class MainActivity extends ActionBarActivity {
         nextButton = (NextButton) findViewById(R.id.buttonNext);
     }
 
-    /*
+    /**
      *  Sets the specific fragment in order to handle preferences
      */
     private void setFragmentSettings() {
@@ -191,9 +216,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-     * Sets the informations provided by the settings
-     */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -203,11 +226,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    /*
+    /**
      * this method retrives information from the settings activity
-     * TODO: Metodo che viene chiamato OGNI VOLTA CHE:
-     * 		- Viene creata l'Activity
-     * 		- Si torna a questa Activity da un'altra.
+     * TODO: A method is called every time:
+     * 		- is created the Activity
+     * 		- Return to this Activity to another.
      */
     private void applySettings(){
         if (player.isPlaying()){
