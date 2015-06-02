@@ -22,7 +22,6 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 
 	private static String titlesFileName = "song_titles.txt";
 	private IPlayer player;
-	private boolean done = false;
 
 	public TitlesListTask(IPlayer player) {
 		super();
@@ -65,8 +64,6 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 				str = in.readLine();
 			}
 
-			done = true;
-
 		} catch (MalformedURLException e) {
 			Log.e("--------", e.getMessage());
 		} catch (IOException e) {
@@ -78,10 +75,6 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 	@Override
 	protected void onPostExecute(Long result) {
 		cancel(true);
-	}
-
-	public boolean getDone(){
-		return done;
 	}
 
 }

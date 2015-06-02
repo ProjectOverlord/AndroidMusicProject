@@ -28,6 +28,7 @@ import com.progettofondamenti.audioplayer.listeners.PreviousListener;
 import com.progettofondamenti.audioplayer.listeners.RewindListener;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The main activity of the program.
@@ -72,20 +73,15 @@ public class MainActivity extends ActionBarActivity {
 
         player = new PlayerModel(serverSuffix);
 
-		// Create task and execute it.
+		// Create task
 		TitlesListTask task = new TitlesListTask(player);
-		task.execute(null, null, null);
-
-		// Wait for the task to be done. Lombardi sarebbe contento.
-		// TODO: SISTEMARE QUESTO WHILE DELLA MORTE
-		while(!task.getDone());
-
-		/*
-		 * next() serves also as initialization
-		 */
+        // Execute it and wait for the results before going on
 		try {
-			player.next();
-		} catch (IOException e) {
+			task.execute(null, null, null).get();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			Log.e("-------", e.getMessage());
+		} catch (ExecutionException e) {
 			e.printStackTrace();
 			Log.e("-------", e.getMessage());
 		}
@@ -98,9 +94,20 @@ public class MainActivity extends ActionBarActivity {
         playerView = new PlayerView(player, this);
         playerView.run();
 
+		/*
+		 * next() serves also as initialization
+		 */
+		try {
+			player.next();
+		} catch (IOException e) {
+			e.printStackTrace();
+			Log.e("-------", e.getMessage());
+		}
+
         setFragmentSettings();
 
         setListenersToButtons();
+
     }
 
     /*
