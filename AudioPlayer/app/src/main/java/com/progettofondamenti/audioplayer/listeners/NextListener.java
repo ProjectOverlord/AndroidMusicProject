@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.progettofondamenti.audioplayer.IPlayer;
-import com.progettofondamenti.audioplayer.TitlesList;
 
 import java.io.IOException;
 
@@ -31,7 +30,7 @@ public class NextListener implements View.OnClickListener{
             player.next();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("---------", "Sticazzi");
+            Log.e("---------", e.getMessage());
         }
     }
 }

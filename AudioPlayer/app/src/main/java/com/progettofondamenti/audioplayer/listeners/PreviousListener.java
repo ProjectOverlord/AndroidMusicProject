@@ -30,7 +30,7 @@ public class PreviousListener implements View.OnClickListener{
             player.previous();
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("---------", "Sticazzi");
+            Log.e("---------", e.getMessage());
         }
     }
 }

@@ -27,7 +27,7 @@ public class TestOnSettingsActivity extends ActivityInstrumentationTestCase2<Set
     public void testCheckboxPreferenceEnabled(){
         CheckBoxPreference pref = settingsActivity.getPlayCheck();
 
-        // verifiche di base, senza compiere azioni
+        // simple test, without making any particular operation on the checkbox
         assertNotNull(pref);
         assertFalse(pref.isChecked());
     }

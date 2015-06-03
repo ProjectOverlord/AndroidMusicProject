@@ -23,8 +23,8 @@ public class TestOnLoginActivity extends ActivityInstrumentationTestCase2<LoginA
     }
 
     /*
-         * non-javadoc sets up the activity for usage
-         */
+     * non-javadoc sets up the activity for usage
+    */
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -46,6 +46,5 @@ public class TestOnLoginActivity extends ActivityInstrumentationTestCase2<LoginA
         activityMonitor.waitForActivityWithTimeout(timeout);
         assertEquals(1, activityMonitor.getHits());
     }
-
 
 }

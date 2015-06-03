@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 /**
  * Junit Test Class
- * This class checks the correctness of components
+ * This class checks the correctness of the MainActivity components
  * @author team
  * @see ActivityInstrumentationTestCase2
  */
@@ -22,7 +22,8 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
     }
 
     /*
-     * non-javadoc sets up the activity for usage
+     * non-javadoc
+     * sets up the activity for usage
      */
     @Override
     protected void setUp() throws Exception {

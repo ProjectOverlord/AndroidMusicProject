@@ -24,7 +24,8 @@ public class TestLaunchMusicPlayer extends ActivityInstrumentationTestCase2<Main
     }
 
     /*
-     * non-javadoc sets up the activity for usage
+     * non-javadoc
+     * sets up the activity for usage
      */
     @Override
     protected void setUp() throws Exception {
