@@ -8,38 +8,8 @@ import java.io.IOException;
 /**
  * This class aims to be the model for the audio player.
  * No other class should be allowed to see the effective mediaPlayer.
- *
  * This is an implementation of the IPlayer interface, which means
  * that other players can be implemented as long as they possess the same methods.
- *FunctionList:
- * 1) public void play() 	pause()  	stop()
- * 		Makes the mediaplayer execute / temporary stop / stop the song
- * 2)public void rewind()	forward()
- * 		they can reach any point in the song
- * 3)public void previous() throws IOException
- * 		 Makes the mediaplayer execute the previous song
- * 4)public void next() throws IOException
- * 		Makes the mediaplayer execute the next song
- * 5)public int getPlayerPosition()
- * 		retrives the mediaplayer current position
- * 6)public int getTotalDuration()
- * 		retrives the total duration of the song player by the mediaplayer
- * 7)private void initializeMPStreaming(String url)
- * 		see the javadoc function
- * 8)public void reset()
- *		resets the mediaplayer
- * 		this is very important because gives the possibility to play different songs
- * 9)public void die()
- * 		releases the mediaplayer after it has been prepared and started
- * 10)public void setBackwardTime(int backwardTime)
- * 		not used
- * 11)public void setForwardTime(int forwardTime
- * 		not used
- * 12)public TitlesList getTitlesList()
- * 		Retrives the titlesList object which contains all the song names
- * 13)public boolean isPlaying()
- * 		Retrives the playing state of the mediaplayer
- *
  *
  * @author team
  * @see com.progettofondamenti.audioplayer.IPlayer
@@ -108,6 +78,10 @@ public class PlayerModel implements IPlayer {
 	}
 
 
+	/**
+	 * Stops the mediaplayer and prepares it to play the previous song.
+	 * @throws IOException
+	 */
 	@Override
 	public void previous() throws IOException {
 		reset();
@@ -116,6 +90,10 @@ public class PlayerModel implements IPlayer {
 	}
 
 
+	/**
+	 * Stops the mediaplayer and prepares it to play the next song.
+	 * @throws IOException
+	 */
 	@Override
 	public void next() throws IOException {
 		reset();
@@ -136,10 +114,10 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/**
-	 * This method sets the mediaplayer with a specific html address in order to play a song
-	 * downloaded from the server
+	 * This method sets the mediaplayer with a specific URI in order
+	 * to play a song downloaded from the server
 	 * @throws IOException
-	 * @param url
+	 * @param url The URL of the song which is to play.
 	 */
 	private void initializeMPStreaming(String url) throws IOException {
 
@@ -166,7 +144,7 @@ public class PlayerModel implements IPlayer {
 	// TODO: Remember to put options for these in the settings activity.
 
 	/**
-	 * not used
+	 * Currently not used
 	 *@param backwardTime
 	 */
 	public void setBackwardTime(int backwardTime) {
@@ -178,7 +156,7 @@ public class PlayerModel implements IPlayer {
 	}
 
 	/**
-	 * not used
+	 * Currently not used
 	 * @param forwardTime
 	 */
 	public void setForwardTime(int forwardTime) {
@@ -190,11 +168,14 @@ public class PlayerModel implements IPlayer {
 	}
 
 
+	/**
+	 * Retrives the titlesList object which contains all the song names.
+	 * @return The plyaer's TitleList
+	 */
 	@Override
 	public TitlesList getTitlesList() {
 		return titlesList;
 	}
-
 
 	@Override
 	public boolean isPlaying(){

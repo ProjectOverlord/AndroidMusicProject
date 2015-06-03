@@ -29,12 +29,12 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 		this.player = player;
 	}
 
-	/**NON JAVADOC
+	/**
 	 * This method is called when the task execute() method is called.
 	 *
 	 * @param urls Uselesss stuff in our case. It's required
 	 *             for the override though, so no way around it.
-	 * @return Useless stuff in our case. See above.
+	 * @return -- See above.
 	 */
 
 	@Override

@@ -31,8 +31,9 @@ import java.util.concurrent.ExecutionException;
 
 /**
  *
- *This class is the main class in which the view is defined according to the characteristics specified in the XML file.
- *also it is responsible for the use of various components described in other classes
+ * This class is the main class in which the view is defined
+ * according to the characteristics specified in the XML file.
+ * Also it is responsible for the use of various components described in other classes.
  *
  * @author team
  * @see android.support.v7.app.ActionBarActivity
@@ -131,9 +132,6 @@ public class MainActivity extends ActionBarActivity {
 
         layout = (LinearLayout) findViewById(R.id.container);
 
-		/* TODO: Invertire la stringa e farlo partire dall'inizio.
-		 * Farlo nella view. E' anche da tenere aggiornato cambiando l'uri */
-
         playButton = (PlayButton) findViewById(R.id.buttonPlay);
         pauseButton = (PauseButton) findViewById(R.id.buttonPause);
         rewButton = (RewindButton) findViewById(R.id.buttonRew);
@@ -184,7 +182,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            // creates and Intent in order to call the SettingActivity
+            // creates an Intent in order to call the SettingActivity
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivityForResult(intent, RESULT_SETTINGS);
             return true;
@@ -206,7 +204,7 @@ public class MainActivity extends ActionBarActivity {
 
     /*
      * this method retrives information from the settings activity
-     * TODO: Metodo che viene chiamato OGNI VOLTA CHE:
+     * Metodo che viene chiamato OGNI VOLTA CHE:
      * 		- Viene creata l'Activity
      * 		- Si torna a questa Activity da un'altra.
      */

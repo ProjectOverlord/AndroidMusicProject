@@ -7,8 +7,9 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 /**
- *this class allows you to interact with any activity
- *using what it receives from the settings( object SharedPreferences ) to set something
+ * This class allows you to interact with any activity
+ * using what it receives from the settings (object SharedPreferences) to set something.
+ *
  * @author team
  * @see android.content.SharedPreferences.OnSharedPreferenceChangeListener
  * @see PreferenceFragment

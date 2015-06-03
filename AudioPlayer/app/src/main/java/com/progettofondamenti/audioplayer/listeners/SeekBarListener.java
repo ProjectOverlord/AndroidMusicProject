@@ -5,7 +5,7 @@ import android.widget.SeekBar;
 import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
- * Simplified listener
+ * Listener for the SeekBar.
  *
  * @author team
  * @see android.widget.SeekBar.OnSeekBarChangeListener

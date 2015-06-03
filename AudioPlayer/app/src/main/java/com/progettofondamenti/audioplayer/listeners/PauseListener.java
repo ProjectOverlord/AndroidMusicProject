@@ -7,7 +7,7 @@ import com.progettofondamenti.audioplayer.IPlayer;
 /**
  * Listener for the PauseButton.
  *
- *@author team
+ * @author team
  * @see android.view.View.OnClickListener
  */
 public class PauseListener implements View.OnClickListener {

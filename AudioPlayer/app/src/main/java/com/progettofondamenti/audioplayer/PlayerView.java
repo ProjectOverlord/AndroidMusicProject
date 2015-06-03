@@ -16,12 +16,6 @@ import java.util.concurrent.TimeUnit;
  * This is a part of the MVC implementation without the observable/observer DP.
  * The update is achieved with the runnable.
  *
- * public void run()
- * 		 Update mechanism of graphical components associated with the player,
- * 		such as tick labels duration.
- * 		It is used a timer handler that reads every 100 milliseconds the current position of reproduction,
- * 		and implements the consequent updating of the bar.
- *
  *@author team
  * @see java.lang.Runnable
  *
@@ -55,6 +49,12 @@ public class PlayerView implements Runnable{
 	}
 
 
+	/**
+	 *  Update mechanism of graphical components associated with the player,
+	 * 	such as tick labels duration.
+	 * 	It uses a handler that reads every 100 milliseconds the current position of reproduction,
+	 * 	and implements the consequent updating of the bar and the TextViews.
+	 */
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	public void run()
 	{

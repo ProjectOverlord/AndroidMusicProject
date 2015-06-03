@@ -5,7 +5,7 @@ import android.view.View;
 import com.progettofondamenti.audioplayer.IPlayer;
 
 /**
- * Now the player listener seems just fine
+ * Listener for the PlayButton.
  *
  * @author team
  * @see android.view.View.OnClickListener
