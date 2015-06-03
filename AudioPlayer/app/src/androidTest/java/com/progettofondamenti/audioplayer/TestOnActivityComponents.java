@@ -17,8 +17,6 @@ public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<M
     private TextView remainingTime;
     private static int PLAY_TIME = 30000;
 
-
-
     public TestOnActivityComponents() {
         super(MainActivity.class);
     }

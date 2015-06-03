@@ -12,22 +12,19 @@ import com.progettofondamenti.audioplayer.login.view.LoginActivity;
  * @author team
  * @see ActivityInstrumentationTestCase2
  */
-
 public class TestOnLoginActivity extends ActivityInstrumentationTestCase2<LoginActivity> {
 
     private LoginActivity loginActivity;
     private Button loginButton;
+    private static final long timeout = 10000;
 
-
-    public TestOnLoginActivity(Class<LoginActivity> activityClass) {
-
-        super(activityClass);
+    public TestOnLoginActivity() {
+        super(LoginActivity.class);
     }
 
-
     /*
-     * non-javadoc sets up the activity for usage
-     */
+         * non-javadoc sets up the activity for usage
+         */
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -35,22 +32,19 @@ public class TestOnLoginActivity extends ActivityInstrumentationTestCase2<LoginA
         loginActivity = getActivity();
         loginButton = (Button) loginActivity.findViewById(R.id.loginButton);
 
-        getActivity(); // TODO non so se serve
-
+        getActivity();
     }
 
     /**
-     *testLaunchingMainActivity()
-     * method that simulates the clik on loginButton and verifies the correctness of this action
+     * This test method simulates the clik on loginButton and verifies the correctness of this action
      */
     public void testLaunchingMainActivity(){
-        Instrumentation.ActivityMonitor am = getInstrumentation().
-                                             addMonitor(MainActivity.class.getName(), null, true);
+        Instrumentation.ActivityMonitor activityMonitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, true);
 
         loginButton.performClick();
 
-        //am.waitForActivitywithTimeout(timeout);
-        assertEquals(1, am.getHits());
+        activityMonitor.waitForActivityWithTimeout(timeout);
+        assertEquals(1, activityMonitor.getHits());
     }
 
 

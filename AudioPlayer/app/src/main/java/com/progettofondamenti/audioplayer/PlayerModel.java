@@ -30,7 +30,6 @@ public class PlayerModel implements IPlayer {
 	private TitlesList titlesList;
 
 	private MediaPlayer mediaPlayer;
-	private String uri;
 
 	public PlayerModel(String serverSuffix) {
 		mediaPlayer = new MediaPlayer();
@@ -141,36 +140,9 @@ public class PlayerModel implements IPlayer {
 		mediaPlayer.release();
 	}
 
-	// TODO: Remember to put options for these in the settings activity.
-
-	/**
-	 * Currently not used
-	 *@param backwardTime
-	 */
-	public void setBackwardTime(int backwardTime) {
-		if (backwardTime < MAX_BACKWORD_TIME) {
-			this.backwardTime = backwardTime;
-		} else {
-			this.backwardTime = MAX_BACKWORD_TIME;
-		}
-	}
-
-	/**
-	 * Currently not used
-	 * @param forwardTime
-	 */
-	public void setForwardTime(int forwardTime) {
-		if (forwardTime < MAX_FORWARD_TIME) {
-			this.forwardTime = forwardTime;
-		} else {
-			this.forwardTime = MAX_FORWARD_TIME;
-		}
-	}
-
-
-	/**
+	/*
 	 * Retrives the titlesList object which contains all the song names.
-	 * @return The plyaer's TitleList
+	 * returns the player's TitleList
 	 */
 	@Override
 	public TitlesList getTitlesList() {

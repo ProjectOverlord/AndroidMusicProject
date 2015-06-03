@@ -36,6 +36,9 @@ public class SettingsActivity extends PreferenceActivity  {
 
         getPrefSavepath = getSharedPreferences("pref_savepath", Context.MODE_MULTI_PROCESS);
 
+        /*
+         * This EditText has been set with a sample address - does nothing
+         */
         path.setText("http://10.87.136.158:8080/mp3.mp3");
 
     }
@@ -48,6 +51,10 @@ public class SettingsActivity extends PreferenceActivity  {
         background = getPrefSavepath.getBoolean("pref_background", false);
     }
 
+    /**
+     * Returns the playback CheckBoxPreference object
+     * @return
+     */
     public CheckBoxPreference getPlayCheck() {
         return playCheck;
     }

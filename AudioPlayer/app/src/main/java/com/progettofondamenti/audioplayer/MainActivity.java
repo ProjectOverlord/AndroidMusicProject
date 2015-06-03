@@ -203,10 +203,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /*
-     * this method retrives information from the settings activity
-     * Metodo che viene chiamato OGNI VOLTA CHE:
-     * 		- Viene creata l'Activity
-     * 		- Si torna a questa Activity da un'altra.
+     * This method retrives information from the settings activity
+     * It is called every time the activity is created or re-created
+     *
      */
     private void applySettings(){
         if (player.isPlaying()){
@@ -238,12 +237,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 }

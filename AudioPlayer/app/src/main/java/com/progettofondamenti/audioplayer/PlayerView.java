@@ -52,7 +52,7 @@ public class PlayerView implements Runnable{
 	/**
 	 *  Update mechanism of graphical components associated with the player,
 	 * 	such as tick labels duration.
-	 * 	It uses a handler that reads every 100 milliseconds the current position of reproduction,
+	 * 	It uses a handler that reads every specified amount of milliseconds the current position of reproduction,
 	 * 	and implements the consequent updating of the bar and the TextViews.
 	 */
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -70,15 +70,17 @@ public class PlayerView implements Runnable{
 		handler.postDelayed(this, 100);
 	}
 
-	/* Il metodo toMinutes abbisogna di un'API minima 9 */
+
 	private void updateTime(TextView textView, int time) {
 		textView.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(time),
 				TimeUnit.MILLISECONDS.toSeconds(time)
 						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(time))));
 	}
 
-	/* Long and ugly method chain calls to simply get the title
-	 * of the file currently playing */
+	/*
+	 * Method which simply gets the title of the file currently playing
+	 *
+	 */
 	private void updateDisplayedTitle() {
 		songTitle.setText(player.getTitlesList().getTitles().get(
 						player.getTitlesList().getCurrentIndex()

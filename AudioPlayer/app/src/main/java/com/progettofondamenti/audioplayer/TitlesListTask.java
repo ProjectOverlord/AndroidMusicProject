@@ -45,14 +45,10 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 			String titles = titlesFileName;
 			URL url = new URL(suffix+titles);
 
-			// TODO: RENDERE MIGLIORE L'ESPRESSIONE SOPRA
-			//URL url = new URL(player.getTitlesList().getServerSuffix()+titlesFileName);
 			Log.e("-----URL-----", url.toString());
 
-			// Right now, at least on Ubuntu, this takes forever.
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection(Proxy.NO_PROXY);
 
-//			urlConnection.setUseCaches(false);
 			urlConnection.setRequestMethod("GET");
 			urlConnection.setDoInput(true);
 			urlConnection.connect();
@@ -68,7 +64,7 @@ public class TitlesListTask extends AsyncTask<URL, Integer, Long> {
 		} catch (MalformedURLException e) {
 			Log.e("--------", e.getMessage());
 		} catch (IOException e) {
-			Log.e("--------", "fuffaboccia");
+			Log.e("--------", e.getMessage());
 		}
 		return (long)player.getTitlesList().getTitles().size();
 	}

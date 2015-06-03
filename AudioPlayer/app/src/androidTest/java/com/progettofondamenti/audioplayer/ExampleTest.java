@@ -9,7 +9,10 @@ import android.test.InstrumentationTestCase;
  */
 public class ExampleTest extends InstrumentationTestCase {
 
-    /* test di prova */
+    /**
+     * Test di prova utile per comprendere il funzionamento dei JUnit in AS
+     * @throws Exception
+     */
     public void test() throws Exception {
         final int expected = 1;
         //final int reality = 5; if you use this the test will fail
