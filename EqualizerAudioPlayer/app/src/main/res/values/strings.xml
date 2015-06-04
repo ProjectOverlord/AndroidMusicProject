@@ -3,8 +3,9 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_equalizer">EqualizerActivity</string>
 
+    <!-- Array of colors name-->
     <string-array name="colors">
         <item>Default</item>
         <item>White</item>
@@ -15,6 +16,7 @@
         <item>Yellow</item>
     </string-array>
 
+    <!-- Array for the colors values -->
     <string-array name="colors_values">
         <item>#FF3FB9E6</item>
         <item>#FFFFFF</item>
@@ -24,6 +26,5 @@
         <item>#FF0000</item>
         <item>#FFFF00</item>
     </string-array>
-    <string name="title_activity_equalizer">EqualizerActivity</string>
 
 </resources>

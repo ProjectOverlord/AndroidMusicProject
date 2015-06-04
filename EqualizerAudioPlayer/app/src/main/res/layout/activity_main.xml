@@ -74,6 +74,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
+        <!-- Customized ImageButtons -->
         <com.progettofondamenti.equalizeraudioplayer.buttons.PreviousButton
             android:layout_width="50dp"
             android:layout_height="50dp"
