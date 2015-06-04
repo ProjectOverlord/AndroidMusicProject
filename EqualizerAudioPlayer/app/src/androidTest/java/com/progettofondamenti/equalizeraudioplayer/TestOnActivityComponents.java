@@ -5,11 +5,10 @@ import android.widget.TextView;
 
 /**
  * Junit Test Class
- * test che verifica la correttezza dei componenti
- * Created by Erica on 13/05/15.
+ * Test the correcteness of the components
+ * @author team
  */
-public class TestOnActivityComponents
-        extends ActivityInstrumentationTestCase2<MainActivity> {
+public class TestOnActivityComponents extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity mainActivity;
     private TextView songText;
@@ -22,7 +21,8 @@ public class TestOnActivityComponents
     }
 
     /*
-     * non-javadoc sets up the activity for usage
+     * non-javadoc
+     * sets up the activity for usage
      */
     @Override
     protected void setUp() throws Exception {
@@ -35,7 +35,6 @@ public class TestOnActivityComponents
     }
 
     /**
-     *
      * metodo che controlla che la stringa del titolo sia corretta
      */
     public void testMyFirstTestTextView_labelText() {
@@ -70,21 +69,4 @@ public class TestOnActivityComponents
 
         assertEquals(expected, actual);
     }
-
-    /**
-     * Launch music player and sleep for 30 seconds to capture
-     * the music player power usage base line
-     *
-     * @throws Exception
-     */
-    public void testLaunchMusicPlayer() throws Exception {
-
-        try {
-            Thread.sleep(PLAY_TIME);
-        } catch (Exception e) {
-            assertTrue("MusicPlayer Do Nothing", false);
-        }
-        assertTrue("MusicPlayer Do Nothing", true);
-    }
-
 }
