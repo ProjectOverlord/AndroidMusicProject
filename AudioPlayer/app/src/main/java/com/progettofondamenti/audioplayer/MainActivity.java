@@ -205,7 +205,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     /*
-     * This method retrives information from the settings activity
+     * This method retrieves information from the settings activity
      * It is called every time the activity is created or re-created
      *
      */
@@ -213,7 +213,7 @@ public class MainActivity extends ActionBarActivity {
         if (player.isPlaying()){
             player.stop();
         }
-        player.reset();
+        // player.reset();
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 

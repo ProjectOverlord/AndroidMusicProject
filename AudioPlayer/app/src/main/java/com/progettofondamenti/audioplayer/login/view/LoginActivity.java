@@ -9,12 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.progettofondamenti.audioplayer.MainActivity;
 import com.progettofondamenti.audioplayer.R;
 import com.progettofondamenti.audioplayer.login.model.LoginClient;
-
-import java.io.IOException;
 
 /**
  * This login activity has a simple design and clear interface.
@@ -25,7 +24,11 @@ import java.io.IOException;
  */
 public class LoginActivity extends Activity {
 
-	LoginClient login = new LoginClient();
+	private LoginClient login = new LoginClient();
+	private EditText usernameEditText;
+	private EditText passwordEditText;
+	private String username;
+	private String password;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,9 @@ public class LoginActivity extends Activity {
 		/* The method declares its onClick behaviour in the XML file. As of now it simply calls the goToNextActivity method) */
 		Button loginButton = (Button) findViewById(R.id.loginButton);
 
-		/* This button has yet to declare his onClock action */
-		Button experimentalLoginButton = (Button) findViewById(R.id.experimentalLogin);
+		usernameEditText = (EditText) findViewById(R.id.username);
+		passwordEditText = (EditText) findViewById(R.id.password);
+
 	}
 
 	@Override
@@ -53,14 +57,18 @@ public class LoginActivity extends Activity {
 	public void sendLoginToServer(View v) { sendLoginToServer(); }
 	public void sendLoginToServer() {
 
-			login.fireHttpPostRequest();
+		username = usernameEditText.getText().toString();
+		password = passwordEditText.getText().toString();
+
+		goToNextActivity();
 
 	}
 
-	public void InternetTester(View v) {
+	public void testInternetConnection() {
 		ConnectivityManager connMgr = (ConnectivityManager)
 				getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
 		if (networkInfo != null && networkInfo.isConnected()) {
 			Log.e("---hola---", "ok");
 		} else {

@@ -39,18 +39,8 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/loginButton"
-        android:onClick="goToNextActivity"
+        android:onClick="sendLoginToServer"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ExperimentalLogin"
-        android:id="@+id/experimentalLogin"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:onClick="sendLoginToServer"
-        android:nestedScrollingEnabled="false"/>
 
 </RelativeLayout>

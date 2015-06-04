@@ -39,7 +39,7 @@ public class SettingsActivity extends PreferenceActivity  {
         /*
          * This EditText has been set with a sample address - does nothing
          */
-        path.setText("http://10.87.136.158:8080/mp3.mp3");
+        path.setText("http://192.168.1.169:8080/");
 
     }
 

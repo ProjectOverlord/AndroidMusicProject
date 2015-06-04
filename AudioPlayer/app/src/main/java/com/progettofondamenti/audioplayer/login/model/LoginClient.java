@@ -24,7 +24,7 @@ import java.net.URLEncoder;
  */
 public class LoginClient {
 
-	private final String USER_AGENT = "Mozilla/5.0";
+
 
 	String charset = null;
 	String url = null;
@@ -57,77 +57,20 @@ public class LoginClient {
 		}
 	}
 
-	@TargetApi(Build.VERSION_CODES.KITKAT)
-	public void fireHttpPostRequest(){
-		URLConnection connection = null;
-		try {
-			connection = (new URL(url)).openConnection();
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e("---IO-Creation---", e.getMessage());
-
-		}
-
-		connection.setDoOutput(true); // Triggers POST request
-		connection.setRequestProperty("Accept-Charset", charset);
-		connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + charset);
-
-		Log.e("Checkpoint", "1");
-
-		// OutputStream outputStream = null;
-		try {
-			try (OutputStream outputStream = connection.getOutputStream()) {
-				Log.e("Checkpoint", "2");
-				outputStream.write(query.getBytes(charset));
-				Log.e("Checkpoint", "3");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e("----IO-Outputstream---", e.getMessage());
-			Log.e("Checkpoint", "3.5");
-
-		}
-
-		Log.e("Checkpoint", "4");
-
-
-		try {
-			// connection.connect();
-			InputStream response = connection.getInputStream();
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e("---IO-Connection---", e.getMessage());
-		}
-
+	public String getUsername() {
+		return username;
 	}
 
-	public void fireHttpGetRequest() throws IOException {
-
-		String url = "http://www.google.com/search?q=mkyong";
-		URL obj = new URL(url);
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-		// optional default is GET
-		con.setRequestMethod("GET");
-
-		//add request header
-		con.setRequestProperty("User-Agent", USER_AGENT);
-
-		int responseCode = con.getResponseCode();
-		Log.e("----", "\nSending 'GET' request to URL : " + url);
-		Log.e("----", "Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(
-				new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-
-		//print result
-		Log.e("----", response.toString());
+	public String getPassword() {
+		return password;
 	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 }
