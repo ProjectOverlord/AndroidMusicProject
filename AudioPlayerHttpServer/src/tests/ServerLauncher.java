@@ -3,11 +3,12 @@ package tests;
 import server.Server;
 
 /**
- * This class is a test for the server model. The tested services are
- * FileService (default), that sends an HTML or XML file, and BooksService, that
- * lists the books in books02.html
+ * This class is a test for the server model,
+ * as well as the launcher.
  * 
- * @author claudio
+ * Original code of the whole project by Alessandro Martinelli.
+ * 
+ * @author team
  *
  */
 public class ServerLauncher {

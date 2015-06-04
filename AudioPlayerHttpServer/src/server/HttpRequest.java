@@ -7,11 +7,11 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 /**
- * This class reads and saves the lines of the HTTP request given the
- * clientSocket. It provides tools to interact with tos lines, first of all the
+ * This class reads and saves the lines of the HTTP request given the clientSocket. 
+ * It provides tools to interact with those lines, first of all the
  * retrievement of the URI.
  * 
- * @author claudio
+ * @author team
  *
  */
 public class HttpRequest {
@@ -37,7 +37,7 @@ public class HttpRequest {
 			throws IOException {
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(
-				clientSocket.getInputStream()));
+												clientSocket.getInputStream()));
 
 		String line = in.readLine();
 		this.requestLines.add(line);

@@ -7,9 +7,10 @@ import java.util.HashMap;
 
 /**
  * This is the central model class for the server.
- * To launch the server in any other class, there must be a call to the launch() method.
+ * To launch the server in any other class, 
+ * there must be a call to the launch() method.
  * 
- * @author claudio
+ * @author team
  *
  */
 public class Server {
@@ -26,7 +27,7 @@ public class Server {
 	 * port number (to start the service) and the services map, to correctly
 	 * answer the client
 	 * 
-	 * @author claudio
+	 * @author team
 	 */
 	public void launch() {
 		try {
@@ -45,9 +46,6 @@ public class Server {
 			Runnable runnable = new ServerRunner(clientSocket, services);
 			Thread thread = new Thread(runnable);
 			thread.start();
-			// socket.close();
-			// TODO: Come mai la socket non va chiusa? Perché interromperei le
-			// il thread. Probabilmente bisogna chiuderla nel thread.
 		}
 
 	}
@@ -55,10 +53,10 @@ public class Server {
 	/**
 	 * Adds another service to the services map
 	 * 
-	 * @param name
-	 * @param service
+	 * @param name Name that identifies the service to be added.
+	 * @param service Implementation of the IService interface used by the new service.
 	 * 
-	 * @author claudio
+	 * @author team
 	 */
 	public void addService(String name, IService service) {
 		services.put(name, service);

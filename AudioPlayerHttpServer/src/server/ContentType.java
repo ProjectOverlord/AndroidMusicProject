@@ -9,7 +9,6 @@ package server;
 public enum ContentType {
 	TXT("text/plain"),
 	HTML("text/html"),
-	XML("text/xml"),
 	FLAC("audio/flac"),
 	WAV("audio/vnd.wave"),
 	MP4("audio/mp4"),

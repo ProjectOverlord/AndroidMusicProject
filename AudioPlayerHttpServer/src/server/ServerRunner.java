@@ -9,10 +9,10 @@ import server.services.FileService;
 
 /**
  * This class is an implementation of the Runnable interface.
- * The run() method can be used to start a thread capable of listening for
+ * The run() method is used to start a thread capable of listening for
  * HTTP requests and answer them.
  * 
- * @author claudio
+ * @author team
  *
  */
 public class ServerRunner implements Runnable {
@@ -38,9 +38,9 @@ public class ServerRunner implements Runnable {
 		try {
 
 			/*
-			 * Il thread resta in attesa di una richiesta HTTP. Quando arriva,
-			 * "sblocca" questa istruzione. A questo punto vengono salvate tutte
-			 * le linee della richiesta Http.
+			 * The thread keeps waiting for an HTTP request. When this arrives,
+			 * it "unlocks" this instruction. At this point all the lines
+			 * from the HTTP request are saved.
 			 */
 			HttpRequest request = new HttpRequest(clientSocket);
 
@@ -48,9 +48,9 @@ public class ServerRunner implements Runnable {
 			System.err.println("URI richiesto:\t" + request.getUri());
 
 			/*
-			 * Il server deve essere generico, dunque deve dipendere solo dalla
-			 * classe FileService, che è il default. Questo è il design Pattern
-			 * STRATEGY.
+			 * According to the Strategy DP, the server 
+			 * has to be as generic as possible, so it depends
+			 * only from FileService, which is the default.
 			 */
 			IService service = services.get(request.getUri());
 			if (service == null) { // DEFAULT

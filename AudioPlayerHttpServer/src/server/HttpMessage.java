@@ -12,7 +12,7 @@ import java.util.Date;
  * Calls of 'openHttpAnswer' must always be followed by calls to
  * 'closeHttpAnswer'
  * 
- * @author claudio
+ * @author team
  * 
  */
 public class HttpMessage {
@@ -24,7 +24,7 @@ public class HttpMessage {
 	/**
 	 * Prints the header of the HTTP answer on the OutputStream defined by the
 	 * clientSocket. The contentType varies accordingly to the client's request
-	 * and avilability of the type in the enumeration
+	 * and availability of the type in the enumeration.
 	 * 
 	 * @param clientSocket
 	 *            the socket reserved for the client connection
@@ -49,8 +49,7 @@ public class HttpMessage {
 
 	public void closeHttpAnswer() throws IOException {
 		out.write("\n");
-		out.close();
-		// If closed, there is an exception.
+		out.close();		// This makes things work, though it throws an exception.
 	}
 
 	public OutputStreamWriter getOutputStreamWriter() {

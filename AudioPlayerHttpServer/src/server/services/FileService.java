@@ -19,9 +19,9 @@ import server.IService;
 /**
  * Among all the possible IServices, FileService is the one that handles the
  * copy of a file to the OutputStream. This is the DEFAULT service and sends
- * files to the client as specified with the URI
+ * files to the client as specified with the URI.
  * 
- * @author claudio
+ * @author team
  *
  */
 public class FileService implements IService {
@@ -32,8 +32,7 @@ public class FileService implements IService {
 		String filename = checkURI(request.getUri());
 		HttpMessage message = new HttpMessage();
 
-		// TODO: This clearly isn't a versatile way to handle the various
-		// formats. Must generalize for many (interface..?)
+		// This isn't very nice, but for now it works.
 		if (filename.endsWith("mp3")) {
 			message.setContentType(ContentType.MP3);
 		}
@@ -45,7 +44,6 @@ public class FileService implements IService {
 		// Answers the HTTP request sending the requested file
 		message.openHttpAnswer(clientSocket);
 		
-		// TODO: 
 		if (filename.endsWith("txt")) {
 			copyTextFile(filename, message.getOutputStreamWriter());
 		}
@@ -55,12 +53,8 @@ public class FileService implements IService {
 	}
 
 	/**
-	 * Copies the requested file on the output stream. To be used for text
-	 * files.
-	 * 
-	 * TODO: WARNING: QUESTO METODO NON VIENE USATO, PERCHE' L'ALTRO
-	 * (copyBinaryFile) SEMBRA FUNZIONARE UGUALMENTE ANCHE PER FILE HTML E XML.
-	 * INDAGARE
+	 * Copies the requested file on the output stream. 
+	 * To be used for text files.
 	 * 
 	 * @param filename
 	 *            The name of the requested file
@@ -90,8 +84,8 @@ public class FileService implements IService {
 	}
 
 	/**
-	 * Copies the requested file on the output stream. To be used for binary
-	 * files.
+	 * Copies the requested file on the output stream. 
+	 * To be used for binary files.
 	 * 
 	 * @param filename
 	 *            The name of the requested file
@@ -99,7 +93,7 @@ public class FileService implements IService {
 	 *            The output stream
 	 * @throws FileNotFoundException
 	 *             When the FileReader cannot find a file corresponding to
-	 *             filename. TODO: If it is thrown, we redirect to 'error.html'.
+	 *             filename.
 	 * @throws IOException
 	 *             When something goes wrong while reading from file or writing
 	 *             to the OutputStream.
