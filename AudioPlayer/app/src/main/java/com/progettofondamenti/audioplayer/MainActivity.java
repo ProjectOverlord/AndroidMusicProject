@@ -33,7 +33,7 @@ import java.util.concurrent.ExecutionException;
  *
  * This class is the main class in which the view is defined
  * according to the characteristics specified in the XML file.
- * Also it is responsible for the use of various components described in other classes.
+ * It is also responsible for the use of various components described in other classes.
  *
  * @author team
  * @see android.support.v7.app.ActionBarActivity
@@ -42,6 +42,9 @@ public class MainActivity extends ActionBarActivity {
 
     /* Specific code for activity results */
     private static final int RESULT_SETTINGS = 1;
+
+	/* To be changed with local server IP address */
+    private static final String DEFAULT_SERVER_SUFFIX = "http://192.168.1.169:8080/"; // casa Claudio
 
     /* Declarations */
 	/* Initializes the player given the context of this activity */
@@ -64,8 +67,7 @@ public class MainActivity extends ActionBarActivity {
 
     private PlayerView playerView;
 
-    private String serverSuffix = "http://192.168.1.169:8080/";  // casa Claudio
-//    private String serverSuffix = "http://192.168.1.5:8080/";      // casa Francesco
+    private String serverSuffix = DEFAULT_SERVER_SUFFIX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
