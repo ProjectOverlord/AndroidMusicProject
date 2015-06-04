@@ -32,11 +32,10 @@ public class FileService implements IService {
 		String filename = checkURI(request.getUri());
 		HttpMessage message = new HttpMessage();
 
-		// This isn't very nice, but for now it works.
+		// This isn't very nice, but it works.
 		if (filename.endsWith("mp3")) {
 			message.setContentType(ContentType.MP3);
-		}
-			else
+		} else
 			if (filename.endsWith("txt"))
 				message.setContentType(ContentType.TXT);
 		
