@@ -3,8 +3,8 @@ package com.progettofondamenti.equalizeraudioplayer;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.audiofx.Equalizer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +19,19 @@ import java.util.ArrayList;
 
 /**
  * This is the activity that provides the user the possibility to set up
- * the equalizer - the aim of this activity is t just to show the possibility to
+ * the equalizer - the aim of this activity is just to show the possibility to
  * select specific frequencies parameters on a different song that starts at the
  * moment of the creation of the activity.
+ *
+ * NOTES:
+ * - The user can select the parameters on the current media player using the default equalizer
+ * selected from the main acitivity's setting button
+ * - The comments inserted are related to the equalizer in general
  * @author francesco
  */
 public class EqualizerActivity extends ActionBarActivity {
 
     private Equalizer mEqualizer;
-    private PlayerModel playerModel;
     private MediaPlayer mp;
 
     private LinearLayout mLinearLayout;
@@ -37,7 +41,6 @@ public class EqualizerActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equalizer);
 
-//        mp = playerModel.getMediaPlayer();
         mp = MediaPlayer.create(this, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
         mp.start();
 
@@ -48,143 +51,122 @@ public class EqualizerActivity extends ActionBarActivity {
         mEqualizer = new Equalizer(0, mp.getAudioSessionId());
         mEqualizer.setEnabled(true);
 
-        setupEqualizerFxAndUI();
+        setupEqualizer();
 
-
-        // listen for when the music stream ends playing
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(MediaPlayer mediaPlayer) {
-                // disable the visualizer as it's no longer needed
 
             }
         });
     }
 
-    /* shows spinner with list of equalizer presets to choose from
-   - updates the seekBar progress and gain levels according
-   to those of the selected preset*/
+    /*
+     * shows a spinner with list of equalizer presets to choose from
+     */
     private void equalizeSound() {
-//        set up the spinner
+
         ArrayList<String> equalizerPresetNames = new ArrayList<String>();
-        ArrayAdapter<String> equalizerPresetSpinnerAdapter
-                = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> equalizerPresetSpinnerAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,
                 equalizerPresetNames);
-        equalizerPresetSpinnerAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        equalizerPresetSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner equalizerPresetSpinner = (Spinner) findViewById(R.id.spinner);
 
-//        get list of the device's equalizer presets
+        // get list of the device's equalizer presets
         for (short i = 0; i < mEqualizer.getNumberOfPresets(); i++) {
             equalizerPresetNames.add(mEqualizer.getPresetName(i));
         }
 
         equalizerPresetSpinner.setAdapter(equalizerPresetSpinnerAdapter);
 
-//        handle the spinner item selections
-        equalizerPresetSpinner.setOnItemSelectedListener(new AdapterView
-                .OnItemSelectedListener() {
+        equalizerPresetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
-            public void onItemSelected(AdapterView<?> parent,
-                                       View view, int position, long id) {
-                //first list item selected by default and sets the preset accordingly
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                // the first list item is selected by default and sets the preset on consequence
                 mEqualizer.usePreset((short) position);
-//                get the number of frequency bands for this equalizer engine
+
+                // get the number of frequency bands for this equalizer engine
                 short numberFrequencyBands = mEqualizer.getNumberOfBands();
-//                get the lower gain setting for this equalizer band
+
+                // get the lower gain setting for this equalizer band
                 final short lowerEqualizerBandLevel = mEqualizer.getBandLevelRange()[0];
 
-//                set seekBar indicators according to selected preset
                 for (short i = 0; i < numberFrequencyBands; i++) {
                     short equalizerBandIndex = i;
                     SeekBar seekBar = (SeekBar) findViewById(equalizerBandIndex);
-//                    get current gain setting for this equalizer band
-//                    set the progress indicator of this seekBar to indicate the current gain value
-                    seekBar.setProgress(mEqualizer
-                            .getBandLevel(equalizerBandIndex) - lowerEqualizerBandLevel);
+
+                    // get current gain setting for this equalizer band
+                    //  set the progress indicator of this seekBar to indicate the current gain value
+                    seekBar.setProgress(mEqualizer.getBandLevel(equalizerBandIndex) - lowerEqualizerBandLevel);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                not used
+                // no implementation needed
             }
         });
     }
 
-    /* displays the SeekBar sliders for the supported equalizer frequency bands
-    user can move sliders to change the frequency of the bands*/
-    private void setupEqualizerFxAndUI() {
+    /*
+     * displays the SeekBar sliders for the supported equalizer frequency bands
+     * user can move sliders to change the frequency of the bands
+     */
+    private void setupEqualizer() {
 
-//        get reference to linear layout for the seekBars
         mLinearLayout = (LinearLayout) findViewById(R.id.linearLayoutEqual);
 
-//        equalizer heading
         TextView equalizerHeading = new TextView(this);
         equalizerHeading.setText("Equalizer");
         equalizerHeading.setTextSize(20);
         equalizerHeading.setGravity(Gravity.CENTER_HORIZONTAL);
         mLinearLayout.addView(equalizerHeading);
 
-//        get number frequency bands supported by the equalizer engine
+        // get number frequency bands supported by the equalizer engine
         short numberFrequencyBands = mEqualizer.getNumberOfBands();
 
-//        get the level ranges to be used in setting the band level
-//        get lower limit of the range in milliBels
+        // get the level ranges to be used in setting the band level
+        // get lower limit of the range in milliBels
         final short lowerEqualizerBandLevel = mEqualizer.getBandLevelRange()[0];
-//        get the upper limit of the range in millibels
+
+        // get the upper limit of the range in millibels
         final short upperEqualizerBandLevel = mEqualizer.getBandLevelRange()[1];
 
-//        loop through all the equalizer bands to display the band headings, lower
-//        & upper levels and the seek bars
         for (short i = 0; i < numberFrequencyBands; i++) {
             final short equalizerBandIndex = i;
 
-//            frequency header for each seekBar
             TextView frequencyHeaderTextview = new TextView(this);
             frequencyHeaderTextview.setLayoutParams(new ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             frequencyHeaderTextview.setGravity(Gravity.CENTER_HORIZONTAL);
-            frequencyHeaderTextview
-                    .setText((mEqualizer.getCenterFreq(equalizerBandIndex) / 1000) + " Hz");
+            frequencyHeaderTextview.setText((mEqualizer.getCenterFreq(equalizerBandIndex) / 1000) + " Hz");
             mLinearLayout.addView(frequencyHeaderTextview);
 
-//            set up linear layout to contain each seekBar
-            LinearLayout seekBarRowLayout = new LinearLayout(this);
-            seekBarRowLayout.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout seekBarRowLayout = setUpLinearLayout();
 
-//            set up lower level textview for this seekBar
             TextView lowerEqualizerBandLevelTextview = new TextView(this);
-            lowerEqualizerBandLevelTextview.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            lowerEqualizerBandLevelTextview.setText((lowerEqualizerBandLevel / 100) + " dB");
-//            set up upper level textview for this seekBar
-            TextView upperEqualizerBandLevelTextview = new TextView(this);
-            upperEqualizerBandLevelTextview.setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            upperEqualizerBandLevelTextview.setText((upperEqualizerBandLevel / 100) + " dB");
+            setUpLowerLevelTextView(lowerEqualizerBandLevel, lowerEqualizerBandLevelTextview);
 
-            //            **********  the seekBar  **************
-//            set the layout parameters for the seekbar
+            TextView upperEqualizerBandLevelTextview = new TextView(this);
+            setUpLowerLevelTextView(upperEqualizerBandLevel, upperEqualizerBandLevelTextview);
+
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.weight = 1;
 
-//            create a new seekBar
             SeekBar seekBar = new SeekBar(this);
-//            give the seekBar an ID
             seekBar.setId(i);
 
             seekBar.setLayoutParams(layoutParams);
             seekBar.setMax(upperEqualizerBandLevel - lowerEqualizerBandLevel);
-//            set the progress for this seekBar
             seekBar.setProgress(mEqualizer.getBandLevel(equalizerBandIndex));
 
-//            change progress as its changed by moving the sliders
+            // change progress as its changed by moving the sliders
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
@@ -193,24 +175,42 @@ public class EqualizerActivity extends ActionBarActivity {
                 }
 
                 public void onStartTrackingTouch(SeekBar seekBar) {
-                    //not used
+                    // implementation not needed
                 }
 
                 public void onStopTrackingTouch(SeekBar seekBar) {
-                    //not used
+                    // implementation not needed
                 }
             });
 
-//            add the lower and upper band level textviews and the seekBar to the row layout
             seekBarRowLayout.addView(lowerEqualizerBandLevelTextview);
             seekBarRowLayout.addView(seekBar);
             seekBarRowLayout.addView(upperEqualizerBandLevelTextview);
 
             mLinearLayout.addView(seekBarRowLayout);
 
-            //        show the spinner
             equalizeSound();
         }
+    }
+
+    /*
+     * Sets up the lower level TextView
+     */
+    private void setUpLowerLevelTextView(short lowerEqualizerBandLevel, TextView lowerEqualizerBandLevelTextview) {
+        lowerEqualizerBandLevelTextview.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        lowerEqualizerBandLevelTextview.setText((lowerEqualizerBandLevel / 100) + " dB");
+    }
+
+    /*
+     * Sets up the linearLayout
+     */
+    private LinearLayout setUpLinearLayout() {
+        LinearLayout seekBarRowLayout = new LinearLayout(this);
+        seekBarRowLayout.setOrientation(LinearLayout.HORIZONTAL);
+        return seekBarRowLayout;
     }
 
     @Override

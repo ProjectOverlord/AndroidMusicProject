@@ -2,8 +2,6 @@ package com.progettofondamenti.equalizeraudioplayer;
 
 import android.content.Context;
 
-import java.io.IOException;
-
 /**
  * This is the interface for all the possible Player implementations.
  * That way it is possible to offer different implementations, giving
@@ -31,7 +29,7 @@ public interface IPlayer {
 
 	public abstract int getTotalDuration();
 
-	public abstract void initializeMediaPlayerProvvisorio(Context context);
+	public abstract void initializeMediaPlayer(Context context);
 
 	public abstract void die();
 

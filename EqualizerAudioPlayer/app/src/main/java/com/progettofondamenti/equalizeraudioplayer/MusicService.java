@@ -28,27 +28,25 @@ MediaPlayer.OnCompletionListener {
 	private static final int NOTIFY_ID=1;
 
 	public void onCreate(){
-		//create the service
 		super.onCreate();
 
 		player = new PlayerModel();
 
 	}
 
-	//binder
 	public class MusicBinder extends Binder {
 		MusicService getService() { 
 			return MusicService.this;
 		}
 	}
 
-	//activity will bind to service
+	// activity will bind to service
 	@Override
 	public IBinder onBind(Intent intent) {
 		return musicBind;
 	}
 
-	//release resources when unbind
+	// release resources when unbind
 	@Override
 	public boolean onUnbind(Intent intent){
 		player.stop();
@@ -56,11 +54,11 @@ MediaPlayer.OnCompletionListener {
 		return false;
 	}
 
-	public void playSong(){
+	/*public void playSong(){
 		player.reset();
 
-		player.initializeMediaPlayerProvvisorio(getApplicationContext());
-	}
+		player.initializeMediaPlayer(getApplicationContext());
+	}*/
 
 
 	@Override
@@ -85,11 +83,9 @@ MediaPlayer.OnCompletionListener {
 
 		mp.start();
 
-
 		Intent notIntent = new Intent(this, MainActivity.class);
 		notIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		PendingIntent pendInt = PendingIntent.getActivity(this, 0,
-				notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent pendInt = PendingIntent.getActivity(this, 0,notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		Notification.Builder builder = new Notification.Builder(this);
 
@@ -99,29 +95,9 @@ MediaPlayer.OnCompletionListener {
 		.setOngoing(true)
 		.setContentTitle("Playing")
 		.setContentText(songTitle);
+
 		Notification not = builder.build();
 		startForeground(NOTIFY_ID, not);
-	}
-
-	//playback methods
-	public int getPosn(){
-		return player.getMediaPlayer().getCurrentPosition();
-	}
-
-	public int getDur(){
-		return player.getMediaPlayer().getDuration();
-	}
-
-	public boolean isPng(){
-		return player.getMediaPlayer().isPlaying();
-	}
-
-	public void pausePlayer(){
-		player.pause();
-	}
-
-	public void go(){
-		player.play();
 	}
 
 	@Override

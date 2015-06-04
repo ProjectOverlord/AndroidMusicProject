@@ -27,8 +27,8 @@ import com.progettofondamenti.equalizeraudioplayer.listeners.RewindListener;
 
 /**
  * The main activity of the program.
+ * Here the xml components are initialized and the listeners set
  *
- *1) Default setup and initialization of activity_main.xml
  */
 public class MainActivity extends ActionBarActivity {
 
@@ -56,29 +56,22 @@ public class MainActivity extends ActionBarActivity {
 
 		player = new PlayerModel(this.getApplicationContext());
 
-		/* Inizializza le componenti rimanenti rispetto hha quelle già dichiarate in PlayerView */
-        initializeXmlComponents();
+	    initializeXmlComponents();
 
-        /* creazione della view */
-		playerView = new PlayerView(player, this);
+        playerView = new PlayerView(player, this);
 		playerView.run();
 
         setFragmentSettings();
 
 		playButton.setOnClickListener(new PlayListener(player));
 
-
         pauseButton.setOnClickListener(new PauseListener(player));
-
 
         rewButton.setOnClickListener(new RewindListener(player));
 
-
         ffButton.setOnClickListener(new ForwardListener(player));
 
-
         previousButton.setOnClickListener(new PreviousListener(player));
-
 
         nextButton.setOnClickListener(new NextListener(player));
     }
@@ -199,7 +192,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
 }

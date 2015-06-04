@@ -3,10 +3,6 @@ package com.progettofondamenti.equalizeraudioplayer;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
 /**
  * This class aims to be the model for the audio player.
  * No other class should be allowed to see the effective mediaPlayer.
@@ -14,26 +10,23 @@ import java.io.IOException;
  * This is an implementation of the IPlayer interface, which means
  * that other players can be implemented as long as they possess the same methods.
  *
- * @author CL
+ * @author team
  */
 public class PlayerModel implements IPlayer {
 
-	/* Defining upper and lower limits of forward and backward times.
+	/*
+	 * Defining upper and lower limits of forward and backward times.
 	 * Ideally there should be an option in the settings
 	 * that already define those, but better safe than sorry.
 	 */
-
 	private static final int MAX_FORWARD_TIME = 60000;
 	private static final int MAX_BACKWORD_TIME = 60000;
 
-	/* Defining parameters */
 	private int forwardTime = 2000;
 	private int backwardTime = 2000;
 
-	/* Declaring objects */
-    private MediaPlayer mediaPlayer;
+	private MediaPlayer mediaPlayer;
 
-	// NECESSARI PER EQ
 	public MediaPlayer getMediaPlayer() {
 		return mediaPlayer;
 	}
@@ -44,7 +37,7 @@ public class PlayerModel implements IPlayer {
 
     public PlayerModel(Context context) {
         mediaPlayer = new MediaPlayer();
-		initializeMediaPlayerProvvisorio(context);
+		initializeMediaPlayer(context);
     }
 
     @Override
@@ -91,7 +84,6 @@ public class PlayerModel implements IPlayer {
 
 	/*
 	 * This methods makes the song start from the beginning
-	 *
 	 */
 	@Override
 	public void previous() {
@@ -116,8 +108,9 @@ public class PlayerModel implements IPlayer {
 		return mediaPlayer.getDuration();
 	}
 
+
 	@Override
-	public void initializeMediaPlayerProvvisorio(Context context) {
+	public void initializeMediaPlayer(Context context) {
 		mediaPlayer = MediaPlayer.create(context, R.raw.wolfgang_amadeus_mozart_piano_concerto_no_21_andante);
 	}
 
@@ -136,19 +129,4 @@ public class PlayerModel implements IPlayer {
 		mediaPlayer.reset();
 	}
 
-	public void setBackwardTime(int backwardTime) {
-		if (backwardTime < MAX_BACKWORD_TIME) {
-			this.backwardTime = backwardTime;
-		} else {
-			this.backwardTime = MAX_BACKWORD_TIME;
-		}
-	}
-
-	public void setForwardTime(int forwardTime) {
-		if (forwardTime < MAX_FORWARD_TIME) {
-			this.forwardTime = forwardTime;
-		} else {
-			this.forwardTime = MAX_FORWARD_TIME;
-		}
-	}
 }
