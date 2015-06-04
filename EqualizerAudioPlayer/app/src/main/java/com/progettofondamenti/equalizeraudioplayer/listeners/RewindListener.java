@@ -7,7 +7,7 @@ import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 /**
  * Listener for the RewindButton.
  *
- * Created by Saeval on 16/05/2015.
+ * @author team
  */
 public class RewindListener implements View.OnClickListener{
 

@@ -16,9 +16,7 @@ import java.util.concurrent.TimeUnit;
  * This is a part of the MVC implementation without the observable/observer DP.
  * The update is achieved with the runnable.
  *
- * TODO: Arianna puppa
- *
- * @author CL & MS
+ * @author team
  */
 public class PlayerView implements Runnable{
 
@@ -62,7 +60,9 @@ public class PlayerView implements Runnable{
 		handler.postDelayed(this, 100);
 	}
 
-	/* Il metodo toMinutes abbisogna di un'API minima 9 */
+	/*
+	 * method which updates time
+	 */
 	private void updateTime(TextView textView, int time){
 		textView.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(time),
 				TimeUnit.MILLISECONDS.toSeconds(time)

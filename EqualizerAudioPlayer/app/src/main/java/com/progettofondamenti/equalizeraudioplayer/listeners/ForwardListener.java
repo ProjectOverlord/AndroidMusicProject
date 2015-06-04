@@ -7,7 +7,7 @@ import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 /**
  * Listener for the ForwardButton.
  *
- * Created by Filippo on 16/05/15.
+ * @author team
  */
 public class ForwardListener implements View.OnClickListener{
 

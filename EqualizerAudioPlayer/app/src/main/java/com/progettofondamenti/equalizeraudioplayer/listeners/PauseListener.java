@@ -7,7 +7,7 @@ import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 /**
  * Listener for the PauseButton.
  *
- * Created by Saeval on 16/05/2015.
+ * @author team
  */
 public class PauseListener implements View.OnClickListener {
 

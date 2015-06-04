@@ -9,7 +9,7 @@ import com.progettofondamenti.equalizeraudioplayer.R;
 /**
  * This class should be the one representing the button that calls the next()
  * method of the player.
- * Created by Filippo on 16/05/15.
+ * @author team
  */
 public class NextButton extends ImageButton{
 

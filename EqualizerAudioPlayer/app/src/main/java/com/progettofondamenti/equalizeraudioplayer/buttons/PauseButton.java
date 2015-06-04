@@ -9,7 +9,7 @@ import com.progettofondamenti.equalizeraudioplayer.R;
 /**
  * This class should be the one representing the button that calls the pause()
  * method of the player.
- * Created by Saeval on 16/05/2015.
+ * @author team
  */
 public class PauseButton extends ImageButton{
 

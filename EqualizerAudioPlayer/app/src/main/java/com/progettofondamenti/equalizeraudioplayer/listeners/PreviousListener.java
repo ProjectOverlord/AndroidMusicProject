@@ -7,7 +7,7 @@ import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 /**
  * Listener for the PreviousButton.
  *
- * Created by Filippo on 16/05/15.
+ * @author team
  */
 public class PreviousListener implements View.OnClickListener{
 

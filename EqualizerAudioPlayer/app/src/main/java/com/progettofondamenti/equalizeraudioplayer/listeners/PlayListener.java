@@ -7,7 +7,7 @@ import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 /**
  * Now the player listener seems just fine
  *
- * @author claudio
+ * @author team
  */
 public class PlayListener implements View.OnClickListener {
 

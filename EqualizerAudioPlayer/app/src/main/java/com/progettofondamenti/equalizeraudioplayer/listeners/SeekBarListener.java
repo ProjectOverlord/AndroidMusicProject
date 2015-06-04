@@ -5,9 +5,9 @@ import android.widget.SeekBar;
 import com.progettofondamenti.equalizeraudioplayer.IPlayer;
 
 /**
- * Simplified listener
+ * Specific listener for the seekbar handling
  *
- * @author CL & MS
+ * @author team
  */
 public class SeekBarListener implements SeekBar.OnSeekBarChangeListener {
 
